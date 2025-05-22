@@ -1,11 +1,12 @@
-import './App.css'
+import './App.scss'
+import { Footer } from './components/footer/footer';
 import ApiTest from './services/testapi'
 
 function App() {
   return (
-  <div>
-    <h1>testar API</h1>
+  <div className="App">
     <ApiTest />
+    <Footer />
   </div>
   );
 }

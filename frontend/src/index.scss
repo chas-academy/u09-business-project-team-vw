@@ -1,4 +1,36 @@
 :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --pri-bg-color: #F2E6D8;
+  --sec-bg-color: #FFF8E7;
+  --text-color: #5B4636;
+  --accent-pri-color: #D6C6B8;
+  --accent-sec-color: #A9746E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) and (max-width: 1280px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  html {
+    font-size: 24px;
+  }
+}
+
+/*
+:root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -66,3 +98,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+  */
