@@ -11,6 +11,7 @@
     "gen:tree": "tree -L 3 -I node_modules > frondendFolderStructure.md"
   },
   "dependencies": {
+    "@iconify/react": "^6.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
@@ -23,6 +24,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "sass": "^1.89.0",
     "tree-node-cli": "^1.6.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
