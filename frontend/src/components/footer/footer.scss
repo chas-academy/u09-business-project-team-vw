@@ -1,0 +1,14 @@
+// keeps footer at bottom and text centered
+#footer {
+    display: flex;
+    justify-content: center;
+    background-color: var(--sec-bg-color);
+    margin-top: auto;
+}
+
+// footer text change size when device size change
+#footer-copyright {
+    padding: 1rem;
+    color: var(--text-color);
+    font-size: 0.8rem;
+}
