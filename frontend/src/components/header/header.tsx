@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import "./header.scss"
 
+// header component imported in App.tsx
 export function Header() {
     return (
         <header id="header">
@@ -31,6 +32,12 @@ export function Header() {
                         <span id="search-button-text">Search</span>
                         <Icon id="search-icon" icon="ic:baseline-arrow-forward-ios"></Icon>
                     </button>               
+                </div>
+                <div id="dropdown-container">
+                    <button id="dropdown-button">
+                        <Icon className="dropdown-icon" icon="ic:baseline-restaurant-menu"></Icon>
+                        <Icon className="dropdown-icon dropdown-menu" icon="ic:baseline-menu"></Icon>
+                    </button>
                 </div>
             </div>
         </header>

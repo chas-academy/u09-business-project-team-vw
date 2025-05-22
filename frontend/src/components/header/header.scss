@@ -1,41 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
 
-// keeps logo/ttile, weather and profile separated
+@mixin flexbox($direction: row, $align: stretch, $justify: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
 #header {
     background-color: var(--sec-bg-color);
 }
 
+// keeps logo/ttile, weather and profile separated horizontally in header
 #header-upper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flexbox(row, center, space-between);
     border-bottom: 0.1rem solid var(--accent-sec-color);
     padding: 0.3rem 0.5rem;
 }
 
-// keeps logo and title together
+// keeps logo and title elements aligned
 #header-logo {
-    display: flex;
-    align-items: center;
+    @include flexbox(row, center, flex-start);
     gap: 0.5rem;
 }
 
-// styling logo for different devices
+// styling for different devices
 #logo-icon {
     font-size: 1.5rem;
     color: var(--accent-sec-color);
 }
 
-// styling title for different devices
 #header-title {
     font-family: 'Knewave', cursive;
     font-size: 1.2rem;
     color: var(--accent-sec-color);
 }
 
+// keeps weather and temperature elements aligned
 #header-weather {
-    display: flex;
-    align-items: center;
+    @include flexbox(row, center, flex-start);
     gap: 0.3rem;
 }
 
@@ -45,9 +48,7 @@
 }
 
 .temp-container {
-    display: flex;
-    flex-direction: column;
-    align-items: space-between;
+    @include flexbox(column, space-between, flex-start);
 }
 
 .temp-header {
@@ -55,16 +56,13 @@
 }
 
 .temp-degree-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flexbox(column, center, flex-start);
     font-size: 0.3rem;
 }
 
+// keeps profile elements aligned
 #header-profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+     @include flexbox(column, center, flex-start);
 }
 
 .profile-icon {
@@ -79,17 +77,14 @@
 
 // keeps search bar and buttons together
 #header-lower {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0.3rem 0.5rem;
+    @include flexbox(row, center, space-around);
+    padding: 0.8rem 0.5rem;
 }
 
+// preparing for moving search button behind search bar
 #search-container {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(row, center, center);
 }
 
 #search-bar {
@@ -103,14 +98,13 @@
     z-index: 2;
 }
 
+// moving search button behind search bar together with z-index
 #search-button {
     position: absolute;
     width: 5.5rem;
     height: 1.38rem;
     left: 8.3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(row, center, center);
     gap: 0.3rem;
     font-size: 0.7rem;
     color: var(--text-color);
@@ -120,4 +114,29 @@
     padding: 0.3rem 0.3rem 0.3rem 2rem;
     cursor: pointer;
     z-index: 1;
+}
+
+
+
+// preparing for moving burger menu closer to icon
+#dropdown-button {
+    position: relative;
+    bottom: 0.7rem;
+    @include flexbox(column, stretch, flex-start);
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--sec-bg-color);
+    border: none;
+}
+
+.dropdown-icon {
+    font-size: 1.2rem;
+    color: var(--accent-sec-color);
+}
+
+// moving burger menu closer to icon
+.dropdown-menu {
+    font-size: 2.3rem;
+    position: absolute;
+    top: 0.6rem;
 }
