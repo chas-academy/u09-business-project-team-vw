@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
+
+// keeps logo/ttile, weather and profile separated
+#header {
+    background-color: var(--sec-bg-color);
+}
+
+#header-upper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.1rem solid var(--accent-sec-color);
+    padding: 0.3rem 0.5rem;
+}
+
+// keeps logo and title together
+#header-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+// styling logo for different devices
+#logo-icon {
+    font-size: 1.5rem;
+    color: var(--accent-sec-color);
+}
+
+// styling title for different devices
+#header-title {
+    font-family: 'Knewave', cursive;
+    font-size: 1.2rem;
+    color: var(--accent-sec-color);
+}
+
+#header-weather {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.weather-icon {
+    font-size: 1.4rem;
+    color: rgb(155, 155, 28);
+}
+
+.temp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+}
+
+.temp-header {
+    font-size: 0.7rem;
+}
+
+.temp-degree-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.3rem;
+}
+
+#header-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-icon {
+    font-size: 1.5rem;
+    color: var(--accent-sec-color);
+}
+
+.profile-text {
+    font-size: 0.5rem;
+    color: rgb(28, 164, 28)
+}

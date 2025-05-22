@@ -28,7 +28,8 @@ function ApiTest() {
     }, [] ); // hakparentes så att datan bara laddas en gång
 
     return (
-        <div>
+        // added temporary styling when testing
+        <div style={{ fontSize: "0.5rem" }}>
             <h2>Test hämtning av data</h2>
             <ul>
                 {categories.map((category) => { // <-- loopa över en array
