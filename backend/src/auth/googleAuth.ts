@@ -1,9 +1,19 @@
+
+// MONGOOSE
+import { CallbackError } from 'mongoose';
+
+// PASSPORT + GOOGLE STRATEGY
 import passport from 'passport';
 import { Strategy as GoogleStrategy, Profile, VerifyCallback } from 'passport-google-oauth20';
+
+// FILES FROM UTILS FOLDER
 import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_CLIENT_URL } from '../utils/configGoogle';
 import { handleError } from '../utils/errorHandler';
-import { IUser, User } from '../models/UserModel';
-import { CallbackError } from 'mongoose';
+
+// FILES FROM MODELS + TYPES
+import { User } from '../models/User/UserModel';
+import { UserData } from '../interfaces/User/UserData';
+
 
 // Configure google auth strategy
 export const setupGoogleStrategy = () => {
@@ -53,7 +63,7 @@ export const setupGoogleStrategy = () => {
     });
 
     // Deserialize user: called on each request to retrieve full user from session/token
-    passport.deserializeUser(async (id: string, done: (err: CallbackError | null, user?: IUser | null) => void): Promise<void> => {
+    passport.deserializeUser(async (id: string, done: (err: CallbackError | null, user?: UserData | null) => void): Promise<void> => {
         try {
             const user = await User.findById(id); // <-- Find the user in the database.
             done(null, user); // <-- get the entire user object.

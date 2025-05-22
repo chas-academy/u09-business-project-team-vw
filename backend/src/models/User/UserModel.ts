@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { UserData } from '../types/UserData';
+import { UserData } from '../../interfaces/User/UserData';
 
 
 // UserData to be stored and connected to saved Recipelist

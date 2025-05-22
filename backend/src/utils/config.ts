@@ -3,7 +3,7 @@ import { handleError } from './errorHandler';
 
 dotenv.config();
 
-const API_KEY = process.env.MONGODB_URI;
+const API_KEY = process.env.API_KEY;
 // EXTERNAL API error handler.
 if(!process.env.API_KEY) {
     const error = new Error('API_KEY is missing or invalid');
@@ -18,7 +18,7 @@ const PORT: number = rawPort ? parseInt(rawPort, 10) : 3000 as number;
 
 // Check if PORT is exist and defined
 if(isNaN(PORT)) {
-    const error = new Error('PORT number is not valid');
+    const error = new Error('FAILED - PORT number is not valid or missing');
     handleError(error, 'server.ts');
     process.exit(1);
 }
@@ -38,5 +38,5 @@ const MONGODB_URI: string = process.env.MONGODB_URI as string;
 export {
     PORT,
     MONGODB_URI,
-    API_KEY
+    API_KEY // exporting to apiKeys.ts
 };

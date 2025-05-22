@@ -1,6 +1,5 @@
 import express, { Application } from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 
 // UTILS
 import { MONGODB_URI, PORT } from './utils/config';
@@ -11,10 +10,6 @@ import authRouter from './routes/authRoutes';
 
 // AUTH
 import { setupGoogleStrategy } from './auth/googleAuth';
-
-
-// Load .env file
-dotenv.config();
 
 // Load googleauth file
 setupGoogleStrategy();
@@ -30,9 +25,9 @@ app.use('/auth', authRouter);
 // Use PORT and MONGODB_URI to connect to the database
 mongoose.connect(MONGODB_URI)
     .then(() => {
-        console.log('MongoDB connected successfully!');
+        console.log('SUCCESS: MongoDB Connected');
         app.listen(PORT, () => {
-            console.log(`Server is running on ${PORT}`);
+            console.log(`SUCCESS: Server is Running on port: ${PORT}`);
         });
     })
     .catch(error => {
