@@ -1,3 +1,4 @@
+// global css variables and standard font-family
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   --pri-bg-color: #F2E6D8;
@@ -7,29 +8,33 @@
   --accent-sec-color: #A9746E;
 }
 
+// praxis for all html elements
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+// for media querries
 html {
   font-size: 16px;
 }
 
+// tablet
 @media (min-width: 768px) and (max-width: 1280px) {
   html {
     font-size: 20px;
   }
 }
 
+// desktop
 @media (min-width: 1280px) {
   html {
     font-size: 24px;
   }
 }
 
-/*
+/* standard styles from create-react-app we might use later
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

@@ -1,3 +1,4 @@
+// to make header, main and footer take up whole screen
 .App {
   display: flex;
   flex-direction: column;
@@ -5,7 +6,7 @@
   min-height: 100vh;
 }
 
-/*
+/* standard styles from create-react-app we might use later
 #root {
   max-width: 1280px;
   margin: 0 auto;

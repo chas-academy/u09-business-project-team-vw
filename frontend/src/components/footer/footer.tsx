@@ -1,5 +1,6 @@
 import './Footer.scss';
 
+// footer component imported in App.tsx
 export function Footer() {
     return (
         <section id="footer">
