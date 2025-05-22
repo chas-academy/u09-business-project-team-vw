@@ -76,3 +76,48 @@
     font-size: 0.5rem;
     color: rgb(28, 164, 28)
 }
+
+// keeps search bar and buttons together
+#header-lower {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.3rem 0.5rem;
+}
+
+#search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#search-bar {
+    font-size: 0.7rem;
+    color: var(--text-color);
+    width: 10rem;
+    border: none;
+    background-color: var(--accent-pri-color);
+    border-radius: 1rem;
+    padding: 0.3rem 0.4rem;
+    z-index: 2;
+}
+
+#search-button {
+    position: absolute;
+    width: 5.5rem;
+    height: 1.38rem;
+    left: 8.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    font-size: 0.7rem;
+    color: var(--text-color);
+    background-color: var(--accent-sec-color);
+    border: none;
+    border-radius: 1rem;
+    padding: 0.3rem 0.3rem 0.3rem 2rem;
+    cursor: pointer;
+    z-index: 1;
+}

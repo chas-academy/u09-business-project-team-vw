@@ -24,6 +24,15 @@ export function Header() {
                     <p className="profile-text">Username</p>
                 </div>
             </div>
+            <div id="header-lower">
+                <div id="search-container">
+                    <input id="search-bar" type="text" placeholder="Search..." />
+                    <button id="search-button">
+                        <span id="search-button-text">Search</span>
+                        <Icon id="search-icon" icon="ic:baseline-arrow-forward-ios"></Icon>
+                    </button>               
+                </div>
+            </div>
         </header>
     )
 }
