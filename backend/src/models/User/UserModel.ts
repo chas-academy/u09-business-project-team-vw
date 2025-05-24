@@ -7,6 +7,7 @@ const userSchema = new Schema<UserData>({
     googleId: { type: String, required: true, unique: true },
     email: { type: String, required: true },
     name: { type: String, required: true },
+    isAdmin: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
 });
 

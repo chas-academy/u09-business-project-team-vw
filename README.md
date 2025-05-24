@@ -25,4 +25,7 @@ Lägg i scripts:
 npm install passport passport-google-oauth20 express-session
 npm install @types/express-session --save-dev
 
+npm install cors
+npm install --save-dev @types/cors
+
 npm run dev

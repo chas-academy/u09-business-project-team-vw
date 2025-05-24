@@ -1,5 +1,11 @@
+
+// FUNDAMENTALS
 import express, { Application } from 'express';
 import mongoose from 'mongoose';
+
+// CORS
+import cors from 'cors';
+import { corsOptions } from './middleware/corsOptions';
 
 // UTILS
 import { MONGODB_URI, PORT } from './utils/config';
@@ -11,11 +17,16 @@ import authRouter from './routes/authRoutes';
 // AUTH
 import { setupGoogleStrategy } from './auth/googleAuth';
 
+
+
 // Load googleauth file
 setupGoogleStrategy();
 
 // Define app as Application object
-const app: Application = express(); 
+const app: Application = express();
+
+// Check CORS access for user
+app.use(cors(corsOptions));
 
 // MAKE THE CONNECTION
 app.use(express.json());

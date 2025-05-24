@@ -10,7 +10,7 @@ const GOOGLE_CLIENT_URL = process.env.GOOGLE_CLIENT_URL as string;
 
 // Ensure no variable is missing
 if(!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !GOOGLE_CLIENT_URL) {
-    const error = new Error('Google Auth is missing a crendtial');
+    const error = new Error('Google Auth is missing a credential');
     handleError(error, 'configGoogle.ts');
     process.exit(1);
 }
