@@ -13,6 +13,9 @@ npm install express mongoose
 
 npm install dotenv
 
+
+npm install --save-dev @types/express @types/node
+
 npm install -D typescript ts-node-dev @types/node @types/express @types/mongoose 
 npx tsc --init
 
