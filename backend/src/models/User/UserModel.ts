@@ -1,5 +1,7 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 import { UserData } from '../../interfaces/User/UserData';
+
+const { Schema } = mongoose;
 
 
 // UserData to be stored and connected to saved Recipelist

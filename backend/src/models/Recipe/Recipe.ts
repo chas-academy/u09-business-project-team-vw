@@ -1,5 +1,7 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 import { IRecipe } from '../../interfaces/Recipe/RecipeData';
+
+const { Schema } = mongoose;
 
 const RecipeSchema = new Schema<IRecipe>({
     originalRecipeId: { type: Number, required: true, unique: true },
