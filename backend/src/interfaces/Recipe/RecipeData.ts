@@ -1,4 +1,6 @@
-export interface IRecipe extends Document {
+import mongoose from 'mongoose';
+
+export interface IRecipe extends mongoose.Document {
    id: number;
    originalRecipeId: Number;
    title: string;

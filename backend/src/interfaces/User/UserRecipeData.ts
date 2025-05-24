@@ -1,7 +1,7 @@
-import { Types, Document } from "mongoose";
+import mongoose from 'mongoose';
 
-export interface UserRecipeData extends Document {
-    userId: Types.ObjectId;
+export interface UserRecipeData extends mongoose.Document {
+    userId: mongoose.Types.ObjectId;
     originalRecipeId: number,
     title: string;
     imageUrl?: string;

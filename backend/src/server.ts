@@ -41,6 +41,6 @@ mongoose.connect(MONGODB_URI)
             console.log(`SUCCESS: Server is Running on port: ${PORT}`);
         });
     })
-    .catch(error => {
+    .catch((error: unknown) => {
         handleError(error, 'MongoDB Connection');
     });

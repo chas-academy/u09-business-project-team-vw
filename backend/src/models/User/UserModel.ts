@@ -3,7 +3,6 @@ import { UserData } from '../../interfaces/User/UserData';
 
 const { Schema } = mongoose;
 
-
 // UserData to be stored and connected to saved Recipelist
 const userSchema = new Schema<UserData>({
     googleId: { type: String, required: true, unique: true },
