@@ -1,5 +1,5 @@
-import { Recipe } from "../models/Recipe/Recipe";
-import { apiKey } from "../utils/apiKeys"
+import { Recipe } from '../models/Recipe/Recipe';
+import { apiKey } from '../utils/apiKeys';
 
 // Remove for live
 import mongoose from 'mongoose';
