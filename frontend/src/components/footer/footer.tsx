@@ -1,4 +1,4 @@
-import './Footer.scss';
+import './footer.scss';
 
 // footer component imported in App.tsx
 export function Footer() {
