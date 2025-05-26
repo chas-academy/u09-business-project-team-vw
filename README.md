@@ -32,3 +32,18 @@ npm install cors
 npm install --save-dev @types/cors
 
 npm run dev
+
+### Branch och commit upplägg
+
+Branch:
+front/backend - typ/komponent
+
+Exempel:
+FR-feature/homepage
+
+Commits:
+1 feature eller komponent eller dylikt skapas och sparas.
+
+Exempel:
+git commit -m"routing"
+git commit -m"scss"
