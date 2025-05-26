@@ -18,7 +18,6 @@ import authRouter from './routes/authRoutes';
 import { setupGoogleStrategy } from './auth/googleAuth';
 
 
-
 // Load googleauth file
 setupGoogleStrategy();
 
