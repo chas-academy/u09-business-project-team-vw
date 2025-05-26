@@ -15,6 +15,7 @@ import { handleError } from './utils/errorHandler';
 import authRouter from './routes/authRoutes';
 import adminRouter from './routes/adminRoutes';
 import userRouter from './routes/userRoutes';
+import recipeRouter from './routes/recipeRoutes';
 
 // AUTH
 import { setupGoogleStrategy } from './auth/googleAuth';
@@ -37,6 +38,7 @@ app.use(express.json());
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/user', userRouter);
+app.use('/recipes', recipeRouter);
 
 // STANDARD ROUTE
 app.get('/', (req, res) => {
