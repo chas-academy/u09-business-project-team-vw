@@ -38,6 +38,11 @@ app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/user', userRouter);
 
+// STANDARD ROUTE
+app.get('/', (req, res) => {
+    res.send('API IS RUNNING!');
+});
+
 // Use PORT and MONGODB_URI to connect to the database
 mongoose.connect(MONGODB_URI)
     .then(() => {
