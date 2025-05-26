@@ -1,13 +1,15 @@
+// gives the card a rounded shape and a responsive size
 .recipe-background {
-  max-width: 11rem;
+  max-width: 10rem;
   display: flex;
   flex-direction: column;
   background: #fff;
   border-radius: 1rem;
-  border: 0.1rem solid var(--text-color);
+  border: 0.2rem solid var(--text-color);
   overflow: hidden;
 }
 
+// makes image take up all available space
 .recipe-image {
     width: 100%;
     height: 100%;
@@ -15,6 +17,7 @@
     display: block;
 }
 
+// makes title, types and time/button seperated from each other
 .lower-card {
   background: var(--accent-pri-color);
   padding: 1rem;
@@ -26,11 +29,12 @@
 }
 
 .recipe-title {
-  font-size: 1rem;
+  font-size: 0.7rem;
   color: var(--text-color);
   text-align: center;
 }
 
+// makes type and its icon next to each other
 .types-container {
   font-size: 0.6rem;
   display: flex;
@@ -53,6 +57,7 @@
   color: var(--text-color);
 }
 
+// kepts time and button seperated to each side
 .button-container {
   font-size: 0.8rem;
   display: flex;
