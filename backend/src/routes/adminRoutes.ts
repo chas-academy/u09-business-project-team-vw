@@ -1,11 +1,22 @@
 import { Router, Request, Response } from 'express';
-import passport from 'passport';
 import { isAuthenticated, isAdmin } from '../middleware/isAuthenticated';
 
 const adminRouter: Router = Router();
 
 adminRouter.get('/dashboard', isAuthenticated, isAdmin, (req: Request, res: Response) => {
-    res.json({ message: 'Welcome to the Admin Panel!' });
+    res.json(200);
+});
+
+adminRouter.get('dashboard/:id', isAuthenticated, isAdmin, (req: Request, res: Response) => {
+    res.json(200);
+});
+
+adminRouter.delete('dashboard/user/:id', isAuthenticated, isAdmin, (req: Request, res: Response) => {
+    res.json(200)
+});
+
+adminRouter.patch('dashboard/user/:id/patch', isAuthenticated, isAdmin, (req: Request, res: Response) => {
+    res.json(200)
 });
 
 export default adminRouter;
