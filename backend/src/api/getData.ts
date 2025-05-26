@@ -1,10 +1,6 @@
 import { Recipe } from '../models/Recipe/Recipe';
 import { apiKey } from '../utils/apiKeys';
 
-// Remove for live
-import mongoose from 'mongoose';
-import { MONGODB_URI } from '../utils/config';
-
 async function getRecipe() {
 
     const response = await fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=715538,716429&apiKey=${apiKey}`)
