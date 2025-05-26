@@ -15,9 +15,9 @@ import { sessionConfig } from './utils/configSession';
 
 // ROUTES
 import authRouter from './routes/authRoutes';
+import userRouter from './routes/userRoutes';
 /*
 import adminRouter from './routes/adminRoutes';
-import userRouter from './routes/userRoutes';
 */
 
 // AUTH
@@ -50,10 +50,10 @@ app.use(passport.session());
 
 // ROUTES
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
 
 /*
 app.use('/admin', adminRouter);
-app.use('/user', userRouter);
 */
 
 // STANDARD ROUTE FOR BACKEND
