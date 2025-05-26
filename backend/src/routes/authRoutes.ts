@@ -9,13 +9,14 @@ authRouter.get('/google', passport.authenticate('google', { scope: ['profile', '
 
 authRouter.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login', session: true }),
     (req: Request, res: Response) => {
-        res.redirect('/success');
+        res.redirect('/me');
     }
 );
 
 // Middleware
-authRouter.get('/me', isAuthenticated, (req: Request, res: Response) => {
-        res.json(req.user);
+authRouter.get('/me', (req: Request, res: Response) => {
+        console.log('req.user:', req.user);
+        res.json(req.user || { message: 'No user logged in' });
 });
 
 authRouter.get('/logout', (req: Request, res: Response) => {
