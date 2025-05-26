@@ -9,3 +9,13 @@ export const isAuthenticated = (req: Request, res: Response, next: NextFunction)
 
     res.status(401).json({ message: 'Unauthorized, please login to access this page.' });
 };
+
+export const isAdmin = (req: Request, res: Response, next: NextFunction): void => {
+    const isAdmin = (req as any).isAdmin?.();
+
+    if(isAdmin) {
+        return next();
+    }
+
+    res.status(401).json({ message: 'Unauthorized, you need Admin access to view this page' });
+}
