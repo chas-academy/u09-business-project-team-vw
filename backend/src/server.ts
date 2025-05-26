@@ -38,7 +38,7 @@ app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/user', userRouter);
 
-// STANDARD ROUTE
+// STANDARD ROUTE FOR BACKEND
 app.get('/', (req, res) => {
     res.send('API IS RUNNING!');
 });
