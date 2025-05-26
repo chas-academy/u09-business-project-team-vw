@@ -16,9 +16,8 @@ import { sessionConfig } from './utils/configSession';
 // ROUTES
 import authRouter from './routes/authRoutes';
 import userRouter from './routes/userRoutes';
-/*
 import adminRouter from './routes/adminRoutes';
-*/
+
 
 // AUTH
 import { setupGoogleStrategy } from './auth/googleAuth';
@@ -51,10 +50,8 @@ app.use(passport.session());
 // ROUTES
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
-
-/*
 app.use('/admin', adminRouter);
-*/
+
 
 // STANDARD ROUTE FOR BACKEND
 app.get('/', (req, res) => {
