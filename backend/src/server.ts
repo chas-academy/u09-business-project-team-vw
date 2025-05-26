@@ -13,9 +13,12 @@ import { handleError } from './utils/errorHandler';
 
 // ROUTES
 import authRouter from './routes/authRoutes';
+import adminRouter from './routes/adminRoutes';
+import userRouter from './routes/userRoutes';
 
 // AUTH
 import { setupGoogleStrategy } from './auth/googleAuth';
+
 
 
 // Load googleauth file
@@ -32,7 +35,8 @@ app.use(express.json());
 
 // ROUTES
 app.use('/auth', authRouter);
-app.use('/admin, adminRouter');
+app.use('/admin', adminRouter);
+app.use('/user', userRouter);
 
 // Use PORT and MONGODB_URI to connect to the database
 mongoose.connect(MONGODB_URI)

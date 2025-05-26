@@ -4,3 +4,5 @@ import { isAuthenticated } from '../middleware/isAuthenticated';
 
 const userRouter: Router = Router();
 
+export default userRouter;
+
