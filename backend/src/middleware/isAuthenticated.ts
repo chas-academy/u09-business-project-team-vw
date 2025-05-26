@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { JwtUserPayload } from '../interfaces/User/JwtUserPayload';
 
 export const isAuthenticated = (req: Request, res: Response, next: NextFunction): void => {
     const isAuth = (req as any).isAuthenticated?.();
