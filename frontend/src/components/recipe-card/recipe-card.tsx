@@ -1,13 +1,14 @@
 import { Icon } from "@iconify/react";
+import "./recipe-card.scss"
 
 function RecipeCard() {
     return (
         <div className="recipe-background">
             <div className="upper-card">
-                <img src="https://i.imgur.com/CzXTtJV.jpg" alt="recipe" />
+                <img src="https://i.imgur.com/CzXTtJV.jpg" alt="recipe" className="recipe-image" />
             </div>
             <div className="lower-card">
-                <h3>Rice pudding</h3>
+                <h3 className="recipe-title">Rice pudding</h3>
                 <div className="types-container">
                     <div className="recipe-type-container">
                         <Icon className="recipe-icon" icon="mdi:leaf"></Icon>
