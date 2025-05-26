@@ -12,3 +12,25 @@ export const getAllUsers = async (req: Request, res: Response) => {
         return;
     }
 };
+
+export const deleteUser = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        await User.findByIdAndDelete(id);
+
+        res.status(200).json(successResponse(`Deleted user${id}`, null));
+    } catch (error) {
+        res.status(500).json(errorResponse('Couldnt delete the user', error));
+    }
+};
+
+export const getUserById = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        await User.findById(id);
+
+        res.status(200).json(successResponse('fetched User by id', id));
+    } catch (error) {
+        res.status(500).json(errorResponse('Couldnt find or fetch the user', error));
+    }
+};
