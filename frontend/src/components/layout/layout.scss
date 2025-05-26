@@ -1,0 +1,13 @@
+/* keeps header, main and footer at least take 
+up whole screen and placed on top of each other */
+#layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* makes main take up all remaining space */
+#layout-main {
+    flex-grow: 1;
+    background-color: var(--pri-bg-color);
+}
