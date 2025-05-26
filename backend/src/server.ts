@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 
 // CORS
 import cors from 'cors';
-import { corsOptions } from './middleware/corsOptions';
+import { corsOptions } from './utils/CORS';
 
 // UTILS
 import { MONGODB_URI, PORT } from './utils/config';
@@ -31,7 +31,9 @@ app.use(cors(corsOptions));
 // MAKE THE CONNECTION
 app.use(express.json());
 
+// ROUTES
 app.use('/auth', authRouter);
+app.use('/admin, adminRouter');
 
 // Use PORT and MONGODB_URI to connect to the database
 mongoose.connect(MONGODB_URI)
