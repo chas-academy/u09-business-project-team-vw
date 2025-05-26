@@ -9,9 +9,20 @@ userRouter.get('/me', isAuthenticated, (req: Request, res: Response) => {
 });
 
 userRouter.get('/logout', isAuthenticated, (req: Request, res: Response) => {
+    const session = req.session as any;
+
+    // Throw error if logout is failed
     req.logout((err) => {
-        if (err) return res.status(500).json(errorResponse('Logout failed', null));
-        res.redirect('/')
+        if (err) {
+            res.status(500).json(errorResponse('Logout failed', null));
+            return;
+        }
+            
+        // Clear the session and clear cookies
+        session.destroy(() => {
+            res.clearCookie('connect.sid');
+            res.status(200).json(successResponse('Logout Succesful!', null))
+        })
     });
 });
 

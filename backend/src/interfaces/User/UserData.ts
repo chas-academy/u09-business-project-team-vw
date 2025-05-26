@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { ObjectId } from 'mongoose';
 
 export interface UserData extends mongoose.Document {
     _id: string;
@@ -7,4 +7,5 @@ export interface UserData extends mongoose.Document {
     name: string;
     createdAt: Date;
     isAdmin: Boolean;
+    recipeLists: ObjectId[];
 }

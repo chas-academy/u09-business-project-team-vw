@@ -17,4 +17,4 @@ export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
 
     res.status(403).json(errorResponse('Access denied', null));
     return;
-}
+};

@@ -1,9 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import { IRecipe } from '../../interfaces/Recipe/RecipeData';
 
 const { Schema } = mongoose;
 
 const RecipeSchema = new Schema<IRecipe>({
+    _id: { type: Types.ObjectId },
     originalRecipeId: { type: Number, required: true, unique: true },
     title: { type: String, required: true },
     imageUrl: { type: String },
@@ -16,6 +17,7 @@ const RecipeSchema = new Schema<IRecipe>({
     isDairyfree: { type: Boolean, default: false },
     preparationMinutes: { type: Number },
     cookingMinutes: { type: Number },
+    isCustom: { type: Boolean, default: false }
 });
 
 export const Recipe = mongoose.model<IRecipe>('Recipe', RecipeSchema);
