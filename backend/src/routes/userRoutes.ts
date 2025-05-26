@@ -3,15 +3,17 @@ import { isAdmin, isAuthenticated } from '../middleware/isAuthenticated';
 
 const userRouter: Router = Router();
 
-userRouter.get('/user/index', isAuthenticated, isAdmin, (req: Request, res: Response) => {
+userRouter.get('/user/homepage', isAuthenticated, isAdmin, (req: Request, res: Response) => {
     res.sendStatus(200);
 });
 
-userRouter.get('/user/recipes', isAuthenticated, isAdmin, (req: Request, res: Response) => {
+userRouter.patch('/user/:id/patch', isAuthenticated, isAdmin, (req: Request, res: Response) => {
     res.sendStatus(200);
 });
 
-
+userRouter.delete('/user/:id/delete', isAuthenticated, isAdmin, (req: Request, res: Response) => {
+    res.sendStatus(204);
+});
 
 export default userRouter;
 
