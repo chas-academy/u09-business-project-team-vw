@@ -6,6 +6,6 @@ export interface UserData extends mongoose.Document {
     email: string;
     name: string;
     createdAt: Date;
-    isAdmin: Boolean;
+    isAdmin: boolean;
     recipeLists: ObjectId[];
 }

@@ -9,7 +9,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
         res.status(200).json(successResponse('Fetched all users', users));
         return;
     } catch (error) {
-        res.status(500).json(errorResponse('Coulnd fetch all users', null));
+        res.status(500).json(errorResponse('Coulnd fetch all users', error));
         return;
     }
 };
@@ -39,3 +39,5 @@ export const getUserById = async (req: Request, res: Response) => {
         return;
     }
 };
+
+// ADD REMOVE LIST FOR USER.

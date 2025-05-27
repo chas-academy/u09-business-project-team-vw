@@ -1,5 +1,5 @@
-export interface ApiResponseData<T = any> {
-    success: Boolean;
-    message: String;
+export interface ApiResponseData<T = unknown> {
+    success: boolean;
+    message: string;
     data: T | null;
 }

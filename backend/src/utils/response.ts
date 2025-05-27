@@ -1,4 +1,4 @@
-import { ApiResponseData } from "../interfaces/Api/ApiResponseData";
+import { ApiResponseData } from '../interfaces/Api/ApiResponseData';
 
 export function successResponse<T>(message: string, data: T): ApiResponseData<T> {
     return {

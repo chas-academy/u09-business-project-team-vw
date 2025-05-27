@@ -8,7 +8,6 @@ import { handleError } from '../utils/errorHandler';
 // CREATE A NEW LIST FROM RECIPES
 export const createRecipeList = async (req: Request, res: Response) => {
     const { name } = req.body;
-    const user = req.user as { _id: string };
     const userId = req.user;
 
     if(!name) {
@@ -22,7 +21,7 @@ export const createRecipeList = async (req: Request, res: Response) => {
 
         res.status(201).json(successResponse('Recipe list created', newList));
     } catch (error) {
-        handleError(error, 'recipeController.ts')
+        handleError(error, 'recipeController.ts');
         res.status(500).json(errorResponse('Could not create list', error));
     }
 };
@@ -44,7 +43,7 @@ export const addRecipeToList = async (req: Request, res: Response) => {
 
     try {
         // get list the belongs to user ID
-        const list = await Recipelist.findOne({ _id: listId, userId });
+        const list = await Recipelist.findOne({ id: listId, userId });
 
         if(!list){
             res.status(404).json(errorResponse('Recipe list not found', null));

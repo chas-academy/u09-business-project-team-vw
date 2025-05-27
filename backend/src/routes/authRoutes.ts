@@ -2,7 +2,7 @@ import { Router, Response, Request } from 'express';
 import passport from 'passport';
 import { errorResponse, successResponse } from '../utils/response';
 
-const authRouter: Router = Router()
+const authRouter: Router = Router();
 
 // Google Auth login
 authRouter.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));

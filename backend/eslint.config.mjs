@@ -41,7 +41,7 @@ export default defineConfig([
           selector: ['variable', 'property'],
           format: ['camelCase'],
           modifiers: ['public'],
-          leadingUnderscore: 'forbid',
+          leadingUnderscore: 'allow',
           trailingUnderscore: 'forbid',
         },
         {

@@ -3,6 +3,7 @@ import { Recipe } from '../models/Recipe/Recipe';
 import { apiKey } from '../utils/apiKeys';
 import { successResponse, errorResponse } from '../utils/response';
 import { handleError } from '../utils/errorHandler';
+import { Ingredient } from '../interfaces/Recipe/Ingredient';
 
 export const getOrFetchRecipe = async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -14,6 +15,7 @@ export const getOrFetchRecipe = async (req: Request, res: Response) => {
             res.status(200).json(successResponse('Recipe found in DB', existingRecipe));
             return;
         }
+
         // Fetch from the API
         const response = await fetch(
             `https://api.spoonacular.com/recipes/informationBulk?ids=${id}&apiKey=${apiKey}`
@@ -41,7 +43,7 @@ export const getOrFetchRecipe = async (req: Request, res: Response) => {
         readyInMinutes: recipeData.readyInMinutes,
         servings: recipeData.servings,
         instructions: recipeData.instructions,
-        ingredients: recipeData.extendedIngredients.map((i: any) => i.original),
+        ingredients: recipeData.extendedIngredients.map((i: Ingredient) => i.original),
         preparationMinutes: recipeData.preparationMinutes,
         cookingMinutes: recipeData.cookingMinutes,
         isVegetarian: recipeData.vegetarian,
@@ -59,4 +61,4 @@ export const getOrFetchRecipe = async (req: Request, res: Response) => {
         handleError(error, 'recipeController.ts');
         res.status(500).json(errorResponse('Internal server error', error));
     }
-}
+};

@@ -3,7 +3,7 @@ import mongoose, { ObjectId } from 'mongoose';
 export interface IRecipe extends mongoose.Document {
    _id: ObjectId;
    id: number;
-   originalRecipeId: Number;
+   originalRecipeId: number;
    title: string;
    imageUrl?: string;
    readyInMinutes: number;

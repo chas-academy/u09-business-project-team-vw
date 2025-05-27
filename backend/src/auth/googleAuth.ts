@@ -71,7 +71,7 @@ export const setupGoogleStrategy = () => {
             const user = await User.findById(id); // <-- Find the user in the database.
             done(null, user); // <-- get the entire user object.
         } catch(error) {
-            done(error as Error, null)
+            done(error as Error, null);
         }
     });
 };
