@@ -1,6 +1,8 @@
-import mongoose from 'mongoose';
+import mongoose, { ObjectId } from 'mongoose';
 
 export interface IRecipe extends mongoose.Document {
+   _id: ObjectId;
+   id: number;
    originalRecipeId: number;
    title: string;
    imageUrl?: string;
@@ -13,4 +15,5 @@ export interface IRecipe extends mongoose.Document {
    isDairyfree: boolean;
    preparationMinutes: number;
    cookingMinutes: number;
+   isCustom: boolean;
 };

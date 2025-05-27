@@ -13,7 +13,7 @@ if(!process.env.API_KEY) {
 
 // PORT 
 // Fetch PORT from .env file.
-const rawPort = process.env.PORT;
+const rawPort = process.env.PORT as string;
 const PORT: number = rawPort ? parseInt(rawPort, 10) : 3000 as number;
 
 // Check if PORT is exist and defined
@@ -35,8 +35,17 @@ if(!process.env.MONGODB_URI) {
 const MONGODB_URI: string = process.env.MONGODB_URI as string; 
 
 
+const SESSION_SECRET = process.env.SESSION_SECRET as string;
+if(!SESSION_SECRET) {
+    const error = new Error('SESSION_SECRET is missing in env variables.');
+    handleError(error, 'config.ts');
+    process.exit(1);
+}
+
+
 export {
     PORT, // exporting to server.ts
     MONGODB_URI, // exporting to server.ts
-    API_KEY // exporting to apiKeys.ts
+    API_KEY, // exporting to apiKeys.ts
+    SESSION_SECRET // exporting to configSession.ts
 };

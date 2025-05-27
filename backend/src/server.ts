@@ -10,20 +10,23 @@ import { corsOptions } from './utils/CORS';
 // UTILS
 import { MONGODB_URI, PORT } from './utils/config';
 import { handleError } from './utils/errorHandler';
+import { sessionConfig } from './utils/configSession';
+
 
 // ROUTES
 import authRouter from './routes/authRoutes';
-import adminRouter from './routes/adminRoutes';
 import userRouter from './routes/userRoutes';
+import adminRouter from './routes/adminRoutes';
+
 import recipeRouter from './routes/recipeRoutes';
 
 // AUTH
 import { setupGoogleStrategy } from './auth/googleAuth';
+import passport from 'passport';
 
 
 
-// Load googleauth file
-setupGoogleStrategy();
+
 
 // Define app as Application object
 const app: Application = express();
@@ -31,16 +34,28 @@ const app: Application = express();
 // Check CORS access for user
 app.use(cors(corsOptions));
 
+
 // MAKE THE CONNECTION
 app.use(express.json());
 
+// Load googleauth file
+setupGoogleStrategy();
+
+// Passport, Google Auth Session
+app.use(sessionConfig);
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 // ROUTES
 app.use('/auth', authRouter);
-app.use('/admin', adminRouter);
 app.use('/user', userRouter);
+app.use('/admin', adminRouter);
+
 app.use('/recipes', recipeRouter);
 
-// STANDARD ROUTE
+// STANDARD ROUTE FOR BACKEND
 app.get('/', (req, res) => {
     res.send('API IS RUNNING!');
 });

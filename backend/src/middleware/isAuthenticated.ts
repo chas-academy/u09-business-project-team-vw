@@ -1,21 +1,20 @@
 import { Request, Response, NextFunction } from 'express';
+import { errorResponse } from '../utils/response';
+import { UserData } from '../interfaces/User/UserData';
 
-export const isAuthenticated = (req: Request, res: Response, next: NextFunction): void => {
-    const isAuth = (req as any).isAuthenticated?.();
-
-    if(isAuth) {
+export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+    if(req.isAuthenticated && req.isAuthenticated()) {
         return next();
     }
-
-    res.status(401).json({ message: 'Unauthorized, please login to access this page.' });
+    res.status(401).json(errorResponse('Unauthorized', null));
 };
 
-export const isAdmin = (req: Request, res: Response, next: NextFunction): void => {
-    const isAdmin = (req as any).isAdmin?.();
-
-    if(isAdmin) {
+export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
+    const user = req.user as UserData;
+    if(user?.isAdmin) {
         return next();
     }
 
-    res.status(401).json({ message: 'Unauthorized, you need Admin access to view this page' });
+    res.status(403).json(errorResponse('Access denied', null));
+    return;
 };
