@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export function useAuth() {
-    const [user, setUser] = useState<null | { isAdmin: Boolean; name: String }>(null);
+    const [user, setUser] = useState<null | { isAdmin: boolean; name: string }>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
