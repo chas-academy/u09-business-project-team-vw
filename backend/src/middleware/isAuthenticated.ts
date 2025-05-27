@@ -18,4 +18,4 @@ export const isAdmin = (req: Request, res: Response, next: NextFunction): void =
     }
 
     res.status(401).json({ message: 'Unauthorized, you need Admin access to view this page' });
-}
+};

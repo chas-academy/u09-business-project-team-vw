@@ -12,11 +12,11 @@ adminRouter.get('dashboard/:id', isAuthenticated, isAdmin, (req: Request, res: R
 });
 
 adminRouter.delete('dashboard/user/:id', isAuthenticated, isAdmin, (req: Request, res: Response) => {
-    res.json(200)
+    res.json(200);
 });
 
 adminRouter.patch('dashboard/user/:id/patch', isAuthenticated, isAdmin, (req: Request, res: Response) => {
-    res.json(200)
+    res.json(200);
 });
 
 export default adminRouter;

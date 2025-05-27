@@ -3,7 +3,7 @@ import { apiKey } from '../utils/apiKeys';
 
 async function getRecipe() {
 
-    const response = await fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=715538,716429&apiKey=${apiKey}`)
+    const response = await fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=715538,716429&apiKey=${apiKey}`);
     const recipeData = await response.json();
 
     // Loop through the response data from API
@@ -33,7 +33,7 @@ async function getRecipe() {
     });
 
     await newRecipe.save();
-    console.log(`LOG: getData.ts - Row 33 - Temporary: ${r.title} SUCCESS: Saved `)
+    console.log(`LOG: getData.ts - Row 33 - Temporary: ${r.title} SUCCESS: Saved `);
     }
 };
 
