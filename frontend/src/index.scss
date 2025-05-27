@@ -23,14 +23,21 @@ html {
 // tablet
 @media (min-width: 768px) and (max-width: 1280px) {
   html {
-    font-size: 24px;
+    font-size: 22px;
   }
 }
 
 // desktop
-@media (min-width: 1280px) {
+@media (min-width: 1280px) and (max-width: 1920px) {
   html {
-    font-size: 36px;
+    font-size: 30px;
+  }
+}
+
+// TV
+@media (min-width: 1920px) {
+  html {
+    font-size: 40px;
   }
 }
 
