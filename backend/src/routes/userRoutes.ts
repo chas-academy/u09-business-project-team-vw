@@ -1,8 +1,37 @@
-import { Router, Request, Response } from 'express';
-import passport from 'passport';
+import { Router, Response, Request } from 'express';
 import { isAuthenticated } from '../middleware/isAuthenticated';
+import { successResponse, errorResponse } from '../utils/response';
+import { SessionData } from 'express-session';
+
+
+// Type to remove session data
+type CustomSession = SessionData & {
+    userId?: string;
+    destroy: (callback: (err?: unknown) => void) => void;
+};
 
 const userRouter: Router = Router();
 
-export default userRouter;
+userRouter.get('/me', isAuthenticated, (req: Request, res: Response) => {
+        res.status(200).json(successResponse('User found!', req.user ?? null));
+});
 
+userRouter.get('/logout', isAuthenticated, (req: Request, res: Response) => {
+    const session = req.session as CustomSession;
+
+    // Throw error if logout is failed
+    req.logout((err: unknown) => {
+        if (err) {
+            res.status(500).json(errorResponse('Logout failed', null));
+            return;
+        }
+            
+        // Clear the session and clear cookies
+        session.destroy(() => {
+            res.clearCookie('connect.sid');
+            res.status(200).json(successResponse('Logout Succesful!', null));
+        });
+    });
+});
+
+export default userRouter;

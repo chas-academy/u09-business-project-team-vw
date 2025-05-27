@@ -1,22 +1,14 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 import { isAuthenticated, isAdmin } from '../middleware/isAuthenticated';
+import { getAllUsers, deleteUser, getUserById } from '../controllers/adminController';
 
-const adminRouter: Router = Router();
 
-adminRouter.get('/dashboard', isAuthenticated, isAdmin, (req: Request, res: Response) => {
-    res.json(200);
-});
+const adminRoutes: Router = Router();
 
-adminRouter.get('dashboard/:id', isAuthenticated, isAdmin, (req: Request, res: Response) => {
-    res.json(200);
-});
+adminRoutes.get('/dashboard', isAuthenticated, isAdmin, getAllUsers);
 
-adminRouter.delete('dashboard/user/:id', isAuthenticated, isAdmin, (req: Request, res: Response) => {
-    res.json(200)
-});
+adminRoutes.delete('/dashboard/delete/:id', isAuthenticated, isAdmin, deleteUser);
 
-adminRouter.patch('dashboard/user/:id/patch', isAuthenticated, isAdmin, (req: Request, res: Response) => {
-    res.json(200)
-});
+adminRoutes.get('/dashboard/:id', isAuthenticated, isAdmin, getUserById);
 
-export default adminRouter;
+export default adminRoutes;

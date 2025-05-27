@@ -27,21 +27,29 @@ export const setupGoogleStrategy = () => {
                 profile: Profile, 
                 done: VerifyCallback 
                 ): Promise<void> => {
-                
+                    
+                    console.log('Google profile id:', profile.id);
+                    console.log('Checking if user exists in DB...');
+
                     try {
                     // Check if the user exists in our database.
                     const existingUser = await User.findOne({ googleId: profile.id });
 
+
+                    console.log('User exists:', existingUser);
                     // If user exists, login
                     if(existingUser) return done(null, existingUser);
+                    
 
+                    console.log('User does not exist, creating new user...');
                     // Create a new user.
                     const newUser = await User.create({
                         googleId: profile.id,
                         email: profile.emails?.[0].value,
                         name: profile.displayName
                     });
-
+                    
+                    console.log('Created new user:', newUser);
                     // pass new user to passport
                     return done(null, newUser);
                 } catch(error) {
@@ -63,7 +71,7 @@ export const setupGoogleStrategy = () => {
             const user = await User.findById(id); // <-- Find the user in the database.
             done(null, user); // <-- get the entire user object.
         } catch(error) {
-            done(error as Error, null)
+            done(error as Error, null);
         }
     });
 };
