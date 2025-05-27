@@ -18,6 +18,7 @@ import authRouter from './routes/authRoutes';
 import userRouter from './routes/userRoutes';
 import adminRouter from './routes/adminRoutes';
 
+import recipeRouter from './routes/recipeRoutes';
 
 // AUTH
 import { setupGoogleStrategy } from './auth/googleAuth';
@@ -52,6 +53,7 @@ app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/admin', adminRouter);
 
+app.use('/recipes', recipeRouter);
 
 // STANDARD ROUTE FOR BACKEND
 app.get('/', (req, res) => {

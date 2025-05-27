@@ -1,0 +1,89 @@
+@mixin flexbox($direction: row, $align: stretch, $justify: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+// gives the card a rounded shape and a responsive size
+.recipe-background {
+  max-width: 10rem;
+  @include flexbox(column);
+  background: #fff;
+  border-radius: 1rem;
+  border: 0.2rem solid var(--text-color);
+  overflow: hidden;
+}
+
+// makes image take up all available space
+.recipe-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+// makes title, types and time/button seperated from each other
+.lower-card {
+  background: var(--accent-pri-color);
+  padding: 1rem;
+  @include flexbox(column, stretch, space-between);
+  padding: 0.5rem;
+  gap: 0.7rem;
+}
+
+.recipe-title {
+  font-size: 0.7rem;
+  color: var(--text-color);
+  text-align: center;
+}
+
+// makes type and its icon next to each other
+.types-container {
+  font-size: 0.6rem;
+  @include flexbox(row, center, center);
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+.recipe-type-container {
+  @include flexbox(row, center);
+}
+
+.recipe-icon {
+  color: var(--accent-sec-color);
+}
+
+.recipe-type {
+  color: var(--text-color);
+}
+
+// kepts time and button seperated to each side
+.button-container {
+  font-size: 0.8rem;
+  @include flexbox(row, center, space-between);
+}
+
+.recipe-time {
+  @include flexbox(row, center);
+  gap: 0.15rem;
+}
+
+.recipe-time-icon {
+  color: var(--accent-sec-color);
+}
+
+.recipe-time-text {
+  color: var(--text-color);
+}
+
+.card-button {
+    background-color: var(--accent-pri-color);
+    cursor: pointer;
+    border: none;
+}
+
+.add-recipe-icon {
+  font-size: 1.2rem;
+  color: var(--accent-sec-color);
+}

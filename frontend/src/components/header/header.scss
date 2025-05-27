@@ -20,7 +20,7 @@
 
 // keeps logo and title elements aligned
 #header-logo {
-    @include flexbox(row, center, flex-start);
+    @include flexbox(row, center);
     gap: 0.5rem;
 }
 
@@ -38,7 +38,7 @@
 
 // keeps weather and temperature elements aligned
 #header-weather {
-    @include flexbox(row, center, flex-start);
+    @include flexbox(row, center);
     gap: 0.3rem;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .temp-container {
-    @include flexbox(column, space-between, flex-start);
+    @include flexbox(column, space-between);
 }
 
 .temp-header {
@@ -56,13 +56,13 @@
 }
 
 .temp-degree-container {
-    @include flexbox(column, center, flex-start);
+    @include flexbox(column, center);
     font-size: 0.3rem;
 }
 
 // keeps profile elements aligned
 #header-profile {
-     @include flexbox(column, center, flex-start);
+     @include flexbox(column, center);
 }
 
 .profile-icon {
@@ -122,7 +122,7 @@
 #dropdown-button {
     position: relative;
     bottom: 0.7rem;
-    @include flexbox(column, stretch, flex-start);
+    @include flexbox(column);
     align-items: center;
     cursor: pointer;
     background-color: var(--sec-bg-color);
