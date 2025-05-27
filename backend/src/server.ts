@@ -52,7 +52,6 @@ app.use(passport.session());
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/admin', adminRouter);
-
 app.use('/recipes', recipeRouter);
 
 // STANDARD ROUTE FOR BACKEND
