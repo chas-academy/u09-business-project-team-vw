@@ -4,15 +4,16 @@ import './App.scss'
 // COMPONENTS FOLDER
 import { Layout } from './components/layout/layout';
 import { ProtectedRoute } from './components/middleware/protectedRoute';
+import { LogoutButton } from './components/LogoutButton';
 
 // PAGES FOLDER
 import Home from './pages/home/home';
-import { AuthRedirect } from './pages/authRedirect';
+import { AuthRedirect } from './pages/authorizing/authRedirect';
 import AdminDashboard from './pages/admin/dashboard';
 import UserDashboard from './pages/user/dashboard';
 
 import LoginPage from './pages/loginPage';
-import NotAutorized from './pages/notAutorizedPage';
+import NotAutorized from './pages/authorizing/notAutorizedPage';
 
 function App() {
   return (

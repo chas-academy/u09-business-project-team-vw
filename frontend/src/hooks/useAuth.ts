@@ -5,7 +5,7 @@ export function useAuth() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/auth/me', { credentials: 'include' })
+        fetch('http://localhost:3000/auth/me', { credentials: 'include' })
         .then((res) => res.json())
         .then((data) => {
             setUser(data.data);
@@ -17,5 +17,5 @@ export function useAuth() {
         });
     }, []);
 
-    return { user, loading };
+    return { user, setUser, loading };
 }
