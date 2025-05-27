@@ -1,8 +1,14 @@
+@mixin flexbox($direction: row, $align: stretch, $justify: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
 // gives the card a rounded shape and a responsive size
 .recipe-background {
   max-width: 10rem;
-  display: flex;
-  flex-direction: column;
+  @include flexbox(column);
   background: #fff;
   border-radius: 1rem;
   border: 0.2rem solid var(--text-color);
@@ -21,9 +27,7 @@
 .lower-card {
   background: var(--accent-pri-color);
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @include flexbox(column, stretch, space-between);
   padding: 0.5rem;
   gap: 0.7rem;
 }
@@ -37,16 +41,13 @@
 // makes type and its icon next to each other
 .types-container {
   font-size: 0.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flexbox(row, center, center);
   flex-wrap: wrap;
   gap: 0.2rem;
 }
 
 .recipe-type-container {
-  display: flex;
-  align-items: center;
+  @include flexbox(row, center);
 }
 
 .recipe-icon {
@@ -60,14 +61,11 @@
 // kepts time and button seperated to each side
 .button-container {
   font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flexbox(row, center, space-between);
 }
 
 .recipe-time {
-  display: flex;
-  align-items: center;
+  @include flexbox(row, center);
   gap: 0.15rem;
 }
 
