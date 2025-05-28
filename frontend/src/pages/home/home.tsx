@@ -6,12 +6,13 @@ import './home.scss'
 function Home() {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
 
+    const apiUrl = import.meta.env.VITE_API_URL;
     // fetch recipes when component mounts
     useEffect(() => {
         const fetchRecipes = async () => {
             try {
                 // fetch recipes from database through backend endpoint
-                const res = await fetch('http://localhost:3000/recipes');
+                const res = await fetch(`${apiUrl}/recipes`);
                 const data = await res.json();
                 // saves recipe objects in state
                 setRecipes(data);
@@ -21,7 +22,7 @@ function Home() {
         };
 
         fetchRecipes();
-    }, []);
+    }, [apiUrl]);
 
         return (
             // container for recipe cards
