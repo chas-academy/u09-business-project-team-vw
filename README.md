@@ -31,9 +31,6 @@ npm install @types/express-session --save-dev
 npm install cors
 npm install --save-dev @types/cors
 
-npm install jsonwebtoken
-npm install --save-dev @types/jsonwebtoken
-
 npm run dev
 
 ### Branch och commit upplägg

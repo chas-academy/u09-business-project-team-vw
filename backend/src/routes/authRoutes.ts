@@ -1,6 +1,7 @@
 import { Router, Response, Request } from 'express';
 import passport from 'passport';
-import { errorResponse, successResponse } from '../utils/response';
+import { errorResponse } from '../utils/response';
+import { isAuthenticated } from '../middleware/isAuthenticated';
 
 const authRouter: Router = Router();
 
@@ -9,7 +10,10 @@ authRouter.get('/google', passport.authenticate('google', { scope: ['profile', '
 
 
 // Checking user for login and store session data.
-authRouter.get('/google/callback', passport.authenticate('google', { session: true, failureMessage: true }),
+authRouter.get('/google/callback', passport.authenticate('google', { 
+    session: true, 
+    failureRedirect: 'http://localhost:5173/login'
+    }),
     (req: Request, res: Response) => {
         if(!req.user) {
             const session = req.session as { messages?: string[] };
@@ -22,8 +26,18 @@ authRouter.get('/google/callback', passport.authenticate('google', { session: tr
 
         const user = req.user;
 
-        res.status(200).json(successResponse('Login Succesful!', user));
+        res.redirect('http://localhost:5173/');
     }
 );
+
+authRouter.get('/me', isAuthenticated, (req: Request, res: Response) => {
+    console.log('🔍 [BACKEND] req.user =', req.user);
+  if (!req.user) {
+
+    res.status(401).json(errorResponse('Not authenticated', null));
+    return;
+  }
+  res.json({ data: req.user });
+});
 
 export default authRouter;
