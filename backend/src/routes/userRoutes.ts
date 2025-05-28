@@ -17,20 +17,15 @@ userRouter.get('/me', isAuthenticated, (req: Request, res: Response) => {
 });
 
 userRouter.get('/logout', isAuthenticated, (req: Request, res: Response) => {
-    const session = req.session as CustomSession;
-
-    // Throw error if logout is failed
-    req.logout((err: unknown) => {
-        if (err) {
-            res.status(500).json(errorResponse('Logout failed', null));
+    req.session.destroy((error) => {
+        if (error) {
+            res.status(500).json(errorResponse('Logout failed', error));
             return;
         }
-            
-        // Clear the session and clear cookies
-        session.destroy(() => {
-            res.clearCookie('connect.sid');
-            res.status(200).json(successResponse('Logout Succesful!', null));
-        });
+
+        res.clearCookie('connect.sid');
+        res.status(200).json(successResponse('Logout successful!', null));
+        return;
     });
 });
 

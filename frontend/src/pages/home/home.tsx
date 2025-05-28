@@ -12,10 +12,11 @@ function Home() {
         const fetchRecipes = async () => {
             try {
                 // fetch recipes from database through backend endpoint
-                const res = await fetch(`${apiUrl}/recipes`);
+                console.log('UTKOMMENTERAD DATA, home.tsx rad: 15')
+                /*const res = await fetch(`${apiUrl}/recipes`);
                 const data = await res.json();
                 // saves recipe objects in state
-                setRecipes(data);
+                setRecipes(data);*/
             } catch (error) {
                 console.error('Error fetching recipes:', error);
             }

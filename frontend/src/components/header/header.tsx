@@ -1,11 +1,8 @@
 import { Icon } from "@iconify/react";
-/*import LogoutButton from "../LogoutButton";*/
 import "./header.scss"
-import ClickableProfileIcon from "../../context/useLogin";
-import LogoutButton from "../../context/useLogout";
-/*import ClickableProfileIcon from "../clickableProfileIcon";
-<ClickableProfileIcon />
-                <LogoutButton /> */
+import ClickableProfileIcon from "../button/clickableProfileIcon";
+import LogoutButton from "../button/useLogout";
+
 
 // header component imported in App.tsx
 export function Header() {
@@ -28,7 +25,6 @@ export function Header() {
                     </div>
                 </div>
                 <ClickableProfileIcon />
-                <LogoutButton />
             </div>
             <div id="header-lower">
                 <div id="search-container">

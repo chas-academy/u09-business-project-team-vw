@@ -9,38 +9,40 @@ import { ProtectedRoute } from './components/middleware/protectedRoute';
 import Home from './pages/home/home';
 import { AuthRedirect } from './pages/authorizing/authRedirect';
 import AdminDashboard from './pages/admin/dashboard';
-import UserDashboard from './pages/user/dashboard';
+import AdminSettings from './pages/admin/adminSetting';
+import UserDashBoard from './pages/user/userSetting';
+import UserSettings from './pages/user/userSetting';
 import NotAutorized from './pages/authorizing/notAutorizedPage';
+
 
 function App() {
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path='/auth-redirect' element={<AuthRedirect />} />
           <Route path='/not-authorized' element={<NotAutorized />} />
 
-          <Route
-            path='/admin-dashboard'
-            element={
-              <ProtectedRoute requireAdmin>
-                <AdminDashboard />
-              </ProtectedRoute>
-            } />
-
-          <Route
-            path='/user-dashboard'
-            element={
-              <ProtectedRoute>
-                <UserDashboard />
-              </ProtectedRoute>
-            } />
-          {/* Add more page components as needed
-        */}
+        <Route
+          path='/admin-dashboard'
+          element={
+            <ProtectedRoute requireAdmin>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
+          <Route index element={<AdminDashboard />}/>
+          <Route path='admin-settings' element={<AdminSettings />} />
+        <Route
+          path='/user-dashboard'
+          element={
+            <ProtectedRoute>
+              <UserDashBoard />
+            </ProtectedRoute>
+          }/>
+            <Route index element={<UserDashBoard />} />
+            <Route path='user-settings' element={<UserSettings />} />
         </Route>
       </Routes>
-    </BrowserRouter>
   );
 }
 

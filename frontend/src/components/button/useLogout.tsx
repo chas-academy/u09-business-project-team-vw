@@ -1,4 +1,4 @@
-import { useAuth } from "../hooks/useAuthState";
+import { useAuth } from "../../hooks/useAuthState";
 import { useNavigate } from "react-router-dom";
 
 const LogoutButton = () => {

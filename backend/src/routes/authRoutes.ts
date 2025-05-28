@@ -24,20 +24,25 @@ authRouter.get('/google/callback', passport.authenticate('google', {
             return;
         }
 
-        const user = req.user;
+        req.login(req.user, (error) => {
+            if(error) {
+                res.status(500).json(errorResponse('Login Session Failed!', error));
+                return;
+            }
 
-        res.redirect('http://localhost:5173/');
+            res.redirect('http://localhost:5173/'); // sending to frontend /hooks/useAuth.ts
+        });
     }
 );
 
+// 
 authRouter.get('/me', isAuthenticated, (req: Request, res: Response) => {
-    console.log('🔍 [BACKEND] req.user =', req.user);
   if (!req.user) {
 
     res.status(401).json(errorResponse('Not authenticated', null));
     return;
   }
-  res.json({ data: req.user });
+  res.json({ data: req.user }); 
 });
 
 export default authRouter;

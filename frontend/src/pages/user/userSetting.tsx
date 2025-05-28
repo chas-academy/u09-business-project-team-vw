@@ -1,13 +1,12 @@
 import LogoutButton from "../../components/button/useLogout";
 
-const UserDashboard = () => {
+const UserSettings = () => {
     return (
         <div>
-            <h1>USER DASHBOARD PAGE</h1>
+            <h1>USER SETTINGS PAGE</h1>
 
             <LogoutButton />
         </div>
     )
 }
-
-export default UserDashboard;
+export default UserSettings;
