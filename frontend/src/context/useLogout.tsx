@@ -1,7 +1,7 @@
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuthState";
 import { useNavigate } from "react-router-dom";
 
-export const LogoutButton = () => {
+const LogoutButton = () => {
 
     const { user, setUser } = useAuth();
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ export const LogoutButton = () => {
         .then((res) => {
             if(res.ok) {
                 setUser(null);
-                navigate('/login');
+                navigate('/');
             }
         })
         .catch((err) => {
@@ -27,3 +27,5 @@ export const LogoutButton = () => {
         <button onClick={handleLogout}>Logga ut</button>
     )
 }
+
+export default LogoutButton;
