@@ -10,28 +10,36 @@ const ClickableProfileIcon = () => {
     const handleIconClick = () => {
         // Not logged in, save currentpath and redirect to google auth.
         if(!user && !loading) {
-            const currentPath = window.location.pathname;
-            localStorage.setItem('redirectAfterLogin', currentPath);
 
             window.location.href = 'http://localhost:3000/auth/google';
             return;
 
         } else if(user?.isAdmin === true) {
             // Logged in user goes to settings page.
-            navigate('/admin-dashboard');
+            navigate('/admin-settings');
             return;
 
         } else if (user) {
-            navigate('/user-dashboard');
+            navigate('/user-settings');
             return;
         }
     };
 
     if(loading) return null;
 
+    let hoverText = 'Login';
+    if(user?.isAdmin) {
+        hoverText = 'Settings';
+    } else if (user) {
+        hoverText = 'Go To Dashboard';
+    }
+
     return (
         <div id="header-profile">
-            <div onClick={handleIconClick} style={{ cursor: 'pointer' }}>
+            <div 
+            onClick={handleIconClick} 
+            style={{ cursor: 'pointer' }}
+            title={hoverText}>
             <Icon className="profile-icon" icon="mdi:person-circle" />
             </div>
             {user ? (

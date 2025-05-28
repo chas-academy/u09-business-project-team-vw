@@ -30,7 +30,7 @@ authRouter.get('/google/callback', passport.authenticate('google', {
                 return;
             }
 
-            res.redirect('http://localhost:5173/'); // sending to frontend /hooks/useAuth.ts
+            res.redirect('http://localhost:5173/login-redirect'); // sending to frontend /hooks/useAuth.ts
         });
     }
 );

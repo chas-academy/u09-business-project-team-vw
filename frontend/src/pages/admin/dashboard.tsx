@@ -1,4 +1,5 @@
 import LogoutButton from "../../components/button/useLogout";
+import BackButton from "../../components/button/goBack";
 
 const AdminDashboard = () => {
     return(
@@ -6,6 +7,7 @@ const AdminDashboard = () => {
         <h1>ADMIN DASHBOARD PAGE</h1>
 
         <LogoutButton />
+        <BackButton />
         </div>
     )
 }

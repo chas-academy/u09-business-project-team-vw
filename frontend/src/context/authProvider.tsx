@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import type { ReactNode } from "react";
 import type { User } from "../types/User";
 
@@ -16,7 +15,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -43,22 +41,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
             fetchUser();
         }, []);
-
-        useEffect(() => {
-            if(!loading) {
-
-                if (user?.isAdmin) {
-                    navigate('/admin-dashboard');
-                    return;
-                }
-
-                if (user) {
-                    navigate('/user-dashboard');
-                    return;
-
-                }
-            }
-        },[loading, user, navigate]);
         
         return (
             <AuthContext.Provider value={{ user, setUser, loading, errorMessage }}>
