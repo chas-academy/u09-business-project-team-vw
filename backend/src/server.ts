@@ -23,6 +23,7 @@ import recipeRouter from './routes/allRecipesRoutes';
 // AUTH
 import { setupGoogleStrategy } from './auth/googleAuth';
 import passport from 'passport';
+import searchRouter from './routes/searchRecipesRoutes';
 
 
 
@@ -53,6 +54,7 @@ app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/admin', adminRouter);
 app.use('/recipes', recipeRouter);
+app.use('/recipes', searchRouter);
 
 // STANDARD ROUTE FOR BACKEND
 app.get('/', (req, res) => {
