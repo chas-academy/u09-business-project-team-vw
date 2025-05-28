@@ -1,8 +1,23 @@
 import { Icon } from "@iconify/react";
+import { useAuth } from "../../hooks/useAuth";
+import { LogoutButton } from "../LogoutButton";
 import "./header.scss"
+
+type ProfileProps = {
+    name: string;
+}
+
+export const Profile = ({ name }: ProfileProps) => {
+    return <p className='profile-text'>{name}</p>
+}
+
+
 
 // header component imported in App.tsx
 export function Header() {
+
+    const { user } = useAuth();
+
     return (
         <header id="header">
             <div id="header-upper">
@@ -22,7 +37,12 @@ export function Header() {
                 </div>
                 <div id="header-profile">
                     <Icon className="profile-icon" icon="mdi:person-circle"></Icon>
-                    <p className="profile-text">Username</p>
+                    {user ? (
+                        <Profile name={user.name} />
+                    ) : (
+                        <p className='profile-text'>Guest</p>
+                    )}
+                    <LogoutButton />
                 </div>
             </div>
             <div id="header-lower">
@@ -34,7 +54,7 @@ export function Header() {
                     </button>               
                 </div>
                 <div id="dropdown-container">
-                    <button id="dropdown-button">
+                    <button title='dropdown-button' id="dropdown-button">
                         <Icon className="dropdown-icon" icon="ic:baseline-restaurant-menu"></Icon>
                         <Icon className="dropdown-icon dropdown-menu" icon="ic:baseline-menu"></Icon>
                     </button>
