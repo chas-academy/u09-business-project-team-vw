@@ -32,6 +32,7 @@ export const getOrFetchRecipe = async (req: Request, res: Response) => {
 
         if(!recipeData) {
             res.status(404).json(errorResponse('Recipe not found in Spoonacular', null));
+            return;
         }
 
         // If user saves the recipe to its own recipelist. Then store it in the database.
@@ -60,5 +61,6 @@ export const getOrFetchRecipe = async (req: Request, res: Response) => {
     } catch (error) {
         handleError(error, 'recipeController.ts');
         res.status(500).json(errorResponse('Internal server error', error));
+        return;
     }
 };
