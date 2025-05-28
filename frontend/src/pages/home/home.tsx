@@ -16,7 +16,7 @@ function Home() {
                 /*const res = await fetch(`${apiUrl}/recipes`);
                 const data = await res.json();
                 // saves recipe objects in state
-                setRecipes(data);*/
+                setRecipes(data.data || []);
             } catch (error) {
                 console.error('Error fetching recipes:', error);
             }

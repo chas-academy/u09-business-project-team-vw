@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { Recipelist } from '../models/Recipe/RecipeList';
-import { Recipe } from '../models/Recipe/Recipe';
-import { successResponse, errorResponse } from '../utils/response';
-import { handleError } from '../utils/errorHandler';
+import { Recipelist } from '../../models/Recipe/RecipeList';
+import { Recipe } from '../../models/Recipe/Recipe';
+import { successResponse, errorResponse } from '../../utils/response';
+import { handleError } from '../../utils/errorHandler';
 
 
 // CREATE A NEW LIST FROM RECIPES
