@@ -34,7 +34,7 @@ export function Header() {
                     </button>               
                 </div>
                 <div id="dropdown-container">
-                    <button id="dropdown-button">
+                    <button title='dropdown-button' id="dropdown-button">
                         <Icon className="dropdown-icon" icon="ic:baseline-restaurant-menu"></Icon>
                         <Icon className="dropdown-icon dropdown-menu" icon="ic:baseline-menu"></Icon>
                     </button>
