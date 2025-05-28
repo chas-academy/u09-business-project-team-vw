@@ -4,7 +4,7 @@ import './App.scss'
 // COMPONENTS FOLDER
 import { Layout } from './components/layout/layout';
 import { ProtectedRoute } from './components/middleware/protectedRoute';
-import { LogoutButton } from './components/LogoutButton';
+// gave error when compiling import { LogoutButton } from './components/LogoutButton';
 
 // PAGES FOLDER
 import Home from './pages/home/home';

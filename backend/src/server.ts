@@ -18,7 +18,7 @@ import authRouter from './routes/authRoutes';
 import userRouter from './routes/userRoutes';
 import adminRouter from './routes/adminRoutes';
 
-import recipeRouter from './routes/recipeRoutes';
+import recipeRouter from './routes/allRecipesRoutes';
 
 // AUTH
 import { setupGoogleStrategy } from './auth/googleAuth';
