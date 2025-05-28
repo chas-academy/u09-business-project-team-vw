@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { Recipe } from '../models/Recipe/Recipe';
-import { apiKey } from '../utils/apiKeys';
-import { successResponse, errorResponse } from '../utils/response';
-import { handleError } from '../utils/errorHandler';
-import { Ingredient } from '../interfaces/Recipe/Ingredient';
+import { Recipe } from '../../models/Recipe/Recipe';
+import { apiKey } from '../../utils/apiKeys';
+import { successResponse, errorResponse } from '../../utils/response';
+import { handleError } from '../../utils/errorHandler';
+import { Ingredient } from '../../interfaces/Recipe/Ingredient';
 
 export const getOrFetchRecipe = async (req: Request, res: Response) => {
     const { id } = req.params;
