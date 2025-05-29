@@ -6,6 +6,7 @@ import SpoonacularRecipe from '../../interfaces/Recipe/spoonacular';
 
 export const searchRecipesByIngredients = async (req: Request, res: Response): Promise<void> => {
     try {
+        // Get what user typed in search box from URL
         const ingredients = req.query.ingredients as string;
 
         if (!ingredients) {
@@ -13,7 +14,8 @@ export const searchRecipesByIngredients = async (req: Request, res: Response): P
             return;
         }
 
-        const spoonacularUrl = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(ingredients)}&number=10&apiKey=${apiKey}`; 
+        // format user input to a safe url and built it
+        const spoonacularUrl = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(ingredients)}&number=2&apiKey=${apiKey}`; 
         const response = await fetch(spoonacularUrl);
 
         if (!response.ok) {
@@ -24,15 +26,34 @@ export const searchRecipesByIngredients = async (req: Request, res: Response): P
 
         const data = await response.json();
 
-        const spoonacularRecipes = data.map((r: SpoonacularRecipe) => ({
-            originalRecipeId: r.id,
-            title: r.title,
-            imageUrl: r.image,
-            readyInMinutes: r.readyInMinutes,
-            isVegetarian: r.vegetarian,
-            isGlutenfree: r.glutenFree,
-            isDairyfree: r.dairyFree
-        }));
+        const spoonacularRecipes = await Promise.all(
+            data.map(async (r: SpoonacularRecipe) => {
+                const detailsRes = await fetch(
+                    `https://api.spoonacular.com/recipes/${r.id}/information?apiKey=${apiKey}`
+                );
+                if (!detailsRes.ok) {
+                    return {
+                        originalRecipeId: r.id,
+                        title: r.title,
+                        imageUrl: r.image,
+                        readyInMinutes: null,
+                        isVegetarian: null,
+                        isGlutenfree: null,
+                        isDairyfree: null
+                    };
+                }
+                const details = await detailsRes.json();
+                return {
+                    originalRecipeId: r.id,
+                    title: r.title,
+                    imageUrl: r.image,
+                    readyInMinutes: details.readyInMinutes,
+                    isVegetarian: details.vegetarian,
+                    isGlutenfree: details.glutenFree,
+                    isDairyfree: details.dairyFree
+                };
+            })
+        );
 
         res.status(200).json(successResponse('Recipes fetched from Spoonacular', spoonacularRecipes));
     } catch (error) {

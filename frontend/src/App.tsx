@@ -14,6 +14,7 @@ import UserDashboard from './pages/user/dashboard';
 
 import LoginPage from './pages/loginPage';
 import NotAutorized from './pages/authorizing/notAutorizedPage';
+import Search from './pages/search/search';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/auth-redirect' element={<AuthRedirect />} />
           <Route path='/not-authorized' element={<NotAutorized />} />
+          <Route path="/search" element={<Search />} />
 
           <Route
             path='/admin-dashboard'

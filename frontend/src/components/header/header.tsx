@@ -1,7 +1,11 @@
+// header.tsx
+
 import { Icon } from "@iconify/react";
 import { useAuth } from "../../hooks/useAuth";
 import { LogoutButton } from "../LogoutButton";
-import "./header.scss"
+import "./header.scss";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type ProfileProps = {
     name: string;
@@ -17,6 +21,22 @@ export const Profile = ({ name }: ProfileProps) => {
 export function Header() {
 
     const { user } = useAuth();
+
+    // State for the search input field
+    const [searchValue, setSearchValue] = useState('');
+    const navigate = useNavigate();
+
+    // Triggered when the user clicks the search button or presses Enter
+    const handleSearch = () => {
+        if (!searchValue.trim()) return;
+        // Navigate to /search?ingredients=...
+        navigate(`/search?ingredients=${encodeURIComponent(searchValue)}`);
+    };
+
+    // Allow search on Enter key
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') handleSearch();
+    };
 
     return (
         <header id="header">
@@ -47,11 +67,18 @@ export function Header() {
             </div>
             <div id="header-lower">
                 <div id="search-container">
-                    <input id="search-bar" type="text" placeholder="Search..." />
-                    <button id="search-button">
+                    <input
+                        id="search-bar"
+                        type="text"
+                        placeholder="Search ingredients (comma-separated)..."
+                        value={searchValue}
+                        onChange={e => setSearchValue(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                    />
+                    <button id="search-button" onClick={handleSearch}>
                         <span id="search-button-text">Search</span>
-                        <Icon id="search-icon" icon="ic:baseline-arrow-forward-ios"></Icon>
-                    </button>               
+                        <Icon id="search-icon" icon="ic:baseline-arrow-forward-ios" />
+                    </button>
                 </div>
                 <div id="dropdown-container">
                     <button title='dropdown-button' id="dropdown-button">
