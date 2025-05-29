@@ -9,7 +9,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
         res.status(200).json(successResponse('Fetched all users', users));
         return;
     } catch (error) {
-        res.status(500).json(errorResponse('Coulnd fetch all users', error));
+        res.status(500).json(errorResponse('Couldnt fetch all users', error));
         return;
     }
 };

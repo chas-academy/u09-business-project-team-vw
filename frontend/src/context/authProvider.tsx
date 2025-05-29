@@ -20,7 +20,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
             const fetchUser = async() => {
                 try {
-                    const res = await fetch('http://localhost:3000/auth/me', { credentials: 'include' });
+                    const res = await fetch('http://localhost:3000/auth/me', 
+                        { credentials: 'include' });
 
                     if(res.ok) {
                         const data = await res.json();
