@@ -22,18 +22,17 @@ export function Header() {
 
     const { user } = useAuth();
 
-    // State for the search input field
+
     const [searchValue, setSearchValue] = useState('');
     const navigate = useNavigate();
 
-    // Triggered when the user clicks the search button or presses Enter
+    // when field is not empty and button is clicked go to search page
     const handleSearch = () => {
         if (!searchValue.trim()) return;
-        // Navigate to /search?ingredients=...
         navigate(`/search?ingredients=${encodeURIComponent(searchValue)}`);
     };
 
-    // Allow search on Enter key
+    // go to search page when enter is pressed
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') handleSearch();
     };
