@@ -18,11 +18,12 @@ import authRouter from './routes/authRoutes';
 import userRouter from './routes/userRoutes';
 import adminRouter from './routes/adminRoutes';
 
-import recipeRouter from './routes/recipeRoutes';
+import recipeRouter from './routes/allRecipesRoutes';
 
 // AUTH
 import { setupGoogleStrategy } from './auth/googleAuth';
 import passport from 'passport';
+import searchRouter from './routes/searchRecipesRoutes';
 
 
 
@@ -52,8 +53,8 @@ app.use(passport.session());
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/admin', adminRouter);
-
 app.use('/recipes', recipeRouter);
+app.use('/recipes', searchRouter);
 
 // STANDARD ROUTE FOR BACKEND
 app.get('/', (req, res) => {
