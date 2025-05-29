@@ -70,7 +70,7 @@ export function Header() {
                     <input
                         id="search-bar"
                         type="text"
-                        placeholder="Search ingredients (comma-separated)..."
+                        placeholder="Search ingredients (comma-separated)"
                         value={searchValue}
                         onChange={e => setSearchValue(e.target.value)}
                         onKeyDown={handleKeyDown}

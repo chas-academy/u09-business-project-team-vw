@@ -27,10 +27,12 @@ export const searchRecipesByIngredients = async (req: Request, res: Response): P
         const data = await response.json();
 
         const spoonacularRecipes = await Promise.all(
+            // get detailed data for each recipe
             data.map(async (r: SpoonacularRecipe) => {
                 const detailsRes = await fetch(
                     `https://api.spoonacular.com/recipes/${r.id}/information?apiKey=${apiKey}`
                 );
+                // If fetching detailed data fails, return the recipe object without details
                 if (!detailsRes.ok) {
                     return {
                         originalRecipeId: r.id,
@@ -42,6 +44,7 @@ export const searchRecipesByIngredients = async (req: Request, res: Response): P
                         isDairyfree: null
                     };
                 }
+                // return recipe object with recipe details
                 const details = await detailsRes.json();
                 return {
                     originalRecipeId: r.id,
@@ -55,6 +58,7 @@ export const searchRecipesByIngredients = async (req: Request, res: Response): P
             })
         );
 
+        // return recipes with or without detailed data
         res.status(200).json(successResponse('Recipes fetched from Spoonacular', spoonacularRecipes));
     } catch (error) {
         handleError(error, 'searchRecipesByIngredients');
