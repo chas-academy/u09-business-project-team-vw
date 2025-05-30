@@ -1,11 +1,52 @@
+// header.tsx
+
 import { Icon } from "@iconify/react";
+import { useAuth } from "../../hooks/useAuth";
+import { LogoutButton } from "../LogoutButton";
 import "./header.scss"
-import ClickableProfileIcon from "../button/clickableProfileIcon";
-import LogoutButton from "../button/useLogout";
+
+type ProfileProps = {
+    name: string;
+}
+
+export const Profile = ({ name }: ProfileProps) => {
+    return <p className='profile-text'>{name}</p>
+}
+
 
 
 // header component imported in App.tsx
 export function Header() {
+
+
+    const [searchValue, setSearchValue] = useState('');
+    const navigate = useNavigate();
+
+    // when field is not empty and button is clicked go to search page
+    const handleSearch = () => {
+        if (!searchValue.trim()) return;
+        navigate(`/search?ingredients=${encodeURIComponent(searchValue)}`);
+    };
+
+    // go to search page when enter is pressed
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') handleSearch();
+    };
+
+
+    const [searchValue, setSearchValue] = useState('');
+    const navigate = useNavigate();
+
+    // when field is not empty and button is clicked go to search page
+    const handleSearch = () => {
+        if (!searchValue.trim()) return;
+        navigate(`/search?ingredients=${encodeURIComponent(searchValue)}`);
+    };
+
+    // go to search page when enter is pressed
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') handleSearch();
+    };
 
     return (
         <header id="header">
@@ -28,11 +69,18 @@ export function Header() {
             </div>
             <div id="header-lower">
                 <div id="search-container">
-                    <input id="search-bar" type="text" placeholder="Search..." />
-                    <button id="search-button">
+                    <input
+                        id="search-bar"
+                        type="text"
+                        placeholder="Search ingredients (comma-separated)"
+                        value={searchValue}
+                        onChange={e => setSearchValue(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                    />
+                    <button id="search-button" onClick={handleSearch}>
                         <span id="search-button-text">Search</span>
-                        <Icon id="search-icon" icon="ic:baseline-arrow-forward-ios"></Icon>
-                    </button>               
+                        <Icon id="search-icon" icon="ic:baseline-arrow-forward-ios" />
+                    </button>
                 </div>
                 <div id="dropdown-container">
                     <button title='dropdown-button' id="dropdown-button">

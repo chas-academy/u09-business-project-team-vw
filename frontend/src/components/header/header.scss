@@ -90,7 +90,7 @@
 #search-bar {
     font-size: 0.7rem;
     color: var(--text-color);
-    width: 10rem;
+    width: 13rem;
     border: none;
     background-color: var(--accent-pri-color);
     border-radius: 1rem;
@@ -103,7 +103,7 @@
     position: absolute;
     width: 5.5rem;
     height: 1.38rem;
-    left: 8.3rem;
+    left: 11.3rem;
     @include flexbox(row, center, center);
     gap: 0.3rem;
     font-size: 0.7rem;

@@ -14,6 +14,9 @@ import UserDashboard from './pages/user/dashboard';
 import UserSettings from './pages/user/userSetting';
 import RedirectAfterLogin from './components/middleware/redirectAfterLogin';
 
+import LoginPage from './pages/loginPage';
+import NotAutorized from './pages/authorizing/notAutorizedPage';
+import Search from './pages/search/search';
 
 function App() {
   return (
@@ -22,23 +25,17 @@ function App() {
 
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          
-        <Route 
-          path='admin-dashboard'
-          element={
-            <ProtectedRoute requireAdmin>
-              <AdminDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path='admin-settings' 
-          element={
-            <ProtectedRoute requireAdmin>
-              <AdminSettings />
-            </ProtectedRoute>
-          } 
-        />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/auth-redirect' element={<AuthRedirect />} />
+          <Route path='/not-authorized' element={<NotAutorized />} />
+
+          <Route
+            path='/admin-dashboard'
+            element={
+              <ProtectedRoute requireAdmin>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
 
         <Route
           path='user-dashboard'
