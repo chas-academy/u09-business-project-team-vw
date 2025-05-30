@@ -15,7 +15,7 @@ export const searchRecipesByIngredients = async (req: Request, res: Response): P
         }
 
         // format user input to a safe url and built it
-        const spoonacularUrl = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(ingredients)}&number=2&apiKey=${apiKey}`; 
+        const spoonacularUrl = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(ingredients)}&number=1&apiKey=${apiKey}`; 
         const response = await fetch(spoonacularUrl);
 
         if (!response.ok) {

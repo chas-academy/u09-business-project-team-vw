@@ -24,6 +24,7 @@ export function Header() {
 
 
     const [searchValue, setSearchValue] = useState('');
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate();
 
     // when field is not empty and button is clicked go to search page
@@ -35,6 +36,13 @@ export function Header() {
     // go to search page when enter is pressed
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') handleSearch();
+    };
+
+    const toggleDropdown = () => setDropdownOpen(prev => !prev);
+
+    const handleDropdownSelect = (option: string) => {
+        console.log("Valt alternativ:", option);
+        setDropdownOpen(false);
     };
 
     return (
@@ -79,11 +87,25 @@ export function Header() {
                         <Icon id="search-icon" icon="ic:baseline-arrow-forward-ios" />
                     </button>
                 </div>
-                <div id="dropdown-container">
-                    <button title='dropdown-button' id="dropdown-button">
-                        <Icon className="dropdown-icon" icon="ic:baseline-restaurant-menu"></Icon>
-                        <Icon className="dropdown-icon dropdown-menu" icon="ic:baseline-menu"></Icon>
+                <div id="dropdown-container" style={{ position: "relative" }}>
+                    <button
+                        title='dropdown-button'
+                        id="dropdown-button"
+                        onClick={toggleDropdown}
+                        aria-expanded={dropdownOpen}
+                        aria-haspopup="true"
+                    >
+                        <Icon className="dropdown-icon" icon="ic:baseline-restaurant-menu" />
+                        <Icon className="dropdown-icon dropdown-menu" icon="ic:baseline-menu" />
                     </button>
+                    {dropdownOpen && (
+                        <ul className="dropdown-menu-list">
+                            <li onClick={() => handleDropdownSelect("All Eater")}>All Eater</li>
+                            <li onClick={() => handleDropdownSelect("Vegetarian")}>Vegetarian</li>
+                            <li onClick={() => handleDropdownSelect("Gluten Free")}>Gluten Free</li>
+                            <li onClick={() => handleDropdownSelect("Dairy Free")}>Dairy Free</li>
+                        </ul>
+                    )}
                 </div>
             </div>
         </header>
