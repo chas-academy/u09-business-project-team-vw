@@ -1,8 +1,9 @@
 // header.tsx
 
 import { Icon } from "@iconify/react";
-import { useAuth } from "../../hooks/useAuth";
-import { LogoutButton } from "../LogoutButton";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ClickableProfileIcon from "../button/clickableProfileIcon";
 import "./header.scss"
 
 type ProfileProps = {
@@ -17,21 +18,6 @@ export const Profile = ({ name }: ProfileProps) => {
 
 // header component imported in App.tsx
 export function Header() {
-
-
-    const [searchValue, setSearchValue] = useState('');
-    const navigate = useNavigate();
-
-    // when field is not empty and button is clicked go to search page
-    const handleSearch = () => {
-        if (!searchValue.trim()) return;
-        navigate(`/search?ingredients=${encodeURIComponent(searchValue)}`);
-    };
-
-    // go to search page when enter is pressed
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') handleSearch();
-    };
 
 
     const [searchValue, setSearchValue] = useState('');
