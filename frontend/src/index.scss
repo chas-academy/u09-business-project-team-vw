@@ -20,10 +20,26 @@ html {
   font-size: 16px;
 }
 
+// mobile
+@media (max-width: 768px) {
+  #search-container-desktop {
+    display: none !important;
+  }
+  #header-buttons-container {
+    display: none !important;
+  }
+}
+
 // tablet
 @media (min-width: 768px) and (max-width: 1280px) {
   html {
     font-size: 22px;
+  }
+  #search-container-desktop {
+    display: none !important;
+  }
+  #header-buttons-container {
+    display: none !important;
   }
 }
 
@@ -32,12 +48,30 @@ html {
   html {
     font-size: 30px;
   }
+  #search-container {
+    display: none !important;
+  }
+  #search-container-desktop {
+    display: flex !important;
+  }
+  #dropdown-container {
+    display: none !important;
+  }
+  #header-buttons-container {
+    display: flex !important;
+  }
 }
 
 // TV
 @media (min-width: 1920px) {
   html {
     font-size: 40px;
+  }
+  #search-container {
+    display: none !important;
+  }
+  #dropdown-container {
+    display: none !important;
   }
 }
 

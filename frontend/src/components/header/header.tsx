@@ -52,6 +52,20 @@ export function Header() {
                     <Icon id="logo-icon" icon="material-symbols:fastfood-outline"></Icon>
                     <h1 id="header-title">Food & Flavours</h1>
                 </div>
+                <div id="search-container-desktop">
+                    <input
+                        className="search-bar"
+                        type="text"
+                        placeholder="Search ingredients (comma-separated)"
+                        value={searchValue}
+                        onChange={e => setSearchValue(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                    />
+                    <button className="search-button" onClick={handleSearch}>
+                        <span className="search-button-text">Search</span>
+                        <Icon className="search-icon" icon="ic:baseline-arrow-forward-ios" />
+                    </button>
+                </div>
                 <div id="header-weather">
                     <Icon className="weather-icon" icon="mdi:weather-partly-cloudy"></Icon>
                     <div className="temp-container">
@@ -75,16 +89,16 @@ export function Header() {
             <div id="header-lower">
                 <div id="search-container">
                     <input
-                        id="search-bar"
+                        className="search-bar"
                         type="text"
                         placeholder="Search ingredients (comma-separated)"
                         value={searchValue}
                         onChange={e => setSearchValue(e.target.value)}
                         onKeyDown={handleKeyDown}
                     />
-                    <button id="search-button" onClick={handleSearch}>
-                        <span id="search-button-text">Search</span>
-                        <Icon id="search-icon" icon="ic:baseline-arrow-forward-ios" />
+                    <button className="search-button" onClick={handleSearch}>
+                        <span className="search-button-text">Search</span>
+                        <Icon className="search-icon" icon="ic:baseline-arrow-forward-ios" />
                     </button>
                 </div>
                 <div id="dropdown-container" style={{ position: "relative" }}>
@@ -106,6 +120,12 @@ export function Header() {
                             <li onClick={() => handleDropdownSelect("Dairy Free")}>Dairy Free</li>
                         </ul>
                     )}
+                </div>
+                <div id="header-buttons-container" className="desktop-filters">
+                    <button className="header-button">All Eater</button>
+                    <button className="header-button">Vegetarian</button>
+                    <button className="header-button">Gluten Free</button>
+                    <button className="header-button">Dairy Free</button>
                 </div>
             </div>
         </header>
