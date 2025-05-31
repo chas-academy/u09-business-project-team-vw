@@ -18,7 +18,10 @@ export const getAllRecipes = async (req: Request, res: Response): Promise<void> 
 
         // try to fetch from Spoonacular
         try {
-            const spoonacularUrl = `https://api.spoonacular.com/recipes/random?number=10&apiKey=${apiKey}`;
+            const spoonacularUrl = `https://api.spoonacular.com/recipes/random?number=1&apiKey=${apiKey}`;
+
+            console.log(`[Spoonacular] API-anrop: ${spoonacularUrl} | Filter:`, req.query, `| ${new Date().toISOString()}`);
+
             // fetches 10 random recipes from Spoonacular API
             const response = await fetch(spoonacularUrl);
 
