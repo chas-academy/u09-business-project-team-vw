@@ -40,10 +40,14 @@ export function Header() {
 
     const toggleDropdown = () => setDropdownOpen(prev => !prev);
 
-    const handleDropdownSelect = (option: string) => {
-        console.log("Valt alternativ:", option);
-        setDropdownOpen(false);
-    };
+    // when button is clicked go to homepage with filter in url
+    const handleFilter = (filter: string) => {
+    let query = '';
+    if (filter === "Vegetarian") query = "?vegetarian=true";
+    if (filter === "Gluten Free") query = "?glutenFree=true";
+    if (filter === "Dairy Free") query = "?dairyFree=true";
+    navigate("/" + query);
+};
 
     return (
         <header id="header">
@@ -52,6 +56,7 @@ export function Header() {
                     <Icon id="logo-icon" icon="material-symbols:fastfood-outline"></Icon>
                     <h1 id="header-title">Food & Flavours</h1>
                 </div>
+                {/* visible only when device is 1280px or more */}
                 <div id="search-container-desktop">
                     <input
                         className="search-bar"
@@ -86,6 +91,7 @@ export function Header() {
                     <LogoutButton />
                 </div>
             </div>
+            {/* visible only when device is mobile or tablet */}
             <div id="header-lower">
                 <div id="search-container">
                     <input
@@ -101,7 +107,8 @@ export function Header() {
                         <Icon className="search-icon" icon="ic:baseline-arrow-forward-ios" />
                     </button>
                 </div>
-                <div id="dropdown-container" style={{ position: "relative" }}>
+                {/* visible only when device is mobile or tablet */}
+                <div id="dropdown-container">
                     <button
                         title='dropdown-button'
                         id="dropdown-button"
@@ -114,18 +121,19 @@ export function Header() {
                     </button>
                     {dropdownOpen && (
                         <ul className="dropdown-menu-list">
-                            <li onClick={() => handleDropdownSelect("All Eater")}>All Eater</li>
-                            <li onClick={() => handleDropdownSelect("Vegetarian")}>Vegetarian</li>
-                            <li onClick={() => handleDropdownSelect("Gluten Free")}>Gluten Free</li>
-                            <li onClick={() => handleDropdownSelect("Dairy Free")}>Dairy Free</li>
+                            <li onClick={() => { handleFilter("All Eater"); setDropdownOpen(false); }}>All Eater</li>
+                            <li onClick={() => { handleFilter("Vegetarian"); setDropdownOpen(false); }}>Vegetarian</li>
+                            <li onClick={() => { handleFilter("Gluten Free"); setDropdownOpen(false); }}>Gluten Free</li>
+                            <li onClick={() => { handleFilter("Dairy Free"); setDropdownOpen(false); }}>Dairy Free</li>
                         </ul>
                     )}
                 </div>
+                {/* visible only when device is 1280px or more */}
                 <div id="header-buttons-container" className="desktop-filters">
-                    <button className="header-button">All Eater</button>
-                    <button className="header-button">Vegetarian</button>
-                    <button className="header-button">Gluten Free</button>
-                    <button className="header-button">Dairy Free</button>
+                    <button className="header-button" onClick={() => handleFilter("All Eater")}>All Eater</button>
+                    <button className="header-button" onClick={() => handleFilter("Vegetarian")}>Vegetarian</button>
+                    <button className="header-button" onClick={() => handleFilter("Gluten Free")}>Gluten Free</button>
+                    <button className="header-button" onClick={() => handleFilter("Dairy Free")}>Dairy Free</button>
                 </div>
             </div>
         </header>

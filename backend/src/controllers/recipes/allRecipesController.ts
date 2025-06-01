@@ -4,13 +4,25 @@ import SpoonacularRecipe from '../../interfaces/Recipe/spoonacular';
 import { apiKey } from '../../utils/apiKeys';
 import { handleError } from '../../utils/errorHandler';
 import { successResponse, errorResponse } from '../../utils/response';
+import RecipeFilter from '../../interfaces/Recipe/recipeFilter';
 
 export const getAllRecipes = async (req: Request, res: Response): Promise<void> => {
     try {
+
+        // Extract filter parameters from the URL, Ex ?vegetarian=true
+        const { vegetarian, glutenFree, dairyFree } = req.query;
+
+        // filter recipes in the database based on filter parameters.
+        const dbFilter: RecipeFilter = {};
+        if (vegetarian === 'true') dbFilter.isVegetarian = true;
+        if (glutenFree === 'true') dbFilter.isGlutenfree = true;
+        if (dairyFree === 'true') dbFilter.isDairyfree = true;
+        
+        
         // find all recipes in the database
         const recipes = await Recipe.find(
-            // no filter, get all objects
-            {},
+            // get only matching recipes
+            dbFilter,
             // only select these fields
             'originalRecipeId title imageUrl readyInMinutes isVegetarian isGlutenfree isDairyfree'
         // Return plain JS objects instead of Mongoose documents
@@ -18,7 +30,11 @@ export const getAllRecipes = async (req: Request, res: Response): Promise<void> 
 
         // try to fetch from Spoonacular
         try {
-            const spoonacularUrl = `https://api.spoonacular.com/recipes/random?number=1&apiKey=${apiKey}`;
+            let spoonacularUrl = `https://api.spoonacular.com/recipes/random?number=1&apiKey=${apiKey}`;
+            // add filter parameters in url, otherwise randon recipes are fetched
+            if (vegetarian === 'true') spoonacularUrl += '&tags=vegetarian';
+            else if (glutenFree === 'true') spoonacularUrl += '&tags=gluten%20free';
+            else if (dairyFree === 'true') spoonacularUrl += '&tags=dairy%20free';
 
             console.log(`[Spoonacular] API-anrop: ${spoonacularUrl} | Filter:`, req.query, `| ${new Date().toISOString()}`);
 
