@@ -4,8 +4,6 @@ import BackButton from "../../components/button/goBack";
 import type { User } from "../../types/User";
 import { useNavigate } from "react-router-dom";
 
-
-
 const AdminDashboard = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
