@@ -29,4 +29,6 @@ userRouter.get('/logout', isAuthenticated, (req: Request, res: Response) => {
     });
 });
 
+
+
 export default userRouter;

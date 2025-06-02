@@ -13,6 +13,7 @@ import AdminSettings from './pages/admin/adminSetting';
 import UserDashboard from './pages/user/dashboard';
 import UserSettings from './pages/user/userSetting';
 import RedirectAfterLogin from './components/middleware/redirectAfterLogin';
+import ShowUser from './pages/admin/users';
 
 function App() {
   return (
@@ -31,10 +32,15 @@ function App() {
           } 
         />
         <Route 
-          path='admin-settings' 
-          element={
+          path='admin-settings' element={
             <ProtectedRoute requireAdmin>
               <AdminSettings />
+            </ProtectedRoute>
+          } 
+        />
+        <Route path='/show-user/:id' element={
+            <ProtectedRoute requireAdmin>
+              <ShowUser />
             </ProtectedRoute>
           } 
         />

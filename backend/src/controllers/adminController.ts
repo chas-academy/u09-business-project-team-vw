@@ -30,9 +30,14 @@ export const deleteUser = async (req: Request, res: Response) => {
 export const getUserById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        await User.findById(id);
+        const user = await User.findById(id);
 
-        res.status(200).json(successResponse('fetched User by id', id));
+        if(!user) {
+            res.status(404).json(errorResponse('User Not Found', null));
+            return;
+        }
+
+        res.status(200).json(successResponse('fetched User by id', user));
         return;
     } catch (error) {
         res.status(500).json(errorResponse('Couldnt find or fetch the user', error));

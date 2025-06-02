@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import LogoutButton from "../../components/button/useLogout";
-import BackButton from "../../components/button/goBack";
 import type { User } from "../../types/User";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const AdminDashboard = () => {
     const [users, setUsers] = useState<User[]>([]);
@@ -25,6 +24,8 @@ const AdminDashboard = () => {
             } else {
                 setErrorMessage('Something went wrong, try again');
             }
+
+            setLoading(false);
         };
 
         fetchAllUsers();
@@ -37,7 +38,7 @@ const AdminDashboard = () => {
         if(!confirmed) return;
 
         try {
-            const res = await fetch ('http://localhost:3000/admin/dashboard/delete/${_id}', {
+            const res = await fetch (`http://localhost:3000/admin/dashboard/delete/${_id}`, {
                 method: 'DELETE',
                 credentials: 'include'
             });
@@ -53,14 +54,19 @@ const AdminDashboard = () => {
         }
     }
 
-    const handleEdit = (_id: string) => {
-        
+    const handleUser = (_id: string) => {
+        navigate(`/show-user/${_id}`);
     }
 
+    
+    if (loading) {
+        return <p>Loading users...</p>;
+        }
 
     return(
         <div>
         <h1>ADMIN DASHBOARD PAGE</h1>
+        <p>{errorMessage}</p>
         <div>
             <p>Id | Name | Email | Edit | Delete</p>
         </div>
@@ -68,21 +74,16 @@ const AdminDashboard = () => {
         <ul>
             {users.map((user) => (
                 <li key={user._id}>
-                <label htmlFor='checkbox'></label>
-                <input id='checkbox' name='checkbox' type='checkbox' aria-label="...">
-                
-                </input>
                 {" "}
                 {user._id} - {user.name} - {user.email}
                 {" "}
-                <button onClick={() => handleEdit(user._id)}>Edit</button>
+                <button onClick={() => handleUser(user._id)}>Show</button>
                 <button onClick={() => handleDeleteUser(user._id)}>Delete user</button>
                 </li>
             ))}
         </ul>
         </div>
         <LogoutButton />
-        <BackButton />
         </div>
     )
 }

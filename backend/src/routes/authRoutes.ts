@@ -1,6 +1,6 @@
 import { Router, Response, Request } from 'express';
 import passport from 'passport';
-import { errorResponse } from '../utils/response';
+import { errorResponse, successResponse } from '../utils/response';
 import { isAuthenticated } from '../middleware/isAuthenticated';
 
 const authRouter: Router = Router();
@@ -30,7 +30,7 @@ authRouter.get('/google/callback', passport.authenticate('google', {
                 return;
             }
 
-            res.redirect('http://localhost:5173/login-redirect'); // sending to frontend /hooks/useAuth.ts
+            return res.redirect('http://localhost:5173/login-redirect'); // sending to frontend /hooks/useAuth.ts
         });
     }
 );

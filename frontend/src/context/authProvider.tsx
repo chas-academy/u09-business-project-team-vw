@@ -1,27 +1,22 @@
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
+
 import type { User } from "../types/User";
+import { AuthContext } from "./authContext";
 
-interface AuthContextType {
-    user: User | null;
-    setUser: (user: User | null) => void;
-    loading: boolean;
-    errorMessage: string | null;
-}
-
-export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-
     useEffect(() => {
             const fetchUser = async() => {
                 try {
-                    const res = await fetch('http://localhost:3000/auth/me', 
-                        { credentials: 'include' });
+                    const res = await fetch('http://localhost:3000/auth/me', { 
+                        method: 'GET',
+                        credentials: 'include' 
+                    });
 
                     if(res.ok) {
                         const data = await res.json();
