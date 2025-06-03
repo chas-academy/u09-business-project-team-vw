@@ -2,11 +2,13 @@ import { Icon } from "@iconify/react";
 import "./recipe-card.scss"
 import type { Recipe } from "../../interfaces/recipe.interface";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 // card component that is imported in home page
 function RecipeCard({ recipe }: { recipe: Recipe }) {
+    const { user } = useAuth();
     const navigate = useNavigate();
 
     async function handleAddRecipe(id: string | number) {
@@ -51,6 +53,7 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
                             {recipe.readyInMinutes} min
                         </p>
                     </div>
+                    {user && (
                     <button
                         className="card-button"
                         onClick={e => {
@@ -60,6 +63,7 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
                     >
                         <Icon className="add-recipe-icon" icon="mdi:invoice-add"></Icon>
                     </button>
+                    )}
                 </div>
             </div>
         </div>

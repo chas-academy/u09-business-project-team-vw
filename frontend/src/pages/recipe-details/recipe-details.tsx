@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import type { Recipe } from "../../interfaces/recipe.interface";
 import { Icon } from "@iconify/react";
 import "./recipe-details.scss"
+import { useAuth } from "../../hooks/useAuth";
 
 function RecipeDetail() {
 
+    const { user } = useAuth();
     const { id } = useParams();
     const [recipe, setRecipe] = useState<Recipe | null>(null);
     const apiUrl = import.meta.env.VITE_API_URL;
@@ -84,9 +86,11 @@ function RecipeDetail() {
                     <div className="recipe-details-instructions" dangerouslySetInnerHTML={{ __html: recipe.instructions }}></div>
                 </div>
             </div>
+            {user && (
             <button className="header-button recipe-details-button" onClick={() => handleAddRecipe(recipe.originalRecipeId)}>
                 Add recipe to my list
             </button>
+            )}
         </div>
     );
 }
