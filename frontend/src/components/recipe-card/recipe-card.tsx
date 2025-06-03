@@ -10,8 +10,10 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
     const navigate = useNavigate();
 
     async function handleAddRecipe(id: string | number) {
-    await fetch(`${apiUrl}/recipes/${id}`, { method: "GET" });
-}
+        const res = await fetch(`${apiUrl}/recipes/${id}/save`, { method: "POST" });
+        const data = await res.json();
+        alert(data.message);
+    }
     return (
         <div className="recipe-background" onClick={() => navigate(`/recipes/${recipe.originalRecipeId}`)}>
             <div className="upper-card">
@@ -52,7 +54,7 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
                     <button
                         className="card-button"
                         onClick={e => {
-                            e.stopPropagation(); // Hindra navigation om du har onClick på kortet
+                            e.stopPropagation();
                             handleAddRecipe(recipe.originalRecipeId);
                         }}
                     >

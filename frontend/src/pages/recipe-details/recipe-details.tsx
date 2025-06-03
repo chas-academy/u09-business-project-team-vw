@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { Recipe } from "../../interfaces/recipe.interface";
 import { Icon } from "@iconify/react";
+import "./recipe-details.scss"
 
 function RecipeDetail() {
 
@@ -14,7 +15,7 @@ function RecipeDetail() {
         fetch(`${apiUrl}/recipes/${id}`)
             .then(res => res.json())
             .then(data => {
-                console.log('API response:', data.data); // Lägg till denna rad!
+                console.log('API response:', data.data);
                 setRecipe(data.data);
             });
     }, [id, apiUrl]);
@@ -22,7 +23,9 @@ function RecipeDetail() {
     if (!recipe) return <div>Laddar...</div>;
 
     async function handleAddRecipe(id: string | number) {
-        await fetch(`${apiUrl}/recipes/${id}`, { method: "GET" });
+        const res = await fetch(`${apiUrl}/recipes/${id}/save`, { method: "POST" });
+        const data = await res.json();
+        alert(data.message);
     }
 
     return (
@@ -53,14 +56,18 @@ function RecipeDetail() {
                         <Icon className="recipe-icon" icon="mdi:food-fork-drink"></Icon>
                         <p className="recipe-details-servings">Servings: {recipe.servings}</p>
                     </div>
+                    {recipe.preparationMinutes != null && recipe.preparationMinutes > 0 && (
                     <div className="detail-type-container">
                         <Icon className="recipe-time-icon" icon="mdi:access-time"></Icon>
                         <p className="recipe-details-time">Preparation time: {recipe.preparationMinutes} minutes</p>
                     </div>
+                    )}
+                    {recipe.cookingMinutes != null && recipe.cookingMinutes > 0 && (
                     <div className="detail-type-container">
                         <Icon className="recipe-time-icon" icon="mdi:access-time"></Icon>
                         <p className="recipe-details-time">Cooking time: {recipe.cookingMinutes} minutes</p>
                     </div>
+                    )}
                     <div className="detail-type-container">
                         <Icon className="recipe-time-icon" icon="mdi:access-time"></Icon>
                         <p className="recipe-details-time">Total time: {recipe.readyInMinutes} minutes</p>
@@ -74,7 +81,7 @@ function RecipeDetail() {
                 </div>
                 <div className="detail-instructions-container">
                     <h2 className="details-types-title">Instructions</h2>
-                    <p className="recipe-details-instructions">{recipe.instructions}</p>
+                    <div className="recipe-details-instructions" dangerouslySetInnerHTML={{ __html: recipe.instructions }}></div>
                 </div>
             </div>
             <button className="header-button recipe-details-button" onClick={() => handleAddRecipe(recipe.originalRecipeId)}>

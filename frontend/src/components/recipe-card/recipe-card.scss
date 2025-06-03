@@ -13,6 +13,7 @@
   border-radius: 1rem;
   border: 0.2rem solid var(--text-color);
   overflow: hidden;
+  cursor: pointer;
 }
 
 // makes image take up all available space
@@ -79,7 +80,7 @@
 
 .card-button {
     background-color: var(--accent-pri-color);
-    cursor: pointer;
+    cursor: crosshair;
     border: none;
 }
 
