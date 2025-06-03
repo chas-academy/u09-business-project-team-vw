@@ -1,7 +1,13 @@
-export default function UserDashboard() {
+import LogoutButton from "../../components/button/useLogout";
+
+const UserDashboard = () => {
     return (
         <div>
-            <h1>User dashboard</h1>
+            <h1>USER DASHBOARD PAGE</h1>
+
+            <LogoutButton />
         </div>
-    );
+    )
 }
+
+export default UserDashboard;

@@ -1,11 +1,23 @@
 import { Icon } from "@iconify/react";
 import "./recipe-card.scss"
 import type { Recipe } from "../../interfaces/recipe.interface";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+
+const apiUrl = import.meta.env.VITE_API_URL;
 
 // card component that is imported in home page
 function RecipeCard({ recipe }: { recipe: Recipe }) {
+    const { user } = useAuth();
+    const navigate = useNavigate();
+
+    async function handleAddRecipe(id: string | number) {
+        const res = await fetch(`${apiUrl}/recipes/${id}/save`, { method: "POST" });
+        const data = await res.json();
+        alert(data.message);
+    }
     return (
-        <div className="recipe-background">
+        <div className="recipe-background" onClick={() => navigate(`/recipes/${recipe.originalRecipeId}`)}>
             <div className="upper-card">
                 {/* if recipe has an image, display it */}
                 {recipe.imageUrl && <img src={recipe.imageUrl} alt={recipe.title} className="recipe-image" />}
@@ -41,9 +53,17 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
                             {recipe.readyInMinutes} min
                         </p>
                     </div>
-                    <button className="card-button">
+                    {user && (
+                    <button
+                        className="card-button"
+                        onClick={e => {
+                            e.stopPropagation();
+                            handleAddRecipe(recipe.originalRecipeId);
+                        }}
+                    >
                         <Icon className="add-recipe-icon" icon="mdi:invoice-add"></Icon>
                     </button>
+                    )}
                 </div>
             </div>
         </div>
