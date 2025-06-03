@@ -4,13 +4,14 @@ import RecipeCard from "../../components/recipe-card/recipe-card";
 import type { Recipe } from "../../interfaces/recipe.interface";
 import "./search.scss";
 
-// Hjälpfunktion för att hämta query-parametrar
+// prepare to get ingrediants user typed in from url
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
 function Search() {
   const query = useQuery();
+  // get ingrediants user typed in from url
   const ingredients = query.get("ingredients") || "";
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(false);
@@ -18,6 +19,7 @@ function Search() {
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
+  // check if nothing was typed in, if so, don't fetch recipes
   useEffect(() => {
     if (!ingredients) {
       setRecipes([]);

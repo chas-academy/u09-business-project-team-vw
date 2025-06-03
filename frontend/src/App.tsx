@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.scss'
 
 // COMPONENTS FOLDER
@@ -8,24 +8,52 @@ import { ProtectedRoute } from './components/middleware/protectedRoute';
 
 // PAGES FOLDER
 import Home from './pages/home/home';
-import { AuthRedirect } from './pages/authorizing/authRedirect';
 import AdminDashboard from './pages/admin/dashboard';
+import AdminSettings from './pages/admin/adminSetting';
 import UserDashboard from './pages/user/dashboard';
-
-import LoginPage from './pages/loginPage';
+import UserSettings from './pages/user/userSetting';
+import RedirectAfterLogin from './components/middleware/redirectAfterLogin';
+import ShowUser from './pages/admin/users';
 import NotAutorized from './pages/authorizing/notAutorizedPage';
 import Search from './pages/search/search';
+import RecipeDetail from './pages/recipe-details/recipe-details';
 
 function App() {
   return (
-    <BrowserRouter>
       <Routes>
+        <Route path='login-redirect' element={<RedirectAfterLogin />} />
+        <Route path='not-authorized' element={<NotAutorized />} />
+
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          
+        <Route 
+          path='admin-dashboard'
+          element={
+            <ProtectedRoute requireAdmin>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path='admin-settings' element={
+            <ProtectedRoute requireAdmin>
+              <AdminSettings />
+            </ProtectedRoute>
+          } 
+        />
+        <Route path='/show-user/:id' element={
+            <ProtectedRoute requireAdmin>
+              <ShowUser />
+            </ProtectedRoute>
+          } 
+        />
+
           <Route path='/login' element={<LoginPage />} />
           <Route path='/auth-redirect' element={<AuthRedirect />} />
           <Route path='/not-authorized' element={<NotAutorized />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/recipes/:id" element={<RecipeDetail />} />
 
           <Route
             path='/admin-dashboard'
@@ -35,18 +63,23 @@ function App() {
               </ProtectedRoute>
             } />
 
-          <Route
-            path='/user-dashboard'
-            element={
-              <ProtectedRoute>
-                <UserDashboard />
-              </ProtectedRoute>
-            } />
-          {/* Add more page components as needed
-        */}
-        </Route>
+
+        <Route
+          path='user-dashboard'
+          element={
+            <ProtectedRoute>
+              <UserDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route 
+          path='user-settings' 
+          element={
+            <UserSettings />
+          } 
+        />
+          </Route>
       </Routes>
-    </BrowserRouter>
   );
 }
 

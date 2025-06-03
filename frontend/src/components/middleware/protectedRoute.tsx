@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuthState";
 import type { ReactNode } from "react";
 
 type Props = {
@@ -12,7 +12,7 @@ export function ProtectedRoute({ children, requireAdmin = false }: Props) {
 
     if(loading) return <div>Loading ...</div>;
 
-    if(!user) return <Navigate to='/login' />;
+    if(!user) return <Navigate to='/not-authorized' />;
 
     if(requireAdmin && !user.isAdmin) return <Navigate to='/not-authorized' />;
 

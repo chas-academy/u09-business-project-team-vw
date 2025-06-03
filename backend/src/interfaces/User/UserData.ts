@@ -8,4 +8,5 @@ export interface UserData extends mongoose.Document {
     createdAt: Date;
     isAdmin: boolean;
     recipeLists: ObjectId[];
+    displayName : string;
 }
