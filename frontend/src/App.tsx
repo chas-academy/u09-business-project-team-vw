@@ -15,6 +15,8 @@ import UserSettings from './pages/user/userSetting';
 import RedirectAfterLogin from './components/middleware/redirectAfterLogin';
 import ShowUser from './pages/admin/users';
 import NotAutorized from './pages/authorizing/notAutorizedPage';
+import Search from './pages/search/search';
+import RecipeDetail from './pages/recipe-details/recipe-details';
 
 function App() {
   return (
@@ -46,6 +48,21 @@ function App() {
             </ProtectedRoute>
           } 
         />
+
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/auth-redirect' element={<AuthRedirect />} />
+          <Route path='/not-authorized' element={<NotAutorized />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/recipes/:id" element={<RecipeDetail />} />
+
+          <Route
+            path='/admin-dashboard'
+            element={
+              <ProtectedRoute requireAdmin>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
+
 
         <Route
           path='user-dashboard'
