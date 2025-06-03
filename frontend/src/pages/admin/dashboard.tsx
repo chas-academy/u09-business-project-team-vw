@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LogoutButton from "../../components/button/useLogout";
 import type { User } from "../../types/User";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
     const [users, setUsers] = useState<User[]>([]);

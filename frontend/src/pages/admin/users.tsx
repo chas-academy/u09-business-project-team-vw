@@ -29,9 +29,6 @@ const ShowUser = () => {
 
     }, [id]);
 
-
-
-
     return (
         <div>
             <h1>USER BY ID</h1>

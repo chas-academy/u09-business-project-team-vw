@@ -12,7 +12,7 @@ export function ProtectedRoute({ children, requireAdmin = false }: Props) {
 
     if(loading) return <div>Loading ...</div>;
 
-    if(!user) return <Navigate to='/' />;
+    if(!user) return <Navigate to='/not-authorized' />;
 
     if(requireAdmin && !user.isAdmin) return <Navigate to='/not-authorized' />;
 

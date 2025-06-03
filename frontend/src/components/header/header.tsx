@@ -6,19 +6,9 @@ import { useNavigate } from "react-router-dom";
 import ClickableProfileIcon from "../button/clickableProfileIcon";
 import "./header.scss"
 
-type ProfileProps = {
-    name: string;
-}
-
-export const Profile = ({ name }: ProfileProps) => {
-    return <p className='profile-text'>{name}</p>
-}
-
-
 
 // header component imported in App.tsx
 export function Header() {
-
 
     const [searchValue, setSearchValue] = useState('');
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -99,6 +89,7 @@ export function Header() {
                 {/* visible only when device is mobile or tablet */}
                 <div id="dropdown-container">
                     <button
+                        type='button'
                         title='dropdown-button'
                         id="dropdown-button"
                         onClick={toggleDropdown}

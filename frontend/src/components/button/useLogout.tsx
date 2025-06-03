@@ -15,7 +15,9 @@ const LogoutButton = () => {
         .then((res) => {
             if(res.ok) {
                 setUser(null);
-                navigate('/');
+                setTimeout(() => {
+                    navigate('/');
+                }, 10);
             }
         })
         .catch((err) => {

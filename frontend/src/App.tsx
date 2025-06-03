@@ -14,11 +14,13 @@ import UserDashboard from './pages/user/dashboard';
 import UserSettings from './pages/user/userSetting';
 import RedirectAfterLogin from './components/middleware/redirectAfterLogin';
 import ShowUser from './pages/admin/users';
+import NotAutorized from './pages/authorizing/notAutorizedPage';
 
 function App() {
   return (
       <Routes>
         <Route path='login-redirect' element={<RedirectAfterLogin />} />
+        <Route path='not-authorized' element={<NotAutorized />} />
 
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

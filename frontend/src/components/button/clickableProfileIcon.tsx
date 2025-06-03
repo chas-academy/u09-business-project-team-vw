@@ -4,6 +4,21 @@ import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 
 const ClickableProfileIcon = () => {
+
+    const Profile = () => {
+        const { user } = useAuth();
+
+        if(!user) {
+            return null;
+        }
+
+        const visibleName = user.displayName?.trim() || user.name
+
+        
+        return <p className='profile-text'>{visibleName}</p>
+    }
+
+
     const {user, loading} = useAuth();
     const navigate = useNavigate();
 
@@ -43,10 +58,15 @@ const ClickableProfileIcon = () => {
             <Icon className="profile-icon" icon="mdi:person-circle" />
             </div>
             {user ? (
-                <p className="profile-text">{user.isAdmin ? 'Admin' : user.name}</p>
-            ) : (
-                <p className='profile-text'>Guest</p>
-            )}
+            <>
+                <Profile />
+                {user.isAdmin && (
+                    <p className="profile-text admin-label">Admin</p>
+                )}
+            </>
+        ) : (
+            <p className="profile-text">Guest</p>
+        )}
         </div>
     )
 };
