@@ -1,11 +1,19 @@
 import { Icon } from "@iconify/react";
 import "./recipe-card.scss"
 import type { Recipe } from "../../interfaces/recipe.interface";
+import { useNavigate } from "react-router-dom";
+
+const apiUrl = import.meta.env.VITE_API_URL;
 
 // card component that is imported in home page
 function RecipeCard({ recipe }: { recipe: Recipe }) {
+    const navigate = useNavigate();
+
+    async function handleAddRecipe(id: string | number) {
+    await fetch(`${apiUrl}/recipes/${id}`, { method: "GET" });
+}
     return (
-        <div className="recipe-background">
+        <div className="recipe-background" onClick={() => navigate(`/recipes/${recipe.originalRecipeId}`)}>
             <div className="upper-card">
                 {/* if recipe has an image, display it */}
                 {recipe.imageUrl && <img src={recipe.imageUrl} alt={recipe.title} className="recipe-image" />}
@@ -41,7 +49,13 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
                             {recipe.readyInMinutes} min
                         </p>
                     </div>
-                    <button className="card-button">
+                    <button
+                        className="card-button"
+                        onClick={e => {
+                            e.stopPropagation(); // Hindra navigation om du har onClick på kortet
+                            handleAddRecipe(recipe.originalRecipeId);
+                        }}
+                    >
                         <Icon className="add-recipe-icon" icon="mdi:invoice-add"></Icon>
                     </button>
                 </div>
