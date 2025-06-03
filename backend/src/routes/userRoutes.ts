@@ -2,6 +2,7 @@ import { Router, Response, Request } from 'express';
 import { isAuthenticated } from '../middleware/isAuthenticated';
 import { successResponse, errorResponse } from '../utils/response';
 import { SessionData } from 'express-session';
+import { deleteMyUser, editMyUser, getMyUser } from '../controllers/userController';
 
 
 // Type to remove session data
@@ -13,25 +14,26 @@ type CustomSession = SessionData & {
 const userRouter: Router = Router();
 
 userRouter.get('/me', isAuthenticated, (req: Request, res: Response) => {
-        res.status(200).json(successResponse('User found!', req.user ?? null));
+    res.status(200).json(successResponse('User found!', req.user ?? null));
 });
 
 userRouter.get('/logout', isAuthenticated, (req: Request, res: Response) => {
-    const session = req.session as CustomSession;
-
-    // Throw error if logout is failed
-    req.logout((err: unknown) => {
-        if (err) {
-            res.status(500).json(errorResponse('Logout failed', null));
+    req.session.destroy((error) => {
+        if (error) {
+            res.status(500).json(errorResponse('Logout failed', error));
             return;
         }
-            
-        // Clear the session and clear cookies
-        session.destroy(() => {
-            res.clearCookie('connect.sid');
-            res.status(200).json(successResponse('Logout Succesful!', null));
-        });
+
+        res.clearCookie('connect.sid');
+        res.status(200).json(successResponse('Logout successful!', null));
+        return;
     });
 });
+
+userRouter.delete('/delete', isAuthenticated, deleteMyUser);
+
+userRouter.patch('/update', isAuthenticated, editMyUser);
+
+userRouter.get('/me', isAuthenticated, getMyUser);
 
 export default userRouter;

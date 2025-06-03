@@ -116,5 +116,6 @@ export const saveRecipe = async (req: Request, res: Response) => {
     } catch (error) {
         handleError(error, 'recipeController.ts');
         res.status(500).json(errorResponse('Internal server error', error));
+        return;
     }
 };

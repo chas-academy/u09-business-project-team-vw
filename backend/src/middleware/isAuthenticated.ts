@@ -3,6 +3,7 @@ import { errorResponse } from '../utils/response';
 import { UserData } from '../interfaces/User/UserData';
 
 export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+
     if(req.isAuthenticated && req.isAuthenticated()) {
         return next();
     }

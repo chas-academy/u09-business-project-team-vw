@@ -1,27 +1,14 @@
 // header.tsx
 
 import { Icon } from "@iconify/react";
-import { useAuth } from "../../hooks/useAuth";
-import { LogoutButton } from "../LogoutButton";
-import "./header.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-type ProfileProps = {
-    name: string;
-}
-
-export const Profile = ({ name }: ProfileProps) => {
-    return <p className='profile-text'>{name}</p>
-}
-
+import ClickableProfileIcon from "../button/clickableProfileIcon";
+import "./header.scss"
 
 
 // header component imported in App.tsx
 export function Header() {
-
-    const { user } = useAuth();
-
 
     const [searchValue, setSearchValue] = useState('');
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -81,15 +68,7 @@ export function Header() {
                         </div>
                     </div>
                 </div>
-                <div id="header-profile">
-                    <Icon className="profile-icon" icon="mdi:person-circle"></Icon>
-                    {user ? (
-                        <Profile name={user.name} />
-                    ) : (
-                        <p className='profile-text'>Guest</p>
-                    )}
-                    <LogoutButton />
-                </div>
+                <ClickableProfileIcon />
             </div>
             {/* visible only when device is mobile or tablet */}
             <div id="header-lower">
@@ -110,6 +89,7 @@ export function Header() {
                 {/* visible only when device is mobile or tablet */}
                 <div id="dropdown-container">
                     <button
+                        type='button'
                         title='dropdown-button'
                         id="dropdown-button"
                         onClick={toggleDropdown}
