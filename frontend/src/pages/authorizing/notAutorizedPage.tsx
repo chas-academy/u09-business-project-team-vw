@@ -2,13 +2,16 @@ import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../hooks/useAuthState";
 
 export default function NotAutorized() {
+
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const { user, loading } = useAuth()    
     const navigate = useNavigate();
 
     if (loading) return <p>Loading ...</p>
 
     const handleLogin = () => {
-        window.location.href = 'http://localhost:3000/auth/google';
+        window.location.href = `${apiUrl}/auth/google`;
     };
 
     const handleGoHome = () => {

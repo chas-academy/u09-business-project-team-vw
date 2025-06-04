@@ -8,6 +8,8 @@ import { AuthContext } from "./authContext";
 // This component wraps your application and provides authentication context to all children
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     // Stores the currently logged-in user (or null if not logged in)
     const [user, setUser] = useState<User | null>(null);
 
@@ -22,7 +24,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const fetchUser = async() => {
             try {
                  // Send a request to check if a user is authenticated, include cookie
-                const res = await fetch('http://localhost:3000/auth/me', { 
+                const res = await fetch(`${apiUrl}/auth/me`, { 
                     method: 'GET',
                     credentials: 'include' 
                 });
@@ -48,7 +50,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         fetchUser();
 
-    }, []);
+    }, [apiUrl]);
     
         // Provide the authentication state and updater to the entire app via context
         return (

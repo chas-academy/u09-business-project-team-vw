@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import type { Recipe } from "../../interfaces/recipe.interface";
 import { Icon } from "@iconify/react";
 import "./recipe-details.scss"
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuthState";
+
 
 function RecipeDetail() {
 

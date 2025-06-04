@@ -4,8 +4,11 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuthState";
 
 const UserSettings = () => {
+
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const {user, setUser} = useAuth();
-    const [loading, setLoading] = useState<Boolean>();
+    const [loading, setLoading] = useState<boolean>();
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [message, setMessage] = useState<string>('');
 
@@ -15,7 +18,7 @@ const UserSettings = () => {
 
             setLoading(true);
 
-            const res = await fetch (`http://localhost:3000/user/me`, {
+            const res = await fetch (`${apiUrl}/user/me`, {
                 credentials: 'include'
             });
 
@@ -28,14 +31,14 @@ const UserSettings = () => {
         }
 
         fetchUserData();
-    }, []);
+    }, [apiUrl, setUser]);
 
     
     const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
 
-    const res = await fetch('http://localhost:3000/user/update', {
+    const res = await fetch(`${apiUrl}/user/update`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -60,7 +63,7 @@ const UserSettings = () => {
         if(!confirmed) return;
 
         try {
-            const res = await fetch (`http://localhost:3000/user/delete`, {
+            const res = await fetch (`${apiUrl}/user/delete`, {
                 method: 'DELETE',
                 credentials: 'include'
             });

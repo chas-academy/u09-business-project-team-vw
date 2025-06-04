@@ -2,7 +2,8 @@ import { Icon } from "@iconify/react";
 import "./recipe-card.scss"
 import type { Recipe } from "../../interfaces/recipe.interface";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuthState";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
