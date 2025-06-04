@@ -4,6 +4,9 @@ import type { User } from "../../types/User";
 import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
+
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -14,7 +17,7 @@ const AdminDashboard = () => {
 
             setLoading(true);
 
-            const res = await fetch ('http://localhost:3000/admin/dashboard',
+            const res = await fetch (`${apiUrl}/admin/dashboard`,
                 {credentials: 'include'}
             );
             
@@ -30,7 +33,7 @@ const AdminDashboard = () => {
 
         fetchAllUsers();
 
-    }, []);
+    }, [apiUrl]);
 
     const handleDeleteUser = async(_id: string) => {
         const confirmed = window.confirm('Are you sure you want to delete the user? This cannot be undone.')
@@ -38,7 +41,7 @@ const AdminDashboard = () => {
         if(!confirmed) return;
 
         try {
-            const res = await fetch (`http://localhost:3000/admin/dashboard/delete/${_id}`, {
+            const res = await fetch (`${apiUrl}/admin/dashboard/delete/${_id}`, {
                 method: 'DELETE',
                 credentials: 'include'
             });

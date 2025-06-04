@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 const LogoutButton = () => {
 
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const { user, setUser } = useAuth();
     const navigate = useNavigate();
 
     if(!user) return null;
 
     const handleLogout = () => {
-        fetch('http://localhost:3000/user/logout', {
+        fetch(`${apiUrl}/user/logout`, {
         credentials: 'include'
         })
         .then((res) => {

@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import type { User } from "../../types/User";
 
 const ShowUser = () => {
+
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const [user, setUser] = useState<User>();
     const { id } = useParams<{ id: string }>();
 
@@ -12,7 +15,7 @@ const ShowUser = () => {
     useEffect(() => {
         const fetchUserById = async() => {
             try {
-                const res = await fetch (`http://localhost:3000/admin/dashboard/${id}`, { credentials: 'include' });
+                const res = await fetch (`${apiUrl}/admin/dashboard/${id}`, { credentials: 'include' });
 
                 if(res.ok) {
                     const data = await res.json();
@@ -27,7 +30,7 @@ const ShowUser = () => {
 
         fetchUserById();
 
-    }, [id]);
+    }, [id, apiUrl]);
 
     return (
         <div>

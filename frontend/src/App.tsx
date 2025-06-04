@@ -49,8 +49,6 @@ function App() {
           } 
         />
 
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/auth-redirect' element={<AuthRedirect />} />
           <Route path='/not-authorized' element={<NotAutorized />} />
           <Route path="/search" element={<Search />} />
           <Route path="/recipes/:id" element={<RecipeDetail />} />

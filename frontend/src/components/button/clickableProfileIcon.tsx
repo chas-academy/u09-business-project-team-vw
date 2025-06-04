@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const ClickableProfileIcon = () => {
 
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const Profile = () => {
         const { user } = useAuth();
 
@@ -26,7 +28,7 @@ const ClickableProfileIcon = () => {
         // Not logged in, save currentpath and redirect to google auth.
         if(!user && !loading) {
 
-            window.location.href = 'http://localhost:3000/auth/google';
+            window.location.href = `${apiUrl}/auth/google`;
             return;
 
         } else if(user?.isAdmin === true) {
