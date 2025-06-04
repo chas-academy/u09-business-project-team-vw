@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 import { Recipelist } from '../../models/Recipe/RecipeList';
 import { Recipe } from '../../models/Recipe/Recipe';
+import { UserData } from '../../interfaces/User/UserData';
 import { successResponse, errorResponse } from '../../utils/response';
 import { handleError } from '../../utils/errorHandler';
+import { error } from 'console';
 
 
 // CREATE A NEW LIST FROM RECIPES
@@ -76,3 +78,73 @@ export const addRecipeToList = async (req: Request, res: Response) => {
         return;
     }
 };
+
+
+export const showUserRecipeList = async (req: Request, res: Response) => {
+    const user = req.user as UserData;
+    const userId = user._id;
+
+    try {
+        const lists = await Recipelist.find({ userId }).populate('recipes');
+
+        res.status(200).json(successResponse('Recipe list found', lists));
+
+    } catch (error) {
+        res.status(500).json(errorResponse('Could not fetch recipe lists', error));
+        return;
+    }
+};
+
+export const removeRecipeList = async( req: Request, res: Response) => {
+    const user = req.user as UserData;
+    const userId = user._id;
+    const { listId } = req.params;
+
+    try {
+
+        const removeList = await Recipelist.findOne({ _id: listId, userId });
+
+        if(!removeList) {
+            res.status(404).json(errorResponse('list was not found', error));
+            return;
+        }
+
+        await Recipelist.findByIdAndDelete(listId);
+
+        res.status(200).json(successResponse('list deleted!', null));
+
+
+    } catch (error) {
+        res.status(500).json(errorResponse('Recipe list was not removed', error));
+        return;
+    }
+};
+
+export const editRecipeList = async(req: Request, res: Response) => {
+    const user = req.user as UserData;
+    const userId = user._id;
+    const { listId } = req.params;
+    const { name } = req.body;
+    
+    try {
+
+        const editRecipeList = await Recipelist.findOne({ _id: listId, userId });
+
+        if(!editRecipeList) {
+            res.status(404).json(errorResponse('list was not found', error));
+            return;
+        }
+
+        const updatedRecpieList = await Recipelist.findByIdAndUpdate (
+            listId, 
+            { name },
+            { new: true } 
+        );
+
+        res.status(200).json(successResponse('RecipeList updated successfully!', updatedRecpieList));
+
+    } catch (error) {
+        res.status(500).json(errorResponse('Couldnt edit the list', error));
+        return;
+    }
+}
