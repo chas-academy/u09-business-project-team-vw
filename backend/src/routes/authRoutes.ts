@@ -12,7 +12,7 @@ authRouter.get('/google', passport.authenticate('google', { scope: ['profile', '
 // Checking user for login and store session data.
 authRouter.get('/google/callback', passport.authenticate('google', { 
     session: true, 
-    failureRedirect: 'http://localhost:5173/login'
+    failureRedirect: 'https://u09-business-project-team-vw.onrender.com/login'
     }),
     (req: Request, res: Response) => {
         if(!req.user) {
@@ -30,7 +30,7 @@ authRouter.get('/google/callback', passport.authenticate('google', {
                 return;
             }
 
-            return res.redirect('http://localhost:5173/login-redirect'); // sending to frontend /hooks/useAuth.ts
+            return res.redirect('https://u09-business-project-team-vw.onrender.com/login-redirect'); // sending to frontend /hooks/useAuth.ts
         });
     }
 );
