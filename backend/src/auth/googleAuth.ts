@@ -12,6 +12,7 @@ import { UserData } from '../interfaces/User/UserData';
 
 // Configure google auth strategy
 export const setupGoogleStrategy = () => {
+    console.log("🌍 Google callback URL in use:", GOOGLE_CLIENT_URL);
     passport.use(
         new GoogleStrategy(
             {
