@@ -8,7 +8,7 @@ import { ProtectedRoute } from './components/middleware/protectedRoute';
 
 // PAGES FOLDER
 import Home from './pages/home/home';
-import AdminDashboard from './pages/admin/dashboard';
+import AdminDashboard from './pages/admin/dashboard/dashboard';
 import AdminSettings from './pages/admin/adminSetting';
 import UserDashboard from './pages/user/dashboard/dashboard';
 import UserSettings from './pages/user/userSetting/userSetting';

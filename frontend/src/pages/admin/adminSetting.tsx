@@ -3,8 +3,8 @@ import BackButton from "../../components/button/goBack/goBack";
 
 const AdminSettings = () => {
     return (
-        <div>
-            <h1>ADMIN SETTINGS PAGE</h1>
+        <div className="index-main-container">
+            <h1 className="index-main-title">ADMIN SETTINGS PAGE</h1>
 
             <LogoutButton />
             <BackButton />

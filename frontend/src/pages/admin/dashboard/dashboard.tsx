@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import LogoutButton from "../../components/button/useLogout/useLogout";
-import type { User } from "../../types/User";
+import LogoutButton from "../../../components/button/useLogout/useLogout";
+import type { User } from "../../../types/User";
 import { useNavigate } from "react-router-dom";
+import "./dashboard.scss"
+import { BaseButton } from "../../../components/button/baseButton/baseButton";
 
 const AdminDashboard = () => {
 
@@ -67,25 +69,32 @@ const AdminDashboard = () => {
         }
 
     return(
-        <div>
-        <h1>ADMIN DASHBOARD PAGE</h1>
+        <div className="index-main-container">
+        <h1 className="index-main-title">ADMIN DASHBOARD PAGE</h1>
         <p>{errorMessage}</p>
-        <div>
-            <p>Id | Name | Email | Edit | Delete</p>
-        </div>
-        <div>
-        <ul>
-            {users.map((user) => (
-                <li key={user._id}>
-                {" "}
-                {user._id} - {user.name} - {user.email}
-                {" "}
-                <button onClick={() => handleUser(user._id)}>Show</button>
-                <button onClick={() => handleDeleteUser(user._id)}>Delete user</button>
-                </li>
-            ))}
-        </ul>
-        </div>
+        <table className="admin-dashboard-table">
+            <thead>
+                <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {users.map((user) => (
+                <tr key={user._id}>
+                    <td>{user._id}</td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>
+                    <BaseButton onClick={() => handleUser(user._id)} className="admin-dashboard-table-button">Show</BaseButton>
+                    <BaseButton onClick={() => handleDeleteUser(user._id)} className="admin-dashboard-table-button">Delete user</BaseButton>
+                    </td>
+                </tr>
+                ))}
+            </tbody>
+            </table>
         <LogoutButton />
         </div>
     )
