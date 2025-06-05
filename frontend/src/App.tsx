@@ -11,7 +11,7 @@ import Home from './pages/home/home';
 import AdminDashboard from './pages/admin/dashboard';
 import AdminSettings from './pages/admin/adminSetting';
 import UserDashboard from './pages/user/dashboard/dashboard';
-import UserSettings from './pages/user/userSetting';
+import UserSettings from './pages/user/userSetting/userSetting';
 import RedirectAfterLogin from './components/middleware/redirectAfterLogin';
 import ShowUser from './pages/admin/users';
 import NotAutorized from './pages/authorizing/notAutorizedPage';

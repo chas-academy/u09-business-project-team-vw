@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ClickableProfileIcon from "../button/clickableProfileIcon";
 import "./header.scss"
+import { BaseButton } from "../button/baseButton/baseButton";
 
 
 // header component imported in App.tsx
@@ -110,10 +111,10 @@ export function Header() {
                 </div>
                 {/* visible only when device is 1280px or more */}
                 <div id="header-buttons-container" className="desktop-filters">
-                    <button className="header-button" onClick={() => handleFilter("All Eater")}>All Eater</button>
-                    <button className="header-button" onClick={() => handleFilter("Vegetarian")}>Vegetarian</button>
-                    <button className="header-button" onClick={() => handleFilter("Gluten Free")}>Gluten Free</button>
-                    <button className="header-button" onClick={() => handleFilter("Dairy Free")}>Dairy Free</button>
+                    <BaseButton onClick={() => handleFilter("All Eater")}>All Eater</BaseButton>
+                    <BaseButton onClick={() => handleFilter("Vegetarian")}>Vegetarian</BaseButton>
+                    <BaseButton onClick={() => handleFilter("Gluten Free")}>Gluten Free</BaseButton>
+                    <BaseButton onClick={() => handleFilter("Dairy Free")}>Dairy Free</BaseButton>
                 </div>
             </div>
         </header>

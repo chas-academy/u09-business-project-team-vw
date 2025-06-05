@@ -1,7 +1,9 @@
-import LogoutButton from "../../components/button/useLogout/useLogout";
-import BackButton from "../../components/button/goBack";
+import LogoutButton from "../../../components/button/useLogout/useLogout";
+import BackButton from "../../../components/button/goBack/goBack";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../hooks/useAuthState";
+import { useAuth } from "../../../hooks/useAuthState";
+import { BaseButton } from "../../../components/button/baseButton/baseButton";
+import "./userSetting.scss"
 
 const UserSettings = () => {
 
@@ -84,25 +86,26 @@ const UserSettings = () => {
             }
 
     return (
-        <div>
-            <h1>USER SETTINGS PAGE</h1>
-            <h2>{message}</h2>
-            <h2>{errorMessage}</h2>
+        <div className="user-settings-container">
+            <h1 className="user-settings-title">USER SETTINGS PAGE</h1>
+            <h2 className="user-settings-message">{message}</h2>
+            <h2 className="user-settings-error">{errorMessage}</h2>
 
-            <form onSubmit={handleSubmit}>
-            <label>
+            <form onSubmit={handleSubmit} className="user-settings-form">
+            <label className="user-settings-label">
                 Name:
                 <input
+                className="user-settings-input"
                 type="text"
                 value={user?.displayName || ''}
                 onChange={(e) => setUser({ ...user!, displayName: e.target.value })}
                 />
             </label>
 
-            <button type="submit">Save display name</button>
+            <BaseButton type="submit" className="user-settings-button">Save display name</BaseButton>
             </form>
 
-            <button onClick={() => handleDeleteUser()}>Delete My Account</button>
+            <BaseButton onClick={() => handleDeleteUser()} className="user-settings-button">Delete My Account</BaseButton>
 
             <LogoutButton />
             <BackButton />
