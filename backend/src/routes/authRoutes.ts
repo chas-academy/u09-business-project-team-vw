@@ -29,7 +29,6 @@ authRouter.get('/google/callback', passport.authenticate('google', {
                 return;
             }
 
-            console.log('DU ÄR HÄR', req.user);
             res.redirect('https://u09-team-vw.netlify.app/?loggedIn=true');
         });
     }
