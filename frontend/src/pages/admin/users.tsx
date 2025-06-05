@@ -1,4 +1,4 @@
-import LogoutButton from "../../components/button/useLogout"
+import LogoutButton from "../../components/button/useLogout/useLogout"
 import BackButton from "../../components/button/goBack"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";

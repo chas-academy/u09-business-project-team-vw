@@ -1,4 +1,4 @@
-import LogoutButton from "../../components/button/useLogout";
+import LogoutButton from "../../components/button/useLogout/useLogout";
 import BackButton from "../../components/button/goBack";
 
 const AdminSettings = () => {

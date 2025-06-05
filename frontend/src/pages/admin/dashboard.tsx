@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import LogoutButton from "../../components/button/useLogout";
+import LogoutButton from "../../components/button/useLogout/useLogout";
 import type { User } from "../../types/User";
 import { useNavigate } from "react-router-dom";
 

@@ -1,5 +1,6 @@
-import { useAuth } from "../../hooks/useAuthState";
+import { useAuth } from "../../../hooks/useAuthState";
 import { useNavigate } from "react-router-dom";
+import "./useLogout.scss"
 
 const LogoutButton = () => {
 
@@ -30,15 +31,8 @@ const LogoutButton = () => {
     return (
         <button 
             onClick={handleLogout}
-            style={{
-                padding: '0.5rem 1rem',
-                fontSize: '1rem',
-                cursor: 'pointer',
-                borderRadius: '8px',
-                backgroundColor: '#AAAAAA',
-                border: 'none'}}
-                >
-            Logga ut
+            className="use-logout">
+            Log Out
         </button>
     )
 }

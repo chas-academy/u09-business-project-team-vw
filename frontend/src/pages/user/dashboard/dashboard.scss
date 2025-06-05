@@ -1,0 +1,15 @@
+.user-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+    gap: 4rem;
+}
+
+.user-dashboard-title {
+    padding: 0.5rem 1rem;
+    border-radius: 1.5rem;
+    background-color: var(--accent-pri-color);
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
