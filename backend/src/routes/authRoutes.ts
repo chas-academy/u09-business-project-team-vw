@@ -11,29 +11,16 @@ authRouter.get('/google', passport.authenticate('google', { scope: ['profile', '
 // Checking user for login and store session data.
 authRouter.get('/google/callback', passport.authenticate('google', { 
     session: true, 
-    failureRedirect: 'https://u09-team-vw.netlify.app/login'
+    failureRedirect: 'https://u09-team-vw.netlify.app/login?error=unauthorized'
     }),
     (req: Request, res: Response) => {
 
-        console.log('✅ Google callback – req.user:', req.user); // 👈 Denna SKA synas
-        console.log('✅ Session ID:', req.sessionID); // 👈 Extra koll
         if(!req.user) {
-            const session = req.session as { messages?: string[] };
-            const message = session?.messages?.[0] || 'Authentication failed';
-            const error = new Error(message);
-            
-            res.status(401).json(errorResponse(message, error));
+            res.redirect('https://u09-team-vw.netlify.app/login?error=unauthorized')
             return;
         }
 
-        req.login(req.user, (error) => {
-            if(error) {
-                res.status(500).json(errorResponse('Login Session Failed!', error));
-                return;
-            }
-
-            res.redirect('https://u09-team-vw.netlify.app/?loggedIn=true');
-        });
+        res.redirect('https://u09-team-vw.netlify.app?loggedIn=true');
     }
 );
 

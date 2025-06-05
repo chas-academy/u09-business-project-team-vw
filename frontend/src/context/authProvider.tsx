@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 
 import type { User } from "../types/User";
 import { AuthContext } from "./authContext";
@@ -19,7 +20,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // Stores any unexpected error messages
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
+
+         // ⏳ Kolla URL-parametern
+        const location = window.location;
+        const params = new URLSearchParams(location.search);
+        const justLoggedIn = params.get("loggedIn") === "true";
+
+        if (justLoggedIn) {
+        // 🧼 Rensa URL:en från ?loggedIn
+        const newUrl = location.pathname;
+        window.history.replaceState({}, "", newUrl);
+        }
+
         // Fetch the current authenticated user on first render
         const fetchUser = async() => {
             try {
@@ -33,6 +48,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                     // If successful, extract user data and store it in context
                     const data = await res.json();
                     setUser(data.data);
+
+                    if(justLoggedIn) {
+                        if (data.data?.isAdmin) {
+                            navigate('/admin-dashboard');
+                        } else {
+                            navigate('/user-dashboard');
+                        }
+                    }
+
                 } else if (res.status === 401) {
                     // User is not logged in – expected, do nothing
                     setUser(null);
