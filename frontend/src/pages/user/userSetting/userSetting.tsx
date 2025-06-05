@@ -93,7 +93,7 @@ const UserSettings = () => {
 
             <form onSubmit={handleSubmit} className="user-settings-form">
             <label className="user-settings-label">
-                Name:
+                Name:<br />
                 <input
                 className="user-settings-input"
                 type="text"
