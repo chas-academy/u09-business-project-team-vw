@@ -1,6 +1,6 @@
 import { Router, Response, Request } from 'express';
 import passport from 'passport';
-import { errorResponse, successResponse } from '../utils/response';
+import { errorResponse } from '../utils/response';
 import { isAuthenticated } from '../middleware/isAuthenticated';
 
 const authRouter: Router = Router();
@@ -12,7 +12,8 @@ authRouter.get('/google', passport.authenticate('google', { scope: ['profile', '
 // Checking user for login and store session data.
 authRouter.get('/google/callback', passport.authenticate('google', { 
     session: true, 
-    failureRedirect: 'https://u09-business-project-team-vw.onrender.com/login'
+    failureRedirect: 'https://u09-team-vw.netlify.app/login',
+    successRedirect: 'false'
     }),
     (req: Request, res: Response) => {
         if(!req.user) {
@@ -30,12 +31,14 @@ authRouter.get('/google/callback', passport.authenticate('google', {
                 return;
             }
 
-            return res.redirect('https://u09-team-vw.netlify.app/login-redirect'); // sending to frontend /hooks/useAuth.ts
+            console.log('DU ÄR HÄR', req.user);
+            res.status(200).json({ success: true, user: req.user });
+            // res.redirect('https://u09-team-vw.netlify.app/?loggedIn=true');
         });
     }
 );
 
-// 
+
 authRouter.get('/me', isAuthenticated, (req: Request, res: Response) => {
   if (!req.user) {
 
