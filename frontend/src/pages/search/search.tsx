@@ -45,9 +45,9 @@ function Search() {
 
   return (
         <div className="search-container">
-            <h2 className="search-title">
+            <h1 className="index-main-title">
                 Search results for: <em>{ingredients}</em>
-            </h2>
+            </h1>
             {loading && <p>Loading...</p>}
             {error && <p className="error">{error}</p>}
             <div className="search-list">

@@ -87,7 +87,7 @@ const UserSettings = () => {
 
     return (
         <div className="user-settings-container">
-            <h1 className="user-settings-title">USER SETTINGS PAGE</h1>
+            <h1 className="index-main-title">USER SETTINGS PAGE</h1>
             <h2 className="user-settings-message">{message}</h2>
             <h2 className="user-settings-error">{errorMessage}</h2>
 

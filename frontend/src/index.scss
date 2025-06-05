@@ -20,6 +20,15 @@ html {
   font-size: 16px;
 }
 
+// for all title h1 headers in main container
+.index-main-title {
+  padding: 0.5rem 1.1rem 0.7rem;
+  border-radius: 1.5rem;
+  background-color: var(--accent-pri-color);
+  font-size: 1.3rem;
+  color: var(--text-color);
+}
+
 // mobile
 @media (max-width: 768px) {
   #search-container-desktop {

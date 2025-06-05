@@ -22,10 +22,12 @@ function App() {
   return (
       <Routes>
         <Route path='login-redirect' element={<RedirectAfterLogin />} />
-        <Route path='not-authorized' element={<NotAutorized />} />
+        
 
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          
+          <Route path='not-authorized' element={<NotAutorized />} />
           
         <Route 
           path='admin-dashboard'

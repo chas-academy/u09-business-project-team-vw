@@ -1,0 +1,26 @@
+.not-authorized-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.not-authorized-message {
+    color: rgb(225, 13, 13);
+}
+
+.not-authorized-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.not-authorized-login {
+    display: flex;
+    gap: 0.1rem;
+    align-items: center;
+}
+
+.not-authorized-icon {
+    color: rgb(25, 98, 224);
+}

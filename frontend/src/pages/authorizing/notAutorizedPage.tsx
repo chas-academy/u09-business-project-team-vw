@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../hooks/useAuthState";
+import "./notAutorizedPage.scss"
+import { BaseButton } from "../../components/button/baseButton/baseButton";
+import { Icon } from "@iconify/react";
 
 export default function NotAutorized() {
 
@@ -24,15 +27,16 @@ export default function NotAutorized() {
 
 
    return (
-    <div style={{ textAlign: "center", marginTop: "5rem" }}>
-      <h1>Access Denied</h1>
-      <p>{message}</p>
-      <div style={{ marginTop: "2rem" }}>
+    <div className="not-authorized-container">
+      <h1 className="index-main-title">Access Denied</h1>
+      <p className="not-authorized-message">{message}</p>
+      <div className="not-authorized-buttons">
         {!user && (
-            <button onClick={handleLogin} style={{ marginRight: "1rem" }}>
-          Login with Google
-        </button>)}
-        <button onClick={handleGoHome}>Go to Home</button>
+        <BaseButton onClick={handleLogin} className="not-authorized-login">
+          <Icon className="not-authorized-icon" icon="mdi:google" />
+          <span>Login with Google</span>
+        </BaseButton>)}
+        <BaseButton onClick={handleGoHome}>Go to Home</BaseButton>
       </div>
     </div>
   );
