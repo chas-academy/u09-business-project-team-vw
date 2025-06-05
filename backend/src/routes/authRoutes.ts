@@ -30,7 +30,7 @@ authRouter.get('/google/callback', passport.authenticate('google', {
                 return;
             }
 
-            return res.redirect('https://u09-business-project-team-vw.onrender.com/login-redirect'); // sending to frontend /hooks/useAuth.ts
+            return res.redirect('https://u09-team-vw.netlify.app/login-redirect'); // sending to frontend /hooks/useAuth.ts
         });
     }
 );
