@@ -11,8 +11,7 @@ authRouter.get('/google', passport.authenticate('google', { scope: ['profile', '
 // Checking user for login and store session data.
 authRouter.get('/google/callback', passport.authenticate('google', { 
     session: true, 
-    failureRedirect: 'https://u09-team-vw.netlify.app/login',
-    successRedirect: 'false'
+    failureRedirect: 'https://u09-team-vw.netlify.app/login'
     }),
     (req: Request, res: Response) => {
         if(!req.user) {
