@@ -8,12 +8,6 @@ const authRouter: Router = Router();
 // Google Auth login
 authRouter.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-authRouter.get('google/false', (req: Request, res: Response) => {
-    console.log("❌ Hit /auth/google/false");
-    res.status(400).json({ error: "Authentication failed or was cancelled." });
-});
-
-
 // Checking user for login and store session data.
 authRouter.get('/google/callback', passport.authenticate('google', { 
     session: true, 
@@ -37,8 +31,7 @@ authRouter.get('/google/callback', passport.authenticate('google', {
             }
 
             console.log('DU ÄR HÄR', req.user);
-            res.status(200).json({ success: true, user: req.user });
-            // res.redirect('https://u09-team-vw.netlify.app/?loggedIn=true');
+            res.redirect('https://u09-team-vw.netlify.app/?loggedIn=true');
         });
     }
 );
