@@ -21,8 +21,8 @@ import RecipeDetail from './pages/recipe-details/recipe-details';
 function App() {
   return (
       <Routes>
-        <Route path='login-redirect' element={<RedirectAfterLogin />} />
-        <Route path='not-authorized' element={<NotAutorized />} />
+        <Route path='/login-redirect' element={<RedirectAfterLogin />} />
+        <Route path='/not-authorized' element={<NotAutorized />} />
 
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
