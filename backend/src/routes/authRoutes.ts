@@ -14,6 +14,9 @@ authRouter.get('/google/callback', passport.authenticate('google', {
     failureRedirect: 'https://u09-team-vw.netlify.app/login'
     }),
     (req: Request, res: Response) => {
+
+        console.log('✅ Google callback – req.user:', req.user); // 👈 Denna SKA synas
+        console.log('✅ Session ID:', req.sessionID); // 👈 Extra koll
         if(!req.user) {
             const session = req.session as { messages?: string[] };
             const message = session?.messages?.[0] || 'Authentication failed';
