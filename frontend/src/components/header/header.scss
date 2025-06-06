@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
+
+@mixin flexbox($direction: row, $align: stretch, $justify: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+#header {
+    background-color: var(--sec-bg-color);
+}
+
+// keeps logo/ttile, weather and profile separated horizontally in header
+#header-upper {
+    @include flexbox(row, center, space-between);
+    border-bottom: 0.1rem solid var(--accent-sec-color);
+    padding: 0.3rem 0.5rem;
+}
+
+// keeps logo and title elements aligned
+#header-logo {
+    @include flexbox(row, center);
+    gap: 0.5rem;
+}
+
+// styling for different devices
+#logo-icon {
+    font-size: 1.5rem;
+    color: var(--accent-sec-color);
+}
+
+#header-title {
+    font-family: 'Knewave', cursive;
+    font-size: 1.2rem;
+    color: var(--accent-sec-color);
+}
+
+// keeps weather and temperature elements aligned
+#header-weather {
+    @include flexbox(row, center);
+    gap: 0.3rem;
+}
+
+.weather-icon {
+    font-size: 1.4rem;
+    color: rgb(155, 155, 28);
+}
+
+.temp-container {
+    @include flexbox(column, space-between);
+}
+
+.temp-header {
+    font-size: 0.7rem;
+}
+
+.temp-degree-container {
+    @include flexbox(column, center);
+    font-size: 0.3rem;
+}
+
+// keeps profile elements aligned
+#header-profile {
+     @include flexbox(column, center);
+}
+
+.profile-icon {
+    font-size: 1.5rem;
+    color: var(--accent-sec-color);
+}
+
+.profile-text {
+    font-size: 0.5rem;
+    color: rgb(28, 164, 28)
+}
+
+// keeps search bar and buttons together
+#header-lower {
+    @include flexbox(row, center, space-between);
+    padding: 0.8rem 0.5rem;
+}
+
+// preparing for moving search button behind search bar
+#search-container, #search-container-desktop {
+    position: relative !important;
+    @include flexbox(row, center, center);
+}
+
+.search-bar {
+    font-size: 0.7rem;
+    color: var(--text-color);
+    width: 13rem;
+    border: none;
+    background-color: var(--accent-pri-color);
+    border-radius: 1rem;
+    padding: 0.3rem 0.4rem;
+    z-index: 2;
+}
+
+// moving search button behind search bar together with z-index
+.search-button {
+    position: absolute;
+    width: 5.5rem;
+    height: 1.38rem;
+    left: 11.3rem;
+    @include flexbox(row, center, center);
+    gap: 0.3rem;
+    font-size: 0.7rem;
+    color: var(--text-color);
+    background-color: var(--accent-sec-color);
+    border: none;
+    border-radius: 1rem;
+    padding: 0.3rem 0.3rem 0.3rem 2rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+
+
+// preparing for moving burger menu closer to icon
+#dropdown-button {
+    position: relative;
+    bottom: 0.7rem;
+    @include flexbox(column);
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--sec-bg-color);
+    border: none;
+}
+
+.dropdown-icon {
+    font-size: 1.2rem;
+    color: var(--accent-sec-color);
+}
+
+// moving burger menu closer to icon
+.dropdown-menu {
+    font-size: 2.3rem;
+    position: absolute;
+    top: 0.6rem;
+}
+
+#dropdown-container {
+  margin-right: 0.2rem;
+  position: relative;
+}
+
+.dropdown-menu-list {
+  position: absolute;
+  top: 2.07rem;
+  right: -0.4rem;
+  background: var(--accent-pri-color);
+  border: 1px solid var(--accent-sec-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  list-style: none;
+  margin: 0;
+  padding: 0.2rem 0;
+  z-index: 100;
+  min-width: 120px;
+}
+
+.dropdown-menu-list li {
+  padding: 0.7rem 1.2rem;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background 0.18s;
+  white-space: nowrap;
+}
+
+.dropdown-menu-list li:hover {
+  background: var(--text-color);
+  color: var(--accent-pri-color);
+}
+
+#header-buttons-container {
+  width: 100%;
+  @include flexbox(row, center, space-around);
+}
+
+.header-button {
+  font-size: 0.7rem;
+  color: var(text-color);
+  background-color: var(--accent-pri-color);
+  border: var(text-color) solid 0.1rem;
+  border-radius: 1rem;
+  padding: 0.1rem 0.4rem;
+  cursor: pointer;
+}
+
+.header-button:hover {
+  background-color: var(--text-color);
+  color: var(--pri-bg-color);
+}
