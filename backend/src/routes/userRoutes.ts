@@ -24,7 +24,12 @@ userRouter.get('/logout', isAuthenticated, (req: Request, res: Response) => {
             return;
         }
 
-        res.clearCookie('connect.sid');
+        res.clearCookie('connect.sid', {
+            path: '/',
+            sameSite: 'none',
+            secure: true,
+        });
+        
         res.status(200).json(successResponse('Logout successful!', null));
         return;
     });

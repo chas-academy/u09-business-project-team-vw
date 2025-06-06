@@ -6,30 +6,17 @@ Du kan se Figma-designen som den här applikationen baseras på här.:
 [Figma Design](https://www.figma.com/design/Cws5C4jQzawLjICpdOocSY/U09-Figma-Skisser?node-id=0-1&p=f&t=RGQaKOCAgZIV5bQA-0)
 
 ---
-Williams röra:
-npm init -y
 
-npm install express mongoose
+Vi har i detta projekt använt flera olika biblotek som kräver sina egna dependencies. För att kunna arbeta på projektet lokalt på din dator följ dessa steg:
 
-npm install dotenv
+1: Gå till github och välj "code" i projektet.
+2: Skapa en ny mapp på din dator.
+3: i denna mapp, öppna powershell eller bash och kör (git clone <"Github adressen">).
+4: Vi vill ju inte att node_modules ska skapas i projektroten utan i respektive back och frontend mapp. 
+5: cd backend, npm install
+6: cd frontend, npm install
 
-
-npm install --save-dev @types/express @types/node
-
-npm install -D typescript ts-node-dev @types/node @types/express @types/mongoose 
-npx tsc --init
-
-npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
-npx eslint --init
-
-Lägg i scripts:
-"dev": "ts-node-dev --respawn --transpile-only src/server.ts"
-
-npm install passport passport-google-oauth20 express-session
-npm install @types/express-session --save-dev
-
-npm install cors
-npm install --save-dev @types/cors
+Projektet har både en production och development version. CORS är uppsatt för lokalt också så för att se hela projektet i en lokal miljö kör i respektive mapp npm run dev.
 
 npm run dev
 

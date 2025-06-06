@@ -26,8 +26,6 @@ import passport from 'passport';
 
 
 
-
-
 // Define app as Application object
 const app: Application = express();
 
@@ -42,6 +40,7 @@ app.use(express.json());
 setupGoogleStrategy();
 
 // Passport, Google Auth Session
+app.set('trust proxy', 1);
 app.use(sessionConfig);
 app.use(passport.initialize());
 app.use(passport.session());
