@@ -16,7 +16,7 @@ export const createRecipeList = async (req: Request, res: Response) => {
     }
 
     try {
-        const newList = new Recipelist({ name, userId });
+        const newList = new Recipelist({ name, userId, recipes: [] });
         await newList.save();
 
         res.status(201).json(successResponse('Recipe list created', newList));
@@ -25,6 +25,34 @@ export const createRecipeList = async (req: Request, res: Response) => {
         res.status(500).json(errorResponse('Could not create list', error));
     }
 };
+
+
+export const showRecipeList = async(req: Request, res: Response) => {
+    const user = req.user as { _id: string };
+    const userId = user._id;
+    const { listId } = req.params;
+
+    try {
+        if(!listId) {
+            res.status(404).json(errorResponse('Couldnt find a list!', null));
+            return;
+        }
+
+        const listIndex = await Recipelist.find({ userId, listId });
+
+        if(!listIndex) {
+            res.status(400).json(errorResponse('Couldnt make the connection between recipe and User', null));
+            return;
+        }
+
+        res.status(200).json(successResponse('Fetching recipelists for this user!', listIndex));
+
+    } catch (error) {
+        handleError(error, 'recipeListController.ts');
+        res.status(500).json(errorResponse('Server Error', null));
+        return;
+    }
+}
 
 
 // ADD A RECIPE TO A LIST
