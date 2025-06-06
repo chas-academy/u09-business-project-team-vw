@@ -33,11 +33,11 @@ const ShowUser = () => {
     }, [id, apiUrl]);
 
     return (
-        <div>
-            <h1>USER BY ID</h1>
+        <div className="index-main-container">
+            <h1 className="index-main-title">USER BY ID</h1>
 
             {user ? (
-                <ul>
+                <ul style={{listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
                     <li>ID: {user._id}</li>
                     <li>Name: {user.name}</li>
                     <li>Email: {user.email}</li>
@@ -47,7 +47,7 @@ const ShowUser = () => {
                 <p>Loading user...</p>
                 )}
 
-            <div>
+            <div style={{display: 'flex', gap: '1rem'}}>
                 <LogoutButton />
                 <BackButton />
             </div>
