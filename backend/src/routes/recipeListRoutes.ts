@@ -4,16 +4,16 @@ import { addRecipeToList, createRecipeList, deleteRecipeList, editRecipeList, sh
 
 
 
-const recipeRouter: Router = Router();
+const recipeListRouter: Router = Router();
 
-recipeRouter.post('/add-to-list', isAuthenticated, addRecipeToList);
+recipeListRouter.post('/add-to-list', isAuthenticated, addRecipeToList);
 
-recipeRouter.post('/create', isAuthenticated, createRecipeList);
+recipeListRouter.post('/create', isAuthenticated, createRecipeList);
 
-recipeRouter.patch('/edit/:listId', isAuthenticated, editRecipeList);
+recipeListRouter.patch('/edit/:listId', isAuthenticated, editRecipeList);
 
-recipeRouter.delete('/delete/:listId', isAuthenticated, deleteRecipeList);
+recipeListRouter.delete('/delete/:listId', isAuthenticated, deleteRecipeList);
 
-recipeRouter.get('/showLists', isAuthenticated, showRecipeList);
+recipeListRouter.get('/showLists', isAuthenticated, showRecipeList);
 
-export default recipeRouter;
+export default recipeListRouter;
