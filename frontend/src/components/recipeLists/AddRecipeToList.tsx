@@ -18,7 +18,7 @@ const AddRecipeToList = () => {
             setMessage(null);
             setErrorMessage(null);
 
-            const response = await fetch (`${apiUrl}/recipeList/${id}/add`, {
+            const response = await fetch (`${apiUrl}/recipeList/add/${id}`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {'Content-Type': 'application/json'},

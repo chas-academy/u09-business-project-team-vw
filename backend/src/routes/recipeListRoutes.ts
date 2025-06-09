@@ -6,7 +6,7 @@ import { addRecipeToList, createRecipeList, deleteRecipeList, editRecipeList, sh
 
 const recipeListRouter: Router = Router();
 
-recipeListRouter.post('/:listId/add', isAuthenticated, addRecipeToList);
+recipeListRouter.post('/add/:listId', isAuthenticated, addRecipeToList);
 
 recipeListRouter.post('/create', isAuthenticated, createRecipeList);
 
