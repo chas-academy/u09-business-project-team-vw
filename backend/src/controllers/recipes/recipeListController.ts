@@ -3,6 +3,11 @@ import { Recipelist } from '../../models/Recipe/RecipeList';
 import { Recipe } from '../../models/Recipe/Recipe';
 import { successResponse, errorResponse } from '../../utils/response';
 import { handleError } from '../../utils/errorHandler';
+<<<<<<< HEAD
+import { UserData } from '../../interfaces/User/UserData';
+
+=======
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 
 
 // CREATE A NEW LIST FROM RECIPES
@@ -16,7 +21,11 @@ export const createRecipeList = async (req: Request, res: Response) => {
     }
 
     try {
+<<<<<<< HEAD
+        const newList = new Recipelist({ name, userId, recipes: [] });
+=======
         const newList = new Recipelist({ name, userId });
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
         await newList.save();
 
         res.status(201).json(successResponse('Recipe list created', newList));
@@ -26,6 +35,63 @@ export const createRecipeList = async (req: Request, res: Response) => {
     }
 };
 
+<<<<<<< HEAD
+export const getListById = async (req: Request, res: Response) => {
+    const { listId } = req.params;
+    const user = req.user as UserData;
+
+    if(!listId) {
+        res.status(404).json(errorResponse('Couldnt fetch a list', null));
+        return;
+    }
+
+    if(!user) {
+        res.status(404).json(errorResponse('Couldnt connect a user to this list', null));
+        return;
+    }
+
+    try {
+
+        const listById = await Recipelist.findById({ listId, user });
+        return listById;
+
+    } catch (error) {
+        handleError(error, 'recipeController.ts');
+        res.status(500).json(errorResponse('Could not create list', error));
+        return;
+    }
+};
+
+
+export const showRecipeList = async(req: Request, res: Response) => {
+    const user = req.user as { _id: string };
+    const userId = user._id;
+    const { listId } = req.params;
+
+    try {
+        if(!listId) {
+            res.status(404).json(errorResponse('Couldnt find a list!', null));
+            return;
+        }
+
+        const listIndex = await Recipelist.find({ userId, listId });
+
+        if(!listIndex) {
+            res.status(400).json(errorResponse('Couldnt make the connection between recipe and User', null));
+            return;
+        }
+
+        res.status(200).json(successResponse('Fetching recipelists for this user!', listIndex));
+
+    } catch (error) {
+        handleError(error, 'recipeListController.ts');
+        res.status(500).json(errorResponse('Server Error', null));
+        return;
+    }
+};
+
+=======
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 
 // ADD A RECIPE TO A LIST
 export const addRecipeToList = async (req: Request, res: Response) => {
@@ -75,4 +141,57 @@ export const addRecipeToList = async (req: Request, res: Response) => {
         res.status(500).json(errorResponse('Could not add the recipe to list', null));
         return;
     }
+<<<<<<< HEAD
+};
+
+    // EDIT A RECIPE LIST
+    export const editRecipeList = async (req: Request, res: Response) => {
+    const { listId } = req.params;
+    const { name } = req.body;
+    const userId = (req.user as { _id: string })._id;
+
+    if (!name) {
+        res.status(400).json(errorResponse('New name is required', null));
+        return;
+    }
+
+    try {
+        const updatedList = await Recipelist.findOneAndUpdate(
+            { _id: listId, userId },
+            { name },
+            { new: true }
+        );
+
+        if (!updatedList) {
+            res.status(404).json(errorResponse('Recipe list not found', null));
+            return;
+        }
+
+        res.status(200).json(successResponse('Recipe list updated', updatedList));
+    } catch (error) {
+        handleError(error, 'recipeListController.ts');
+        res.status(500).json(errorResponse('Could not update recipe list', null));
+    }
+};
+
+// DELETE A RECIPE LIST
+export const deleteRecipeList = async (req: Request, res: Response) => {
+    const { listId } = req.params;
+    const userId = (req.user as { _id: string })._id;
+
+    try {
+        const deletedList = await Recipelist.findOneAndDelete({ _id: listId, userId });
+
+        if (!deletedList) {
+            res.status(404).json(errorResponse('Recipe list not found', null));
+            return;
+        }
+
+        res.status(200).json(successResponse('Recipe list deleted', deletedList));
+    } catch (error) {
+        handleError(error, 'recipeListController.ts');
+        res.status(500).json(errorResponse('Could not delete recipe list', null));
+    }
+=======
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 };

@@ -1,6 +1,10 @@
 import { Router, Response, Request } from 'express';
 import passport from 'passport';
+<<<<<<< HEAD
+import { errorResponse } from '../utils/response';
+=======
 import { errorResponse, successResponse } from '../utils/response';
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 import { isAuthenticated } from '../middleware/isAuthenticated';
 
 const authRouter: Router = Router();
@@ -8,6 +12,25 @@ const authRouter: Router = Router();
 // Google Auth login
 authRouter.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
+<<<<<<< HEAD
+// Checking user for login and store session data.
+authRouter.get('/google/callback', passport.authenticate('google', { 
+    session: true, 
+    failureRedirect: 'https://u09-team-vw.netlify.app/login?error=unauthorized'
+    }),
+    (req: Request, res: Response) => {
+
+        if(!req.user) {
+            res.redirect('https://u09-team-vw.netlify.app/login?error=unauthorized');
+            return;
+        };
+
+        res.redirect('https://u09-team-vw.netlify.app?loggedIn=true');
+    }
+);
+
+
+=======
 
 // Checking user for login and store session data.
 authRouter.get('/google/callback', passport.authenticate('google', { 
@@ -36,6 +59,7 @@ authRouter.get('/google/callback', passport.authenticate('google', {
 );
 
 // 
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 authRouter.get('/me', isAuthenticated, (req: Request, res: Response) => {
   if (!req.user) {
 

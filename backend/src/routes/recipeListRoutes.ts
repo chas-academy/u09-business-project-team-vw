@@ -1,13 +1,19 @@
 import { Router } from 'express';
 import { isAuthenticated } from '../middleware/isAuthenticated';
+import { addRecipeToList, createRecipeList, deleteRecipeList, editRecipeList, showRecipeList } from '../controllers/recipes/recipeListController';
 
 
-const recipeRouter: Router = Router();
 
-recipeRouter.post('/lists', isAuthenticated, () => {
+const recipeListRouter: Router = Router();
 
-});
+recipeListRouter.post('/add/:listId', isAuthenticated, addRecipeToList);
 
-recipeRouter.post('/lists/:listId/recipes', isAuthenticated, () => {
+recipeListRouter.post('/create', isAuthenticated, createRecipeList);
 
-});
+recipeListRouter.patch('/edit/:listId', isAuthenticated, editRecipeList);
+
+recipeListRouter.delete('/delete/:listId', isAuthenticated, deleteRecipeList);
+
+recipeListRouter.get('/showLists', isAuthenticated, showRecipeList);
+
+export default recipeListRouter;

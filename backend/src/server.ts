@@ -17,8 +17,13 @@ import { sessionConfig } from './utils/configSession';
 import authRouter from './routes/authRoutes';
 import userRouter from './routes/userRoutes';
 import adminRouter from './routes/adminRoutes';
+<<<<<<< HEAD
+import recipeRouter from './routes/allRecipesRoutes';
+import recipeListRouter from './routes/recipeListRoutes';
+=======
 
 import recipeRouter from './routes/allRecipesRoutes';
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 
 // AUTH
 import { setupGoogleStrategy } from './auth/googleAuth';
@@ -26,8 +31,11 @@ import passport from 'passport';
 
 
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 // Define app as Application object
 const app: Application = express();
 
@@ -42,6 +50,10 @@ app.use(express.json());
 setupGoogleStrategy();
 
 // Passport, Google Auth Session
+<<<<<<< HEAD
+app.set('trust proxy', 1);
+=======
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 app.use(sessionConfig);
 app.use(passport.initialize());
 app.use(passport.session());
@@ -53,6 +65,10 @@ app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/admin', adminRouter);
 app.use('/recipes', recipeRouter);
+<<<<<<< HEAD
+app.use('/recipesList', recipeListRouter);
+=======
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 
 // STANDARD ROUTE FOR BACKEND
 app.get('/', (req, res) => {

@@ -1,6 +1,10 @@
 import { Router, Response, Request } from 'express';
 import { isAuthenticated } from '../middleware/isAuthenticated';
 import { successResponse, errorResponse } from '../utils/response';
+<<<<<<< HEAD
+import { deleteMyUser, editMyUser, getMyUser } from '../controllers/userController';
+
+=======
 import { SessionData } from 'express-session';
 import { deleteMyUser, editMyUser, getMyUser } from '../controllers/userController';
 
@@ -11,6 +15,7 @@ type CustomSession = SessionData & {
     destroy: (callback: (err?: unknown) => void) => void;
 };
 
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 const userRouter: Router = Router();
 
 userRouter.get('/me', isAuthenticated, (req: Request, res: Response) => {
@@ -24,7 +29,16 @@ userRouter.get('/logout', isAuthenticated, (req: Request, res: Response) => {
             return;
         }
 
+<<<<<<< HEAD
+        res.clearCookie('connect.sid', {
+            path: '/',
+            sameSite: 'none',
+            secure: true,
+        });
+        
+=======
         res.clearCookie('connect.sid');
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
         res.status(200).json(successResponse('Logout successful!', null));
         return;
     });
