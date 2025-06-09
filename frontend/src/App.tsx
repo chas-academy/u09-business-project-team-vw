@@ -12,6 +12,10 @@ import AdminDashboard from './pages/admin/dashboard';
 import AdminSettings from './pages/admin/adminSetting';
 import UserDashboard from './pages/user/dashboard';
 import UserSettings from './pages/user/userSetting';
+<<<<<<< HEAD
+=======
+import RedirectAfterLogin from './components/middleware/redirectAfterLogin';
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 import ShowUser from './pages/admin/users';
 import NotAutorized from './pages/authorizing/notAutorizedPage';
 import Search from './pages/search/search';
@@ -20,7 +24,12 @@ import RecipeDetail from './pages/recipe-details/recipe-details';
 function App() {
   return (
       <Routes>
+<<<<<<< HEAD
         <Route path='/not-authorized' element={<NotAutorized />} />
+=======
+        <Route path='login-redirect' element={<RedirectAfterLogin />} />
+        <Route path='not-authorized' element={<NotAutorized />} />
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

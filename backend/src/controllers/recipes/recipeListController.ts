@@ -3,8 +3,11 @@ import { Recipelist } from '../../models/Recipe/RecipeList';
 import { Recipe } from '../../models/Recipe/Recipe';
 import { successResponse, errorResponse } from '../../utils/response';
 import { handleError } from '../../utils/errorHandler';
+<<<<<<< HEAD
 import { UserData } from '../../interfaces/User/UserData';
 
+=======
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 
 
 // CREATE A NEW LIST FROM RECIPES
@@ -18,7 +21,11 @@ export const createRecipeList = async (req: Request, res: Response) => {
     }
 
     try {
+<<<<<<< HEAD
         const newList = new Recipelist({ name, userId, recipes: [] });
+=======
+        const newList = new Recipelist({ name, userId });
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
         await newList.save();
 
         res.status(201).json(successResponse('Recipe list created', newList));
@@ -28,6 +35,7 @@ export const createRecipeList = async (req: Request, res: Response) => {
     }
 };
 
+<<<<<<< HEAD
 export const getListById = async (req: Request, res: Response) => {
     const { listId } = req.params;
     const user = req.user as UserData;
@@ -82,6 +90,8 @@ export const showRecipeList = async(req: Request, res: Response) => {
     }
 };
 
+=======
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 
 // ADD A RECIPE TO A LIST
 export const addRecipeToList = async (req: Request, res: Response) => {
@@ -131,6 +141,7 @@ export const addRecipeToList = async (req: Request, res: Response) => {
         res.status(500).json(errorResponse('Could not add the recipe to list', null));
         return;
     }
+<<<<<<< HEAD
 };
 
     // EDIT A RECIPE LIST
@@ -181,4 +192,6 @@ export const deleteRecipeList = async (req: Request, res: Response) => {
         handleError(error, 'recipeListController.ts');
         res.status(500).json(errorResponse('Could not delete recipe list', null));
     }
+=======
+>>>>>>> c684264cd8fa1300f2f640949d8ff5148a135a71
 };
