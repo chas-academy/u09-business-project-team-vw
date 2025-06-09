@@ -16,6 +16,4 @@ recipeListRouter.delete('/delete/:listId', isAuthenticated, deleteRecipeList);
 
 recipeListRouter.get('/showLists', isAuthenticated, showRecipeList);
 
-recipeListRouter.get('/:listId', isAuthenticated, )
-
 export default recipeListRouter;

@@ -1,4 +1,4 @@
-import mongoose, { ObjectId } from "mongoose";
+import mongoose, { ObjectId } from 'mongoose';
 
 export interface IRecipeList extends mongoose.Document {
     name: string;

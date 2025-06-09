@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { Recipelist } from '../../models/Recipe/RecipeList';
-import { IRecipeList } from '../../interfaces/Recipe/RecipeList';
 import { Recipe } from '../../models/Recipe/Recipe';
 import { successResponse, errorResponse } from '../../utils/response';
 import { handleError } from '../../utils/errorHandler';
@@ -53,7 +52,7 @@ export const getListById = async (req: Request, res: Response) => {
         res.status(500).json(errorResponse('Could not create list', error));
         return;
     }
-}
+};
 
 
 export const showRecipeList = async(req: Request, res: Response) => {
@@ -81,7 +80,7 @@ export const showRecipeList = async(req: Request, res: Response) => {
         res.status(500).json(errorResponse('Server Error', null));
         return;
     }
-}
+};
 
 
 // ADD A RECIPE TO A LIST

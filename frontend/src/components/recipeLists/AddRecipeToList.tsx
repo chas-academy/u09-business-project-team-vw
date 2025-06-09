@@ -1,4 +1,3 @@
-import type { RecipeList } from "../../types/RecipeList"
 import { useState } from "react"
 import { useParams } from "react-router-dom";
 

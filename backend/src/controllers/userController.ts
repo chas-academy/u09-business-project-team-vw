@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import { UserData } from "../interfaces/User/UserData";
-import { User } from "../models/User/UserModel";
-import { errorResponse, successResponse } from "../utils/response";
+import { Request, Response } from 'express';
+import { UserData } from '../interfaces/User/UserData';
+import { User } from '../models/User/UserModel';
+import { errorResponse, successResponse } from '../utils/response';
 
 
 // Controller for deleting the currently logged-in user's account
@@ -38,7 +38,7 @@ export const deleteMyUser = async (req: Request, res: Response) => {
             res.status(200).json(successResponse('Accout deleted and logged out, redirecting', null));
         });
     } catch (error) {
-        res.status(500).json(errorResponse('Couldnt delete your account', null));
+        res.status(500).json(errorResponse('Couldnt delete your account', error));
         return;
     }
 };
@@ -80,7 +80,7 @@ export const editMyUser = async(req: Request, res: Response) => {
 
     } catch (error) {
 
-        res.status(500).json(errorResponse('Couldnt edit your profile', null));
+        res.status(500).json(errorResponse('Couldnt edit your profile', error));
         return;
     }
 };

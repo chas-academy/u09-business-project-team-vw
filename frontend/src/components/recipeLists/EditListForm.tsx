@@ -43,7 +43,7 @@ const EditListForm = () => {
         }
 
         fetchList();
-    }, [listId]);
+    }, [listId, apiUrl]);
 
     const handleDeleteList = async () => {
 

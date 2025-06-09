@@ -39,7 +39,7 @@ const UserRecipeList = () => {
 
         fetchListAndIndex();
 
-    }, []);
+    }, [apiUrl]);
 
     if(loading) {
         return <p>Loading ...</p>
@@ -48,8 +48,6 @@ const UserRecipeList = () => {
     if (errorMessage) {
         return <p>{errorMessage}</p>
     }
-
-    {lists.length === 0 && <p>Make sure to save all the recipes you love in a list!</p>}
 
     return (
         <div>
