@@ -1,8 +1,11 @@
 import { Request, Response } from 'express';
 import { Recipelist } from '../../models/Recipe/RecipeList';
+import { IRecipeList } from '../../interfaces/Recipe/RecipeList';
 import { Recipe } from '../../models/Recipe/Recipe';
 import { successResponse, errorResponse } from '../../utils/response';
 import { handleError } from '../../utils/errorHandler';
+import { UserData } from '../../interfaces/User/UserData';
+
 
 
 // CREATE A NEW LIST FROM RECIPES
@@ -25,6 +28,32 @@ export const createRecipeList = async (req: Request, res: Response) => {
         res.status(500).json(errorResponse('Could not create list', error));
     }
 };
+
+export const getListById = async (req: Request, res: Response) => {
+    const { listId } = req.params;
+    const user = req.user as UserData;
+
+    if(!listId) {
+        res.status(404).json(errorResponse('Couldnt fetch a list', null));
+        return;
+    }
+
+    if(!user) {
+        res.status(404).json(errorResponse('Couldnt connect a user to this list', null));
+        return;
+    }
+
+    try {
+
+        const listById = await Recipelist.findById({ listId, user });
+        return listById;
+
+    } catch (error) {
+        handleError(error, 'recipeController.ts');
+        res.status(500).json(errorResponse('Could not create list', error));
+        return;
+    }
+}
 
 
 export const showRecipeList = async(req: Request, res: Response) => {

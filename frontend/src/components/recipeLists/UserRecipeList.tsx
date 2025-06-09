@@ -16,7 +16,7 @@ const UserRecipeList = () => {
             try {
                 setLoading(true);
 
-            const listResponse = await fetch (`${apiUrl}/recipe/showLists`, { 
+            const listResponse = await fetch (`${apiUrl}/recipeList/showLists`, { 
                 credentials: 'include', 
                 method: 'GET' 
             });

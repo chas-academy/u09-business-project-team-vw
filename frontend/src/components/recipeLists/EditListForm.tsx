@@ -53,7 +53,7 @@ const EditListForm = () => {
 
             setLoading(true);
 
-            const response = await fetch (`${apiUrl}/${listId}/delete`, {
+            const response = await fetch (`${apiUrl}/delete/${listId}`, {
                 method: 'DELETE',
                 credentials: 'include',
             });
@@ -81,7 +81,7 @@ const EditListForm = () => {
         try {
             setUpdating(true);
 
-            const response = await fetch (`${apiUrl}/${listId}/edit`, { 
+            const response = await fetch (`${apiUrl}/edit/${listId}`, { 
                 method: 'PATCH', 
                 credentials: 'include',
                 headers: {
