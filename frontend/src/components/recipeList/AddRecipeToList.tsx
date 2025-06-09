@@ -1,32 +1,34 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import BackButton from "../button/goBack";
 
 
-const CreateListForm = () => {
+const AddRecipeToList = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [message, setMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const [title, setTitle] = useState<string | null>(null);
+    const [title, setTitle] = useState<string>('New List');
 
     const navigate = useNavigate();
+
+    const { listId, recipeId } = useParams<{ listId: string, recipeId: string }>();
 
     const apiUrl = import.meta.env.VITE_API_URL;
 
         const handleSubmit = async(e: React.FormEvent) => {
             e.preventDefault();
-            
+    
             try {
 
             setLoading(true);
 
-            const response = await fetch(`${apiUrl}/recipe/create`, {
+            const response = await fetch(`${apiUrl}/recipeList/add/${listId}`, {
                 method: 'POST',
                 credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title }),
+                body: JSON.stringify({ recipeId }),
             });
 
             if(!response.ok) {
@@ -46,16 +48,6 @@ const CreateListForm = () => {
 
     if(loading) {
         return <p>Loading ...</p>
-    }
-
-    if(!title) {
-        return <p>No title!</p>
-    }
-
-    if(errorMessage) {
-        return <p>{errorMessage}</p>
-    } else if (message) {
-        return <p>{message}</p>
     }
 
     return (
@@ -93,4 +85,4 @@ const CreateListForm = () => {
        
 }
 
-export default CreateListForm;
+export default AddRecipeToList;

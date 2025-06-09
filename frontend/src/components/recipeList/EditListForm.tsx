@@ -87,11 +87,12 @@ const EditListForm = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title: listForm.title }),
+                body: JSON.stringify({ name: listForm.title }),
             });
 
             if(!response.ok) {
                 setErrorMessage('Couldnt update the list!');
+                return;
             }
             
             setMessage('The list is now updated!');

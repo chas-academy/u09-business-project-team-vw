@@ -7,7 +7,7 @@ const CreateListForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [message, setMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const [title, setTitle] = useState<string | null>(null);
+    const [title, setTitle] = useState<string>('');
 
     const navigate = useNavigate();
 
@@ -20,13 +20,13 @@ const CreateListForm = () => {
 
             setLoading(true);
 
-            const response = await fetch(`${apiUrl}/recipe/create`, {
+            const response = await fetch(`${apiUrl}/recipeList/create`, {
                 method: 'POST',
                 credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title }),
+                body: JSON.stringify({ name: title }),
             });
 
             if(!response.ok) {
