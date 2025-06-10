@@ -16,5 +16,12 @@ recipeListRouter.get('/show', isAuthenticated, showRecipeList);
 
 recipeListRouter.get('/all', isAuthenticated, getAllRecipeListsForUser);
 
+(recipeListRouter.stack as any[]).forEach((layer) => {
+  if (layer.route) {
+    const path = layer.route.path;
+    const methods = Object.keys((layer.route as any).methods).join(', ').toUpperCase();
+    console.log(`🛠️ Route loaded: [${methods}] ${path}`);
+  }
+});
 
 export default recipeListRouter;
