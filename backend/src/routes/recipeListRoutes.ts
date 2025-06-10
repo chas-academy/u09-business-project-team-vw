@@ -12,7 +12,7 @@ recipeListRouter.patch('/edit/:listId', isAuthenticated, editRecipeList);
 
 recipeListRouter.delete('/delete/:listId', isAuthenticated, deleteRecipeList);
 
-recipeListRouter.get('/show', isAuthenticated, showRecipeList);
+recipeListRouter.get('/show/:listId', isAuthenticated, showRecipeList);
 
 recipeListRouter.get('/all', isAuthenticated, getAllRecipeListsForUser);
 
