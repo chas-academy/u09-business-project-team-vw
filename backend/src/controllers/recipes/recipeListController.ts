@@ -8,7 +8,7 @@ import { handleError } from '../../utils/errorHandler';
 // CREATE A NEW LIST FROM RECIPES
 export const createRecipeList = async (req: Request, res: Response) => {
     const { name } = req.body;
-    const userId = req.user;
+    const userId = req.user as { _id: string };
 
     if(!name) {
         res.status(400).json(errorResponse('List name is required', null));
@@ -23,6 +23,7 @@ export const createRecipeList = async (req: Request, res: Response) => {
     } catch (error) {
         handleError(error, 'recipeController.ts');
         res.status(500).json(errorResponse('Could not create list', error));
+        return;
     }
 };
 
@@ -68,7 +69,12 @@ export const addRecipeToList = async (req: Request, res: Response) => {
         list.recipes.push(recipe._id);
         await list.save();
 
-        res.status(200).json(successResponse('Recipe added to list', list));
+        res.status(200).json(successResponse('Recipe added to list', 
+            { 
+            listId: list._id,
+            addedRecipe: recipe
+            }));
+
     } catch (error) {
         handleError(error, 'recipeListController.ts');
         res.status(500).json(errorResponse('Could not add the recipe to list', null));
@@ -139,10 +145,22 @@ export const showRecipeList = async (req: Request, res: Response) => {
         }
 
         res.status(200).json(successResponse('Recipe list retrieved', list));
-        return
     } catch (error) {
         console.error(error);
         res.status(500).json(errorResponse('Server Error', null));
         return;
+    }
+};
+
+export const getAllRecipeListsForUser = async (req: Request, res: Response) => {
+    const userId = (req.user as { _id: string })._id;
+
+    try {
+        const lists = await Recipelist.find({ userId }).populate('recipes');
+
+        res.status(200).json(successResponse('All recipe lists retrieved', lists));
+    } catch (error) {
+        handleError(error, 'recipeListController.ts');
+        res.status(500).json(errorResponse('Server error', null));
     }
 };
