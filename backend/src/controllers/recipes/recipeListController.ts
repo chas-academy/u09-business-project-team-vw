@@ -50,6 +50,9 @@ export const addRecipeToList = async (req: Request, res: Response) => {
     const { listId } = req.params;
     const { recipeId } = req.body;
 
+    console.log('recipeId in request body:', recipeId);
+    console.log('typeof recipeId:', typeof recipeId);
+
     if (!mongoose.Types.ObjectId.isValid(recipeId)) {
         res.status(400).json(errorResponse('Invalid recipe ID', null));
         return;
