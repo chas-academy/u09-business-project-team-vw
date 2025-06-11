@@ -7,8 +7,10 @@ import { handleError } from '../../utils/errorHandler';
 
 // CREATE A NEW LIST FROM RECIPES
 export const createRecipeList = async (req: Request, res: Response) => {
+    const user = req.user as { _id: string };
+    const userId = user._id;
     const { name } = req.body;
-    const userId = req.user as { _id: string };
+   
 
     if(!name) {
         res.status(400).json(errorResponse('List name is required', null));
@@ -29,12 +31,22 @@ export const createRecipeList = async (req: Request, res: Response) => {
 
 // ADD A RECIPE TO A LIST
 export const addRecipeToList = async (req: Request, res: Response) => {
+
+    console.log('Incoming request to add recipe to list');
+    console.log('User:', req.user);
+    console.log('List ID:', req.params.listId);
+    console.log('Recipe ID:', req.body.recipeId);
+
+
+    if (!req.user) {
+    return res.status(401).json(errorResponse('Unauthorized', null));
+    }
+
     const user = req.user as { _id: string };
     const userId = user._id;
 
     const { listId } = req.params;
     const { recipeId } = req.body;
-    
     
         if(!recipeId) {
             res.status(404).json(errorResponse('Recipe not found', null));
@@ -60,7 +72,7 @@ export const addRecipeToList = async (req: Request, res: Response) => {
 
        // Check if recipe already exists in the list
         const recipeIdStr = recipe._id.toString();
-        const alreadyExists = list.recipes.some(r => r.toString() === recipeIdStr);
+        const alreadyExists = Array.isArray(list.recipes) && list.recipes.some(r => r.toString() === recipeIdStr);
         if (alreadyExists) {
             res.status(409).json(errorResponse('The recipe already exists in this list', null));
             return;
