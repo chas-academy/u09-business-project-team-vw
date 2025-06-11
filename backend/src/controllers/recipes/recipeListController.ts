@@ -39,7 +39,7 @@ export const addRecipeToList = async (req: Request, res: Response) => {
 
 
     if (!req.user) {
-        res.status(401).json(errorResponse('Unauthorized', null));
+        res.status(401).json(errorResponse('Unauthorized addRECIPETOLIST FILE', null));
         return;
     }
 
