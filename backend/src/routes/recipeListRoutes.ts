@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { isAuthenticated } from '../middleware/isAuthenticated';
-import { addRecipeToList, createRecipeList, deleteRecipeList, editRecipeList, showRecipeList, getAllRecipeListsForUser } from '../controllers/recipes/recipeListController';
+import { addRecipeToList, createRecipeList, deleteRecipeList, editRecipeList, showRecipeList, getAllRecipeListsForUser, removeRecipeFromList } from '../controllers/recipes/recipeListController';
 
 const recipeListRouter: Router = Router();
 
@@ -15,6 +15,8 @@ recipeListRouter.delete('/delete/:listId', isAuthenticated, deleteRecipeList);
 recipeListRouter.get('/show/:listId', isAuthenticated, showRecipeList);
 
 recipeListRouter.get('/all', isAuthenticated, getAllRecipeListsForUser);
+
+recipeListRouter.delete('/:listId/recipe/:recipeId', isAuthenticated, removeRecipeFromList);
 
 (recipeListRouter.stack as any[]).forEach((layer) => {
   if (layer.route) {

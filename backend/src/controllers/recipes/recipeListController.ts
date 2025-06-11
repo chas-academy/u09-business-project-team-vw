@@ -4,6 +4,7 @@ import { Recipe } from '../../models/Recipe/Recipe';
 import { successResponse, errorResponse } from '../../utils/response';
 import { handleError } from '../../utils/errorHandler';
 import mongoose from 'mongoose';
+import { error } from 'console';
 
 
 // CREATE A NEW LIST FROM RECIPES
@@ -189,3 +190,38 @@ export const getAllRecipeListsForUser = async (req: Request, res: Response) => {
         res.status(500).json(errorResponse('Server error', null));
     }
 };
+
+export const removeRecipeFromList = async (req: Request, res: Response) => {
+    const user = req.user as {  _id: string };
+    const { listId, recipeId } = req.params;
+
+    try {
+
+        const list = await Recipelist.findOne({ _id: listId, userId: user._id });
+
+        if (!list) {
+            res.status(404).json(errorResponse('Recipelist not found', null));
+            return;
+        }
+
+        const initalCount = list.recipes.length;
+
+        list.recipes = list.recipes.filter (
+            (id) => id.toString() !== recipeId
+        ) as typeof list.recipes;
+
+        if(list.recipes.length === initalCount) {
+            res.status(400).json(errorResponse('Recipe not found in list!', null));
+            return;
+        }
+
+        await list.save();
+
+        res.status(200).json(successResponse('Recipe removed from list!', list));
+
+    } catch (error) {
+        handleError(error, 'removeRecipeFromList.ts');
+        res.status(500).json(errorResponse('couldnt remove recipe from list', error));
+        return;
+    }
+}

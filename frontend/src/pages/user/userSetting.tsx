@@ -2,6 +2,8 @@ import LogoutButton from "../../components/button/useLogout";
 import BackButton from "../../components/button/goBack";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuthState";
+import UserRecipeList from "../../components/recipeList/UserRecipeList";
+import CreateListForm from "../../components/recipeList/CreateListForm";
 
 const UserSettings = () => {
 
@@ -45,8 +47,6 @@ const UserSettings = () => {
         body: JSON.stringify({ displayName: user.displayName }),
     });
 
-    console.log(res);
-
     if (res.ok) {
         const data = await res.json();
         setUser(data.data);
@@ -83,12 +83,14 @@ const UserSettings = () => {
             return <p>Loading...</p>;
             }
 
+    console.log("Rendering <UserRecipeList />");
+
     return (
         <div>
             <h1>USER SETTINGS PAGE</h1>
             <h2>{message}</h2>
             <h2>{errorMessage}</h2>
-
+    
             <form onSubmit={handleSubmit}>
             <label>
                 Name:
@@ -104,6 +106,8 @@ const UserSettings = () => {
 
             <button onClick={() => handleDeleteUser()}>Delete My Account</button>
 
+            <UserRecipeList />
+            <CreateListForm />
             <LogoutButton />
             <BackButton />
         </div>

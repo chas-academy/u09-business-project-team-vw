@@ -30,7 +30,9 @@ const CreateListForm = () => {
             });
 
             if(!response.ok) {
-                setErrorMessage('The list couldnt be created!');
+                const data = await response.json();
+                setErrorMessage(data.message || 'The list couldnt be created!');
+                return;
             }
 
             setMessage('List has been created!');
@@ -48,10 +50,6 @@ const CreateListForm = () => {
         return <p>Loading ...</p>
     }
 
-    if(!title) {
-        return <p>No title!</p>
-    }
-
     if(errorMessage) {
         return <p>{errorMessage}</p>
     } else if (message) {
@@ -60,6 +58,7 @@ const CreateListForm = () => {
 
     return (
         <div>
+            <h2>Create a list: Form!</h2>
     <form onSubmit={handleSubmit} className="space-y-4">
       <label>
         Titel:
@@ -77,7 +76,7 @@ const CreateListForm = () => {
         disabled={loading}
         className="bg-green-500 text-white px-4 py-2 rounded"
       >
-        {loading ? "Skapar..." : "Skapa lista"}
+        {loading ? "Creating..." : "Create a list"}
       </button>
 
       {message && <p className="text-green-600">{message}</p>}
