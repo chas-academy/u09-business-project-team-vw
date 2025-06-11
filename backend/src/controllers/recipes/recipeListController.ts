@@ -3,6 +3,7 @@ import { Recipelist } from '../../models/Recipe/RecipeList';
 import { Recipe } from '../../models/Recipe/Recipe';
 import { successResponse, errorResponse } from '../../utils/response';
 import { handleError } from '../../utils/errorHandler';
+import mongoose from 'mongoose';
 
 
 // CREATE A NEW LIST FROM RECIPES
@@ -48,11 +49,19 @@ export const addRecipeToList = async (req: Request, res: Response) => {
 
     const { listId } = req.params;
     const { recipeId } = req.body;
-    
-        if(!recipeId) {
-            res.status(404).json(errorResponse('Recipe not found', null));
-            return;
-        }
+
+    if (!mongoose.Types.ObjectId.isValid(recipeId)) {
+        res.status(400).json(errorResponse('Invalid recipe ID', null));
+        return;
+    }
+
+
+    if(!recipeId) {
+        res.status(404).json(errorResponse('Recipe not found', null));
+        return;
+    }
+
+   
 
     try {
         // get list the belongs to user ID
