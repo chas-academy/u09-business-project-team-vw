@@ -227,8 +227,8 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
                 )}
                 </div>
             </div>
-                <p>{message}</p>
-                <p>{errorMessage}</p>
+                <p className="dropdown-message">{message}</p>
+                <p className="dropdown-message">{errorMessage}</p>
             </div>
     );
 }

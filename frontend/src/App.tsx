@@ -17,7 +17,7 @@ import NotAutorized from './pages/authorizing/notAutorizedPage';
 import Search from './pages/search/search';
 import RecipeDetail from './pages/recipe-details/recipe-details';
 import CreateListForm from './components/recipeList/CreateListForm/CreateListForm';
-import SingleListView from './components/recipeList/ShowRecipeList';
+import SingleListView from './components/recipeList/ShowRecipeList/ShowRecipeList';
 
 function App() {
   return (

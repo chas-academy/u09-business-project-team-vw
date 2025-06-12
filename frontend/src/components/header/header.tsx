@@ -59,16 +59,6 @@ export function Header() {
                         <Icon className="search-icon" icon="ic:baseline-arrow-forward-ios" />
                     </button>
                 </div>
-                <div id="header-weather">
-                    <Icon className="weather-icon" icon="mdi:weather-partly-cloudy"></Icon>
-                    <div className="temp-container">
-                        <p className="temp-header">30°C</p>
-                        <div className="temp-degree-container">
-                            <p className="temp-degree-text">Precipitations</p>
-                            <p className="temp-degree-text">Max.: 34º Min.: 28º</p>
-                        </div>
-                    </div>
-                </div>
                 <ClickableProfileIcon />
             </div>
             {/* visible only when device is mobile or tablet */}

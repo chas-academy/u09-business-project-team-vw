@@ -1,9 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import type { RecipeList } from "../../types/RecipeList";
-import type { Recipe } from "../../interfaces/recipe.interface";
-import RecipeCard from "../recipe-card/recipe-card";
-import BackButton from "../button/goBack/goBack";
+import type { RecipeList } from "../../../types/RecipeList";
+import type { Recipe } from "../../../interfaces/recipe.interface";
+import RecipeCard from "../../recipe-card/recipe-card";
+import BackButton from "../../button/goBack/goBack";
+import { BaseButton } from "../../button/baseButton/baseButton";
+import "./ShowRecipeList.scss";
 
 const SingleListView = () => {
   const { listId } = useParams();
@@ -89,7 +91,7 @@ const SingleListView = () => {
   if (!list) return <p>Couldnt find the list</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
+    <div className="show-list-container">
       {isEditing ? (
   <form
     onSubmit={handleInlineUpdate}
@@ -121,7 +123,7 @@ const SingleListView = () => {
   </form>
 ) : (
   <h2
-    className="text-2xl font-bold mb-4 cursor-pointer"
+    className="index-main-title"
     onClick={() => setIsEditing(true)}
     title="Click to edit title"
   >
@@ -130,17 +132,16 @@ const SingleListView = () => {
 )}
 
       {list.recipes && list.recipes.length > 0 ? (
-        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <div className="show-list-recipe">
           {list.recipes.map((recipe: Recipe) => (
             <RecipeCard key={recipe._id} recipe={recipe} />
           ))}
         </div>
       ) : (
-        <p className="text-gray-600">Add a recipe to this list!</p>
+        <p className="show-list-message">Add a recipe to this list!</p>
       )}
-      <BackButton />
 
-      <button
+      <BaseButton
   onClick={async () => {
     if (!confirm("Are you sure you want to delete this list?")) return;
 
@@ -161,10 +162,11 @@ const SingleListView = () => {
       alert('Server error');
     }
   }}
-  className="bg-red-600 text-white px-3 py-1 rounded mt-4"
+  className="show-list-button"
 >
   Delete this list
-</button>
+</BaseButton>
+<BackButton />
 
     </div>
 
