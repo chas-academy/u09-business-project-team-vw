@@ -23,6 +23,8 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
         
         async function fetchLists() {
             try {
+                console.log('Sending recipe ID:', recipe.originalRecipeId);
+
                 const res = await fetch(`${apiUrl}/recipeList/all`, {
                 method: 'GET',
                 credentials: "include"
@@ -52,27 +54,54 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
 
     async function handleSelectedList(listId: string) {
         setLoading(true);
-
-        const res = await fetch (`${apiUrl}/recipeList/add/${listId}` , {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                recipeId: String(recipe.originalRecipeId)
-            })
-        });
-
-        const data = await res.json();
-        setLoading(false);
         setShowDropdown(false);
 
-        if (res.ok) {
-            alert('RECIPE ADDED TO LIST!');
-        } else {
-            alert(data.message || 'something went wrong');
+        try {
+            let recipeDbId: string;
+
+            const findRes = await fetch(`${apiUrl}/recipes/${recipe.originalRecipeId}`, {
+                credentials: 'include',
+                method: 'GET'
+            });
+
+            if (findRes.ok) {
+                const findData = await findRes.json();
+                recipeDbId = findData.data._id;
+            } else {
+                const saveRes = await fetch (`${apiUrl}/recipes/${recipe.originalRecipeId}/save`, {
+                    credentials: 'include',
+                    method: 'POST'
+                });
+
+                if (!saveRes.ok) throw new Error('Failed to save recipe');
+                    const saveData = await saveRes.json();
+                    recipeDbId = saveData.data._id;
+                }
+
+                const addRes = await fetch(`${apiUrl}/recipeList/add/${listId}`, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ recipeId: recipeDbId }),
+                });
+
+            const addData = await addRes.json();
+
+            if(addRes.ok) {
+                alert('recipe added to list!');
+            } else {
+                alert(addData.message || 'Something went wrong!');
+            }
+
+            } catch (error) {
+            console.log(error);
+            return;
+        } finally {
+            setLoading(false);
         }
+
     }
 
     return (
