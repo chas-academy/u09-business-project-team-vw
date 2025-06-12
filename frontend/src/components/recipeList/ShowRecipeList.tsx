@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import type { RecipeList } from "../../types/RecipeList";
 import type { Recipe } from "../../interfaces/recipe.interface";
 import RecipeCard from "../recipe-card/recipe-card";
-import BackButton from "../button/goBack";
+import BackButton from "../button/goBack/goBack";
 
 const SingleListView = () => {
   const { listId } = useParams();

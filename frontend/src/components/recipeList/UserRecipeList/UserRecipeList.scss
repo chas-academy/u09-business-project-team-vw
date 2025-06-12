@@ -1,0 +1,44 @@
+.userlist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.userlist-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.userlist-title {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.userlist-text {
+    color: var(--text-color);
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+}
+
+.userlist-listname {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--text-color);
+    background-color: var(--accent-pri-color);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.2rem;
+    border: var(--text-color) 0.1rem solid;
+}
+
+.userlist-listname:hover {
+    background-color: var(--text-color);
+    color: var(--pri-bg-color);
+}

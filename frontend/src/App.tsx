@@ -16,7 +16,7 @@ import ShowUser from './pages/admin/users';
 import NotAutorized from './pages/authorizing/notAutorizedPage';
 import Search from './pages/search/search';
 import RecipeDetail from './pages/recipe-details/recipe-details';
-import CreateListForm from './components/recipeList/CreateListForm';
+import CreateListForm from './components/recipeList/CreateListForm/CreateListForm';
 import SingleListView from './components/recipeList/ShowRecipeList';
 
 function App() {

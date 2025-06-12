@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackButton from "../button/goBack";
+import BackButton from "../../button/goBack/goBack";
 
 
 const CreateListForm = () => {
@@ -66,7 +66,7 @@ const CreateListForm = () => {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="border p-2 rounded w-full"
+          className="createlist-input border p-2 rounded w-full"
           required
         />
       </label>

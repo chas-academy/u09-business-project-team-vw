@@ -1,0 +1,20 @@
+type InputFieldProps = React.LabelHTMLAttributes<HTMLLabelElement> & {
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  labelText?: React.ReactNode;
+};
+
+export function InputField({
+  className = "",
+  inputProps = {},
+  labelText,
+  children,
+  ...labelProps
+}: InputFieldProps) {
+  return (
+    <label className={`inputField-label ${className}`} {...labelProps}>
+      {labelText}
+      {children}
+      <input className="inputField-input" {...inputProps} />
+    </label>
+  );
+}

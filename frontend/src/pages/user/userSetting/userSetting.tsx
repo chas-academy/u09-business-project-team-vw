@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../../hooks/useAuthState";
 import { BaseButton } from "../../../components/button/baseButton/baseButton";
 import "./userSetting.scss";
-import UserRecipeList from "../../../components/recipeList/UserRecipeList";
-import CreateListForm from "../../../components/recipeList/CreateListForm";
+import UserRecipeList from "../../../components/recipeList/UserRecipeList/UserRecipeList";
+import CreateListForm from "../../../components/recipeList/CreateListForm/CreateListForm";
 
 const UserSettings = () => {
 
@@ -95,7 +95,7 @@ const UserSettings = () => {
     
             <form onSubmit={handleSubmit} className="user-settings-form">
             <label className="user-settings-label">
-                List Title:<br />
+                Change your username:<br />
                 <input
                 className="user-settings-input"
                 type="text"
@@ -104,7 +104,7 @@ const UserSettings = () => {
                 />
             </label>
 
-            <BaseButton type="submit" className="user-settings-button">Save display name</BaseButton>
+            <BaseButton type="submit" className="user-settings-button">Save Username</BaseButton>
             </form>
 
             <BaseButton onClick={() => handleDeleteUser()} className="user-settings-button">Delete My Account</BaseButton>
