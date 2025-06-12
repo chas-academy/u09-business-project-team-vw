@@ -120,6 +120,14 @@ export const addRecipeToList = async (req: Request, res: Response) => {
     }
 
     try {
+        const trimmedName = name?.trim();
+
+        if(!trimmedName) {
+            res.status(404).json(errorResponse('New name cannot be empty', null));
+            return;
+        }
+
+
         const updatedList = await Recipelist.findOneAndUpdate(
             { _id: listId, userId },
             { name },
@@ -151,7 +159,8 @@ export const deleteRecipeList = async (req: Request, res: Response) => {
             return;
         }
 
-        res.status(200).json(successResponse('Recipe list deleted', deletedList));
+        res.status(200).json(successResponse('Recipe list deleted and all correlating recpies are removed.', deletedList));
+
     } catch (error) {
         handleError(error, 'recipeListController.ts');
         res.status(500).json(errorResponse('Could not delete recipe list', null));

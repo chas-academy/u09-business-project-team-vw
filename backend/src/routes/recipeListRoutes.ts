@@ -16,7 +16,7 @@ recipeListRouter.get('/show/:listId', isAuthenticated, showRecipeList);
 
 recipeListRouter.get('/all', isAuthenticated, getAllRecipeListsForUser);
 
-recipeListRouter.delete('/:listId/recipe/:recipeId', isAuthenticated, removeRecipeFromList);
+recipeListRouter.patch('/remove/:listId/:recipeId', isAuthenticated, removeRecipeFromList);
 
 (recipeListRouter.stack as any[]).forEach((layer) => {
   if (layer.route) {
