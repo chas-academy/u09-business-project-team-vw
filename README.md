@@ -133,7 +133,6 @@ backend
 - **eslint-plugin-react-hooks**, **eslint-plugin-react-refresh**
 - **tree-node-cli**, **globals**
 
-
 ## 🧪 Kodkvalitet – ESLint
 
 ### ✅ Syfte
