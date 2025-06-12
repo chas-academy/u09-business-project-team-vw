@@ -78,13 +78,13 @@ const UserRecipeList = () => {
                         onClick={() => navigate(`/recipe-list/${list._id}`)}
                         className="userlist-listname cursor-pointer p-3 border rounded hover:bg-gray-100"
                     >
-                        <h3 className="text-lg font-semibold">{list.name} <Icon icon="mdi:keyboard-arrow-right" /></h3>
+                        <h3 className="text-lg font-semibold">{list.name} <Icon className="userlist-icon" icon="mdi:keyboard-arrow-right" /></h3>
                     </div>
                 ))}
             </div>
         )}
 
-        {message && <p className="userlist-text text-green-600 mt-4">{message}</p>}
+        {message && <p className="userlist-text userlist-message text-green-600 mt-4">{message}</p>}
     </div>
     );
 }

@@ -6,6 +6,7 @@ import { BaseButton } from "../../../components/button/baseButton/baseButton";
 import "./userSetting.scss";
 import UserRecipeList from "../../../components/recipeList/UserRecipeList/UserRecipeList";
 import CreateListForm from "../../../components/recipeList/CreateListForm/CreateListForm";
+import { InputField } from "../../../components/InputField/InputField";
 
 const UserSettings = () => {
 
@@ -94,15 +95,16 @@ const UserSettings = () => {
             <h2 className="user-settings-error">{errorMessage}</h2>
     
             <form onSubmit={handleSubmit} className="user-settings-form">
-            <label className="user-settings-label">
-                Change your username:<br />
-                <input
-                className="user-settings-input"
-                type="text"
-                value={user?.displayName || ''}
-                onChange={(e) => setUser({ ...user!, displayName: e.target.value })}
-                />
-            </label>
+                <InputField
+                    labelText="Change your username:"
+                    inputProps={{
+                        type: "text",
+                        value: user?.displayName || "",
+                        onChange: (e) => setUser({ ...user!, displayName: e.target.value }),
+                    }}
+                    />
+
+            
 
             <BaseButton type="submit" className="user-settings-button">Save Username</BaseButton>
             </form>

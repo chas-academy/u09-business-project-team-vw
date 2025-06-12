@@ -1,3 +1,5 @@
+import "./InputField.scss";
+
 type InputFieldProps = React.LabelHTMLAttributes<HTMLLabelElement> & {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   labelText?: React.ReactNode;
@@ -13,6 +15,7 @@ export function InputField({
   return (
     <label className={`inputField-label ${className}`} {...labelProps}>
       {labelText}
+      <br />
       {children}
       <input className="inputField-input" {...inputProps} />
     </label>

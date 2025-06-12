@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackButton from "../../button/goBack/goBack";
+import { InputField } from "../../InputField/InputField";
+import { BaseButton } from "../../button/baseButton/baseButton";
+import "./CreateListForm.scss";
 
 
 const CreateListForm = () => {
@@ -57,35 +59,31 @@ const CreateListForm = () => {
     }
 
     return (
-        <div>
-            <h2>Create a list: Form!</h2>
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <label>
-        Titel:
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="createlist-input border p-2 rounded w-full"
-          required
+        <div className="createlist-container">
+            <h2 className="index-main-title createlist-title">Create a new List</h2>
+    <form onSubmit={handleSubmit} className="createlist-form space-y-4">
+      <InputField
+        labelText="List Title:"
+        inputProps={{
+            type: "text",
+            value: title,
+            onChange: (e) => setTitle(e.target.value),
+            required: true,
+        }}
         />
-      </label>
 
-      <button
+      <BaseButton
         type="submit"
         disabled={loading}
-        className="bg-green-500 text-white px-4 py-2 rounded"
+        className="createlist-button"
       >
         {loading ? "Creating..." : "Create a list"}
-      </button>
+      </BaseButton>
 
       {message && <p className="text-green-600">{message}</p>}
       {errorMessage && <p className="text-red-600">{errorMessage}</p>}
     </form>
 
-        <div>
-            <BackButton />
-        </div>
     </div>
 
     );

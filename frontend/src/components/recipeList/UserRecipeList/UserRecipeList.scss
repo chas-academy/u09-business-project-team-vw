@@ -4,19 +4,11 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-}
-
-.userlist-title-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+    margin-top: 2rem;
 }
 
 .userlist-title {
     font-size: 1rem;
-    text-align: center;
 }
 
 .userlist-text {
@@ -25,10 +17,19 @@
     margin-bottom: 1rem;
 }
 
+.userlist-listname-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
 .userlist-listname {
     cursor: pointer;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 0.3rem;
     color: var(--text-color);
     background-color: var(--accent-pri-color);
@@ -41,4 +42,13 @@
 .userlist-listname:hover {
     background-color: var(--text-color);
     color: var(--pri-bg-color);
+}
+
+.userlist-message {
+    display: none;
+}
+
+.userlist-icon {
+    position: relative;
+    top: 0.1rem;
 }
