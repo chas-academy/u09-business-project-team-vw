@@ -1,6 +1,4 @@
-const handleGoogleLogin = () => {
-  const popup = window.open(`${import.meta.env.VITE_API_URL}/auth/google/popup`, '_blank', 'width=500,height=600');
-
+export const handleGoogleLogin = () => {
   const receiveMessage = (event: MessageEvent) => {
     if (event.origin !== import.meta.env.VITE_API_URL) return;
 
@@ -14,4 +12,7 @@ const handleGoogleLogin = () => {
   };
 
   window.addEventListener('message', receiveMessage);
+
+  // Öppna popup-fönstret där inloggningen sker
+  window.open(`${import.meta.env.VITE_API_URL}/auth/google/popup`, '_blank', 'width=500,height=600');
 };
