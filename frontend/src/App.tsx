@@ -16,6 +16,8 @@ import ShowUser from './pages/admin/users';
 import NotAutorized from './pages/authorizing/notAutorizedPage';
 import Search from './pages/search/search';
 import RecipeDetail from './pages/recipe-details/recipe-details';
+import CreateListForm from './components/recipeList/CreateListForm';
+import SingleListView from './components/recipeList/ShowRecipeList';
 
 function App() {
   return (
@@ -73,8 +75,26 @@ function App() {
         <Route 
           path='user-settings' 
           element={
-            <UserSettings />
+            <ProtectedRoute>
+              <UserSettings />
+            </ProtectedRoute>
           } 
+        />
+        <Route 
+          path='recipe-list/:listId'
+          element={
+            <ProtectedRoute>
+            <SingleListView />
+            </ProtectedRoute>
+          }
+          />
+        <Route 
+          path='user-create-list'
+          element={
+            <ProtectedRoute>
+              <CreateListForm />
+            </ProtectedRoute>
+        }
         />
           </Route>
       </Routes>

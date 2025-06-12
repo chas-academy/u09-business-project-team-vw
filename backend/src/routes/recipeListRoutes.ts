@@ -1,13 +1,29 @@
 import { Router } from 'express';
 import { isAuthenticated } from '../middleware/isAuthenticated';
+import { addRecipeToList, createRecipeList, deleteRecipeList, editRecipeList, showRecipeList, getAllRecipeListsForUser, removeRecipeFromList } from '../controllers/recipes/recipeListController';
 
+const recipeListRouter: Router = Router();
 
-const recipeRouter: Router = Router();
+recipeListRouter.post('/add/:listId', isAuthenticated, addRecipeToList);
 
-recipeRouter.post('/lists', isAuthenticated, () => {
+recipeListRouter.post('/create', isAuthenticated, createRecipeList);
 
+recipeListRouter.patch('/edit/:listId', isAuthenticated, editRecipeList);
+
+recipeListRouter.delete('/delete/:listId', isAuthenticated, deleteRecipeList);
+
+recipeListRouter.get('/show/:listId', isAuthenticated, showRecipeList);
+
+recipeListRouter.get('/all', isAuthenticated, getAllRecipeListsForUser);
+
+recipeListRouter.patch('/remove/:listId/:recipeId', isAuthenticated, removeRecipeFromList);
+
+(recipeListRouter.stack as any[]).forEach((layer) => {
+  if (layer.route) {
+    const path = layer.route.path;
+    const methods = Object.keys((layer.route as any).methods).join(', ').toUpperCase();
+    console.log(`🛠️ Route loaded: [${methods}] ${path}`);
+  }
 });
 
-recipeRouter.post('/lists/:listId/recipes', isAuthenticated, () => {
-
-});
+export default recipeListRouter;

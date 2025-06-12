@@ -3,7 +3,9 @@ import BackButton from "../../../components/button/goBack/goBack";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../hooks/useAuthState";
 import { BaseButton } from "../../../components/button/baseButton/baseButton";
-import "./userSetting.scss"
+import "./userSetting.scss";
+import UserRecipeList from "../../../components/recipeList/UserRecipeList";
+import CreateListForm from "../../../components/recipeList/CreateListForm";
 
 const UserSettings = () => {
 
@@ -47,8 +49,6 @@ const UserSettings = () => {
         body: JSON.stringify({ displayName: user.displayName }),
     });
 
-    console.log(res);
-
     if (res.ok) {
         const data = await res.json();
         setUser(data.data);
@@ -85,15 +85,17 @@ const UserSettings = () => {
             return <p>Loading...</p>;
             }
 
+    console.log("Rendering <UserRecipeList />");
+
     return (
         <div className="index-main-container">
             <h1 className="index-main-title">USER SETTINGS PAGE</h1>
             <h2 className="user-settings-message">{message}</h2>
             <h2 className="user-settings-error">{errorMessage}</h2>
-
+    
             <form onSubmit={handleSubmit} className="user-settings-form">
             <label className="user-settings-label">
-                Name:<br />
+                List Title:<br />
                 <input
                 className="user-settings-input"
                 type="text"
@@ -107,6 +109,8 @@ const UserSettings = () => {
 
             <BaseButton onClick={() => handleDeleteUser()} className="user-settings-button">Delete My Account</BaseButton>
 
+            <UserRecipeList />
+            <CreateListForm />
             <LogoutButton />
             <BackButton />
         </div>
