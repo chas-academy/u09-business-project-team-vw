@@ -23,15 +23,22 @@ const EditListForm = () => {
             try {
 
                 setLoading(true);
-
-                const response = await fetch (`${apiUrl}/${listId}`, { 
+                
+                console.log("📡 Fetching list with ID:", listId);
+                const response = await fetch (`${apiUrl}/recipeList/${listId}`, { 
                     credentials: 'include', 
-                    method: 'GET' });
+                    method: 'GET' 
+                });
+
+                console.log("📥 Raw response:", response);
 
                 if (response.ok) {
                     const fetchedList = await response.json();
                     setListForm(fetchedList.data);
                     setMessage('Here is the list!');
+                    console.log("✅ List data:", fetchedList);
+                } else {
+                     console.warn("⚠️ Could not fetch list. Status:", response.status);
                 }
 
             } catch (error) {

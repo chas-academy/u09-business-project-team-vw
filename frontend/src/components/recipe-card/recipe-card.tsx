@@ -5,14 +5,18 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuthState";
 import { useState, useEffect } from "react";
 import type { RecipeList } from "../../types/RecipeList";
+import { useParams } from "react-router-dom";
 
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-// card component that is imported in home page
+// card component that is imported in homepage
 function RecipeCard({ recipe }: { recipe: Recipe; }) {
     const { user } = useAuth();
     const navigate = useNavigate();
+    const { listId } = useParams();
+    const [errorMessage, setErrorMessage] = useState<string>();
+    const [message, setMessage] = useState<string>();
 
     const [userLists, setUserLists] = useState<RecipeList[]>([]);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -104,6 +108,39 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
 
     }
 
+    const handleRemoveFromList = async (recipeId: string) => {
+        if(!listId) {
+            console.error('listID missing');
+            return;
+        }
+
+        const url = `${apiUrl}/remove/${listId}/${recipeId}`;
+        console.log('🔗 DELETE URL:', url);
+
+        try {
+            setLoading(true);
+
+            const response = await fetch(`${apiUrl}/recipeList/remove/${listId}/${recipeId}`, {
+                credentials: 'include',
+                method: 'PATCH'
+            });
+
+            if(!response.ok) {
+                setErrorMessage('Couldnt remove recipe from list');
+                return;
+            }
+
+            setMessage('Recipe Removed from the list!');
+
+
+        } catch (error) {
+            console.error(error);
+            setErrorMessage('Server Error');
+        } finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <div className="recipe-background" onClick={() => navigate(`/recipes/${recipe.originalRecipeId}`)}>
             <div className="upper-card">
@@ -142,38 +179,56 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
                         </p>
                     </div>
                    {user && (
-                    <div className="save-recipe-wrapper" onClick={e => e.stopPropagation()}>
-                        <button
-                            type="button"
-                            title="add-to-recipe"
-                            className="card-button"
-                            onClick={() => setShowDropdown(prev => !prev)}
-                            disabled={loading}
-                        >
-                            <Icon className="add-recipe-icon" icon="mdi:invoice-add" />
-                        </button>
+  <div className="save-recipe-wrapper" onClick={e => e.stopPropagation()}>
+    {listId ? (
+      // Inne på en lista: visa "ta bort från listan"-knapp
+      <button
+        type="button"
+        title="remove-from-list"
+        className="card-button"
+        onClick={() => handleRemoveFromList(recipe._id)}
+        disabled={loading}
+      >
+        <Icon className="add-recipe-icon" icon="mdi:playlist-remove" />
+      </button>
+    ) : (
+      // Utanför en specifik lista: visa dropdown som vanligt
+      <>
+        <button
+          type="button"
+          title="add-to-recipe"
+          className="card-button"
+          onClick={() => setShowDropdown(prev => !prev)}
+          disabled={loading}
+        >
+          <Icon className="add-recipe-icon" icon="mdi:invoice-add" />
+        </button>
 
-                    {showDropdown && (
-                        <div className="dropdown-menu">
-                            {userLists.length > 0 ? (
-                                userLists.map((list) => (
-                                    <button
-                                        key={list._id}
-                                        className="dropdown-item"
-                                        onClick={() => handleSelectedList(list._id)}
-                                    >
-                                        {list.name}
-                                    </button>
-                                ))
-                            ) : (
-                                <p className="dropdown-item">You have no lists yet</p>
-                            )}
-                        </div>
-                    )}
-                </div>
+        {showDropdown && (
+            <div className="dropdown-menu">
+                {userLists.length > 0 ? (
+                userLists.map((list) => (
+                    <button
+                    key={list._id}
+                    className="dropdown-item"
+                    onClick={() => handleSelectedList(list._id)}
+                    >
+                    {list.name}
+                    </button>
+                ))
+                ) : (
+                <p className="dropdown-item">You have no lists yet</p>
                 )}
             </div>
+                )}  
+                </>
+                )}
+                </div>
+                )}
+                </div>
             </div>
+                <p>{message}</p>
+                <p>{errorMessage}</p>
             </div>
     );
 }
