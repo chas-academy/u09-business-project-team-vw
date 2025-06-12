@@ -18,7 +18,6 @@ import Search from './pages/search/search';
 import RecipeDetail from './pages/recipe-details/recipe-details';
 import CreateListForm from './components/recipeList/CreateListForm';
 import SingleListView from './components/recipeList/ShowRecipeList';
-import EditListForm from './components/recipeList/EditListForm';
 
 function App() {
   return (
@@ -93,14 +92,6 @@ function App() {
             <ProtectedRoute>
               <CreateListForm />
             </ProtectedRoute>
-        }
-        />
-        <Route
-        path='edit-list/:listId'
-        element={
-          <ProtectedRoute>
-            <EditListForm />
-          </ProtectedRoute>
         }
         />
           </Route>

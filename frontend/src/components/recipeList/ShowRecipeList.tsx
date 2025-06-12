@@ -17,6 +17,7 @@ const SingleListView = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
+
     const fetchList = async () => {
       try {
         const res = await fetch(`${apiUrl}/recipeList/show/${listId}`, {
@@ -42,6 +43,15 @@ const SingleListView = () => {
     fetchList();
   }, [listId, apiUrl]);
 
+
+  useEffect(() => {
+   if(list) {
+      setEditedTitle(list.name);
+    }
+  }, [list]);
+  
+ 
+
   const handleInlineUpdate = async(e: React.FormEvent) => {
     e.preventDefault();
 
@@ -63,7 +73,8 @@ const SingleListView = () => {
 
       setIsEditing(false);
 
-      list.name = editedTitle;
+      setList((prev) => prev ? { ...prev, name: editedTitle } : prev);
+
     } catch (error) {
       console.error(error);
     }
@@ -85,6 +96,7 @@ const SingleListView = () => {
     className="mb-4 flex gap-2 items-center"
   >
     <input
+      placeholder="List Name"
       type="text"
       value={editedTitle}
       onChange={(e) => setEditedTitle(e.target.value)}
@@ -129,11 +141,30 @@ const SingleListView = () => {
       <BackButton />
 
       <button
-      className="bg-yellow-500 text-white px-3 py-1 rounded"
-      onClick={() => navigate(`/edit-list/${listId}`)}
-    >
-      Edit this list
-    </button>
+  onClick={async () => {
+    if (!confirm("Are you sure you want to delete this list?")) return;
+
+    try {
+      const res = await fetch(`${apiUrl}/recipeList/delete/${listId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+
+      if (!res.ok) {
+        alert('Failed to delete the list');
+        return;
+      }
+
+      navigate('/user-dashboard'); // eller annan sida
+    } catch (error) {
+      console.error(error);
+      alert('Server error');
+    }
+  }}
+  className="bg-red-600 text-white px-3 py-1 rounded mt-4"
+>
+  Delete this list
+</button>
 
     </div>
 
