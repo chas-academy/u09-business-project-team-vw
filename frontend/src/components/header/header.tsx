@@ -92,7 +92,7 @@ export function Header() {
                     </button>
                     {dropdownOpen && (
                         <ul className="dropdown-menu-list">
-                            <li onClick={() => { handleFilter("All Eater"); setDropdownOpen(false); }}>All Eater</li>
+                            <li onClick={() => { handleFilter("All Eater"); setDropdownOpen(false); }}>Home</li>
                             <li onClick={() => { handleFilter("Vegetarian"); setDropdownOpen(false); }}>Vegetarian</li>
                             <li onClick={() => { handleFilter("Gluten Free"); setDropdownOpen(false); }}>Gluten Free</li>
                             <li onClick={() => { handleFilter("Dairy Free"); setDropdownOpen(false); }}>Dairy Free</li>
@@ -101,7 +101,7 @@ export function Header() {
                 </div>
                 {/* visible only when device is 1280px or more */}
                 <div id="header-buttons-container" className="desktop-filters">
-                    <BaseButton onClick={() => handleFilter("All Eater")}>All Eater</BaseButton>
+                    <BaseButton onClick={() => handleFilter("All Eater")}>Home</BaseButton>
                     <BaseButton onClick={() => handleFilter("Vegetarian")}>Vegetarian</BaseButton>
                     <BaseButton onClick={() => handleFilter("Gluten Free")}>Gluten Free</BaseButton>
                     <BaseButton onClick={() => handleFilter("Dairy Free")}>Dairy Free</BaseButton>

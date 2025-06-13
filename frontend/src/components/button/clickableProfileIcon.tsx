@@ -33,7 +33,7 @@ const ClickableProfileIcon = () => {
 
         } else if(user?.isAdmin === true) {
             // Logged in user goes to settings page.
-            navigate('/admin-settings');
+            navigate('/admin-dashboard');
             return;
 
         } else if (user) {

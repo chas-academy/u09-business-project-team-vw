@@ -89,7 +89,7 @@ const UserSettings = () => {
 
     return (
         <div className="index-main-container">
-            <h1 className="index-main-title">USER SETTINGS PAGE</h1>
+            <h1 className="index-main-title">User Page</h1>
             <h2 className="user-settings-message">{message}</h2>
             <h2 className="user-settings-error">{errorMessage}</h2>
     

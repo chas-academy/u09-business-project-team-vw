@@ -6,6 +6,7 @@ import RecipeCard from "../../recipe-card/recipe-card";
 import BackButton from "../../button/goBack/goBack";
 import { BaseButton } from "../../button/baseButton/baseButton";
 import "./ShowRecipeList.scss";
+import { InputField } from "../../InputField/InputField";
 
 const SingleListView = () => {
   const { listId } = useParams();
@@ -93,37 +94,37 @@ const SingleListView = () => {
   return (
     <div className="show-list-container">
       {isEditing ? (
-  <form
-    onSubmit={handleInlineUpdate}
-    className="mb-4 flex gap-2 items-center"
-  >
-    <input
-      placeholder="List Name"
-      type="text"
-      value={editedTitle}
-      onChange={(e) => setEditedTitle(e.target.value)}
-      className="border p-1 rounded text-xl font-bold"
+  <form onSubmit={handleInlineUpdate} className="show-list-form">
+    <InputField
+      labelText="Change list name"
+      inputProps={{
+        placeholder: "List Name",
+        type: "text",
+        value: editedTitle,
+        onChange: (e) => setEditedTitle(e.target.value),
+      }}
     />
-    <button
+    <BaseButton
       type="submit"
-      className="bg-green-500 text-white px-2 py-1 rounded"
+      className="edit-name-button"
     >
       Save
-    </button>
-    <button
+    </BaseButton>
+    <BaseButton
       type="button"
       onClick={() => {
         setEditedTitle(list.name);
         setIsEditing(false);
       }}
-      className="text-sm underline text-gray-600"
+      className="edit-name-button"
     >
       Cancel
-    </button>
+    </BaseButton>
   </form>
+
 ) : (
   <h2
-    className="index-main-title"
+    className="index-main-title show-list-title"
     onClick={() => setIsEditing(true)}
     title="Click to edit title"
   >
