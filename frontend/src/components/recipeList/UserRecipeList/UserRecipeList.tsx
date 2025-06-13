@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { RecipeList } from '../../../types/RecipeList';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from "@iconify/react";
-import "./userRecipeList.scss"
+import "./UserRecipeList.scss";
 import { BaseButton } from '../../button/baseButton/baseButton';
 
 const UserRecipeList = () => {
