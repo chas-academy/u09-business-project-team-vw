@@ -37,7 +37,7 @@ const ClickableProfileIcon = () => {
             return;
 
         } else if (user) {
-            navigate('/user-settings');
+            navigate('/user-page');
             return;
         }
     };
@@ -48,7 +48,7 @@ const ClickableProfileIcon = () => {
     if(user?.isAdmin) {
         hoverText = 'Settings';
     } else if (user) {
-        hoverText = 'Go To Dashboard';
+        hoverText = 'Go To User Page';
     }
 
     return (

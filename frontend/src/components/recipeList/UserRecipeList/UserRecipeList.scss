@@ -23,7 +23,7 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 .userlist-listname {
@@ -51,4 +51,9 @@
 .userlist-icon {
     position: relative;
     top: 0.1rem;
+}
+
+.userlist-create-button {
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
 }

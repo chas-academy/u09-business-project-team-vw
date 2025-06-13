@@ -73,7 +73,7 @@ function App() {
           }
         />
         <Route 
-          path='user-settings' 
+          path='user-page' 
           element={
             <ProtectedRoute>
               <UserSettings />

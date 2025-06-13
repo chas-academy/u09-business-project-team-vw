@@ -3,6 +3,7 @@ import type { RecipeList } from '../../../types/RecipeList';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from "@iconify/react";
 import "./userRecipeList.scss"
+import { BaseButton } from '../../button/baseButton/baseButton';
 
 const UserRecipeList = () => {
     const [loading, setLoading] = useState<boolean>(false);
@@ -84,6 +85,12 @@ const UserRecipeList = () => {
             </div>
         )}
 
+        <BaseButton
+            onClick={() => navigate('/user-create-list')}
+            className="userlist-create-button"
+        >
+            Create a new list
+        </BaseButton>
         {message && <p className="userlist-text userlist-message text-green-600 mt-4">{message}</p>}
     </div>
     );

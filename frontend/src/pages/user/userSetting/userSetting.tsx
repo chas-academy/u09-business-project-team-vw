@@ -5,7 +5,6 @@ import { useAuth } from "../../../hooks/useAuthState";
 import { BaseButton } from "../../../components/button/baseButton/baseButton";
 import "./userSetting.scss";
 import UserRecipeList from "../../../components/recipeList/UserRecipeList/UserRecipeList";
-import CreateListForm from "../../../components/recipeList/CreateListForm/CreateListForm";
 import { InputField } from "../../../components/InputField/InputField";
 
 const UserSettings = () => {
@@ -112,7 +111,6 @@ const UserSettings = () => {
             <BaseButton onClick={() => handleDeleteUser()} className="user-settings-button">Delete My Account</BaseButton>
 
             <UserRecipeList />
-            <CreateListForm />
             <LogoutButton />
             <BackButton />
         </div>

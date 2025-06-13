@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { InputField } from "../../InputField/InputField";
 import { BaseButton } from "../../button/baseButton/baseButton";
 import "./CreateListForm.scss";
+import BackButton from "../../button/goBack/goBack";
 
 
 const CreateListForm = () => {
@@ -38,7 +39,7 @@ const CreateListForm = () => {
             }
 
             setMessage('List has been created!');
-            navigate('/user-dashboard');
+            navigate('/user-page');
 
             } catch (error) {
                 setErrorMessage('Server Error!');
@@ -83,6 +84,8 @@ const CreateListForm = () => {
       {message && <p className="text-green-600">{message}</p>}
       {errorMessage && <p className="text-red-600">{errorMessage}</p>}
     </form>
+
+    <BackButton />
 
     </div>
 

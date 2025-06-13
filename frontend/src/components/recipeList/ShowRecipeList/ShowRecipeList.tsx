@@ -156,7 +156,7 @@ const SingleListView = () => {
         return;
       }
 
-      navigate('/user-dashboard'); // eller annan sida
+      navigate('/user-page'); // eller annan sida
     } catch (error) {
       console.error(error);
       alert('Server error');
