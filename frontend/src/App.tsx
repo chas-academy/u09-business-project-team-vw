@@ -4,7 +4,8 @@ import './App.scss'
 // COMPONENTS FOLDER
 import { Layout } from './components/layout/layout';
 import { ProtectedRoute } from './components/middleware/protectedRoute';
-// gave error when compiling import { LogoutButton } from './components/LogoutButton';
+import CreateListForm from './components/recipeList/CreateListForm';
+import SingleListView from './components/recipeList/ShowRecipeList';
 
 // PAGES FOLDER
 import Home from './pages/home/home';
