@@ -62,7 +62,7 @@ const CreateListForm = () => {
     return (
         <div className="createlist-container">
             <h2 className="index-main-title createlist-title">Create a new List</h2>
-    <form onSubmit={handleSubmit} className="createlist-form space-y-4">
+    <form onSubmit={handleSubmit} className="createlist-form">
       <InputField
         labelText="List Title:"
         inputProps={{
@@ -81,8 +81,8 @@ const CreateListForm = () => {
         {loading ? "Creating..." : "Create a list"}
       </BaseButton>
 
-      {message && <p className="text-green-600">{message}</p>}
-      {errorMessage && <p className="text-red-600">{errorMessage}</p>}
+      {message && <p className="createlist-message">{message}</p>}
+      {errorMessage && <p className="createlist-error">{errorMessage}</p>}
     </form>
 
     <BackButton />

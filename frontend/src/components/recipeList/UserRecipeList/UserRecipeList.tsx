@@ -62,24 +62,24 @@ const UserRecipeList = () => {
     }
 
     return (
-    <div className="userlist-container max-w-2xl mx-auto p-4">
-        <h2 className="index-main-title userlist-title text-xl font-bold mb-4">Your recipelists</h2>
+    <div className="userlist-container">
+        <h2 className="index-main-title userlist-title">Your recipelists</h2>
 
         
 
         {lists.length === 0 ? (
-            <p className="userlist-text text-gray-600">
+            <p className="userlist-text">
                 Create a list to save all your favorite recipes! <Icon icon="mdi:food-fork-drink" />
             </p>
         ) : (
-            <div className="userlist-listname-container space-y-2">
+            <div className="userlist-listname-container">
                 {lists.map((list) => (
                     <div
                         key={list._id}
                         onClick={() => navigate(`/recipe-list/${list._id}`)}
-                        className="userlist-listname cursor-pointer p-3 border rounded hover:bg-gray-100"
+                        className="userlist-listname"
                     >
-                        <h3 className="text-lg font-semibold">{list.name} <Icon className="userlist-icon" icon="mdi:keyboard-arrow-right" /></h3>
+                        <h3>{list.name} <Icon className="userlist-icon" icon="mdi:keyboard-arrow-right" /></h3>
                     </div>
                 ))}
             </div>
@@ -91,7 +91,7 @@ const UserRecipeList = () => {
         >
             Create a new list
         </BaseButton>
-        {message && <p className="userlist-text userlist-message text-green-600 mt-4">{message}</p>}
+        {message && <p className="userlist-text userlist-message">{message}</p>}
     </div>
     );
 }

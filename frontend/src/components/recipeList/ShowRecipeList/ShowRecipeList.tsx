@@ -88,7 +88,7 @@ const SingleListView = () => {
   }
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p className="text-red-600">{error}</p>;
+  if (error) return <p className="show-list-error">{error}</p>;
   if (!list) return <p>Couldnt find the list</p>;
 
   return (
