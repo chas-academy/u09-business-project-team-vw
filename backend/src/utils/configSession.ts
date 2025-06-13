@@ -1,5 +1,5 @@
 import session from 'express-session';
-import MongoStore from 'connect-mongo'
+import MongoStore from 'connect-mongo';
 import { SESSION_SECRET, MONGODB_URI } from './config';
 
 

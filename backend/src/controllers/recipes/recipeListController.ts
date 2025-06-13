@@ -4,7 +4,6 @@ import { Recipe } from '../../models/Recipe/Recipe';
 import { successResponse, errorResponse } from '../../utils/response';
 import { handleError } from '../../utils/errorHandler';
 import mongoose from 'mongoose';
-import { error } from 'console';
 
 
 // CREATE A NEW LIST FROM RECIPES
@@ -233,4 +232,4 @@ export const removeRecipeFromList = async (req: Request, res: Response) => {
         res.status(500).json(errorResponse('couldnt remove recipe from list', error));
         return;
     }
-}
+};

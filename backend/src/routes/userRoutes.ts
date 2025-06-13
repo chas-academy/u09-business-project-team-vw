@@ -1,15 +1,8 @@
 import { Router, Response, Request } from 'express';
 import { isAuthenticated } from '../middleware/isAuthenticated';
 import { successResponse, errorResponse } from '../utils/response';
-import { SessionData } from 'express-session';
 import { deleteMyUser, editMyUser, getMyUser } from '../controllers/userController';
 
-
-// Type to remove session data
-type CustomSession = SessionData & {
-    userId?: string;
-    destroy: (callback: (err?: unknown) => void) => void;
-};
 
 const userRouter: Router = Router();
 
