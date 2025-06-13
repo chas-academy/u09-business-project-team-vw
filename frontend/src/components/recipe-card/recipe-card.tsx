@@ -94,7 +94,7 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
             const addData = await addRes.json();
 
             if(addRes.ok) {
-                alert('recipe added to list!');
+                navigate('/user-page');
             } else {
                 alert(addData.message || 'Something went wrong!');
             }
