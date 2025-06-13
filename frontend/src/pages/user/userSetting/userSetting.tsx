@@ -1,9 +1,11 @@
-import LogoutButton from "../../components/button/useLogout";
-import BackButton from "../../components/button/goBack";
+import LogoutButton from "../../../components/button/useLogout/useLogout";
+import BackButton from "../../../components/button/goBack/goBack";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../hooks/useAuthState";
-import UserRecipeList from "../../components/recipeList/UserRecipeList";
-import CreateListForm from "../../components/recipeList/CreateListForm";
+import { useAuth } from "../../../hooks/useAuthState";
+import { BaseButton } from "../../../components/button/baseButton/baseButton";
+import "./userSetting.scss";
+import UserRecipeList from "../../../components/recipeList/UserRecipeList/UserRecipeList";
+import { InputField } from "../../../components/InputField/InputField";
 
 const UserSettings = () => {
 
@@ -86,28 +88,29 @@ const UserSettings = () => {
     console.log("Rendering <UserRecipeList />");
 
     return (
-        <div>
-            <h1>USER SETTINGS PAGE</h1>
-            <h2>{message}</h2>
-            <h2>{errorMessage}</h2>
+        <div className="index-main-container">
+            <h1 className="index-main-title">User Page</h1>
+            <h2 className="user-settings-message">{message}</h2>
+            <h2 className="user-settings-error">{errorMessage}</h2>
     
-            <form onSubmit={handleSubmit}>
-            <label>
-                List Title:
-                <input
-                type="text"
-                value={user?.displayName || ''}
-                onChange={(e) => setUser({ ...user!, displayName: e.target.value })}
-                />
-            </label>
+            <form onSubmit={handleSubmit} className="user-settings-form">
+                <InputField
+                    labelText="Change your username:"
+                    inputProps={{
+                        type: "text",
+                        value: user?.displayName || "",
+                        onChange: (e) => setUser({ ...user!, displayName: e.target.value }),
+                    }}
+                    />
 
-            <button type="submit">Save display name</button>
+            
+
+            <BaseButton type="submit" className="user-settings-button">Save Username</BaseButton>
             </form>
 
-            <button onClick={() => handleDeleteUser()}>Delete My Account</button>
+            <BaseButton onClick={() => handleDeleteUser()} className="user-settings-button">Delete My Account</BaseButton>
 
             <UserRecipeList />
-            <CreateListForm />
             <LogoutButton />
             <BackButton />
         </div>

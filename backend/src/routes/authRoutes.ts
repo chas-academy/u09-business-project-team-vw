@@ -16,7 +16,7 @@ authRouter.get('/google/callback', passport.authenticate('google', {
     (req: Request, res: Response) => {
 
         if(!req.user) {
-            res.redirect('https://u09-team-vw.netlify.app/login?error=unauthorized')
+            res.redirect('https://u09-team-vw.netlify.app/login?error=unauthorized');
             return;
         }
 

@@ -36,30 +36,6 @@
     color: var(--accent-sec-color);
 }
 
-// keeps weather and temperature elements aligned
-#header-weather {
-    @include flexbox(row, center);
-    gap: 0.3rem;
-}
-
-.weather-icon {
-    font-size: 1.4rem;
-    color: rgb(155, 155, 28);
-}
-
-.temp-container {
-    @include flexbox(column, space-between);
-}
-
-.temp-header {
-    font-size: 0.7rem;
-}
-
-.temp-degree-container {
-    @include flexbox(column, center);
-    font-size: 0.3rem;
-}
-
 // keeps profile elements aligned
 #header-profile {
      @include flexbox(column, center);
@@ -178,19 +154,4 @@
 #header-buttons-container {
   width: 100%;
   @include flexbox(row, center, space-around);
-}
-
-.header-button {
-  font-size: 0.7rem;
-  color: var(text-color);
-  background-color: var(--accent-pri-color);
-  border: var(text-color) solid 0.1rem;
-  border-radius: 1rem;
-  padding: 0.1rem 0.4rem;
-  cursor: pointer;
-}
-
-.header-button:hover {
-  background-color: var(--text-color);
-  color: var(--pri-bg-color);
 }

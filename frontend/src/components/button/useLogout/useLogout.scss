@@ -1,0 +1,14 @@
+.use-logout {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    background-color: var(--accent-pri-color);
+    color: var(--text-color);
+    border: var(--text-color) 0.1rem solid;
+}
+
+.use-logout:hover {
+    background-color: var(--text-color);
+    color: var(--sec-bg-color);
+}

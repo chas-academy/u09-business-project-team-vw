@@ -1,0 +1,15 @@
+.admin-dashboard-table {
+    border: var(--text-color) 0.1rem solid;
+    font-size: 0.5rem;
+    border-collapse: collapse;
+}
+
+.admin-dashboard-table td, .admin-dashboard-table th {
+    border: var(--text-color) 0.1rem solid;
+    padding: 0.3rem 0.2rem;
+}
+
+.admin-dashboard-table-button {
+    margin: 0 0.1rem;
+    font-size: 0.5rem;
+}

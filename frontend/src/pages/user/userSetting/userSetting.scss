@@ -1,0 +1,35 @@
+.user-settings-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.3rem;
+    margin-bottom: 2rem;
+}
+
+.user-settings-label {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.user-settings-input {
+    font-size: 1rem;
+    color: var(--text-color);
+    width: 11rem;
+    border: none;
+    background-color: var(--accent-pri-color);
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.4rem;
+}
+
+.user-settings-button {
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.user-settings-message {
+    color: rgb(46, 150, 91);
+}
+
+.user-settings-error {
+    color: rgb(213, 82, 26);
+}

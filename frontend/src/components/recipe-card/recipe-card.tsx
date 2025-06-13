@@ -53,7 +53,7 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
         }
             
         fetchLists();
-    }, [user]);
+    }, [user, recipe.originalRecipeId]);
 
 
     async function handleSelectedList(listId: string) {
@@ -94,7 +94,7 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
             const addData = await addRes.json();
 
             if(addRes.ok) {
-                alert('recipe added to list!');
+                navigate('/user-page');
             } else {
                 alert(addData.message || 'Something went wrong!');
             }
@@ -193,7 +193,7 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
       </button>
     ) : (
       // Utanför en specifik lista: visa dropdown som vanligt
-      <>
+      <div className="list-dropdown-wrapper">
         <button
           type="button"
           title="add-to-recipe"
@@ -205,30 +205,30 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
         </button>
 
         {showDropdown && (
-            <div className="dropdown-menu">
+            <div className="list-dropdown-menu">
                 {userLists.length > 0 ? (
                 userLists.map((list) => (
                     <button
                     key={list._id}
-                    className="dropdown-item"
+                    className="list-dropdown-item"
                     onClick={() => handleSelectedList(list._id)}
                     >
                     {list.name}
                     </button>
                 ))
                 ) : (
-                <p className="dropdown-item">You have no lists yet</p>
+                <p className="list-dropdown-item">You have no lists yet</p>
                 )}
             </div>
                 )}  
-                </>
+                </div>
                 )}
                 </div>
                 )}
                 </div>
             </div>
-                <p>{message}</p>
-                <p>{errorMessage}</p>
+                <p className="dropdown-message">{message}</p>
+                <p className="dropdown-message">{errorMessage}</p>
             </div>
     );
 }

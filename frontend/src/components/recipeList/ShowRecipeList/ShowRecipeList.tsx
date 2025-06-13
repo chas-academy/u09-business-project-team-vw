@@ -1,9 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import type { RecipeList } from "../../types/RecipeList";
-import type { Recipe } from "../../interfaces/recipe.interface";
-import RecipeCard from "../recipe-card/recipe-card";
-import BackButton from "../button/goBack";
+import type { RecipeList } from "../../../types/RecipeList";
+import type { Recipe } from "../../../interfaces/recipe.interface";
+import RecipeCard from "../../recipe-card/recipe-card";
+import BackButton from "../../button/goBack/goBack";
+import { BaseButton } from "../../button/baseButton/baseButton";
+import "./ShowRecipeList.scss";
+import { InputField } from "../../InputField/InputField";
 
 const SingleListView = () => {
   const { listId } = useParams();
@@ -85,43 +88,43 @@ const SingleListView = () => {
   }
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p className="text-red-600">{error}</p>;
+  if (error) return <p className="show-list-error">{error}</p>;
   if (!list) return <p>Couldnt find the list</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
+    <div className="show-list-container">
       {isEditing ? (
-  <form
-    onSubmit={handleInlineUpdate}
-    className="mb-4 flex gap-2 items-center"
-  >
-    <input
-      placeholder="List Name"
-      type="text"
-      value={editedTitle}
-      onChange={(e) => setEditedTitle(e.target.value)}
-      className="border p-1 rounded text-xl font-bold"
+  <form onSubmit={handleInlineUpdate} className="show-list-form">
+    <InputField
+      labelText="Change list name"
+      inputProps={{
+        placeholder: "List Name",
+        type: "text",
+        value: editedTitle,
+        onChange: (e) => setEditedTitle(e.target.value),
+      }}
     />
-    <button
+    <BaseButton
       type="submit"
-      className="bg-green-500 text-white px-2 py-1 rounded"
+      className="edit-name-button"
     >
       Save
-    </button>
-    <button
+    </BaseButton>
+    <BaseButton
       type="button"
       onClick={() => {
         setEditedTitle(list.name);
         setIsEditing(false);
       }}
-      className="text-sm underline text-gray-600"
+      className="edit-name-button"
     >
       Cancel
-    </button>
+    </BaseButton>
   </form>
+
 ) : (
   <h2
-    className="text-2xl font-bold mb-4 cursor-pointer"
+    className="index-main-title show-list-title"
     onClick={() => setIsEditing(true)}
     title="Click to edit title"
   >
@@ -130,17 +133,16 @@ const SingleListView = () => {
 )}
 
       {list.recipes && list.recipes.length > 0 ? (
-        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <div className="show-list-recipe">
           {list.recipes.map((recipe: Recipe) => (
             <RecipeCard key={recipe._id} recipe={recipe} />
           ))}
         </div>
       ) : (
-        <p className="text-gray-600">Add a recipe to this list!</p>
+        <p className="show-list-message">Add a recipe to this list!</p>
       )}
-      <BackButton />
 
-      <button
+      <BaseButton
   onClick={async () => {
     if (!confirm("Are you sure you want to delete this list?")) return;
 
@@ -155,16 +157,17 @@ const SingleListView = () => {
         return;
       }
 
-      navigate('/user-dashboard'); // eller annan sida
+      navigate('/user-page'); // eller annan sida
     } catch (error) {
       console.error(error);
       alert('Server error');
     }
   }}
-  className="bg-red-600 text-white px-3 py-1 rounded mt-4"
+  className="show-list-button"
 >
   Delete this list
-</button>
+</BaseButton>
+<BackButton />
 
     </div>
 

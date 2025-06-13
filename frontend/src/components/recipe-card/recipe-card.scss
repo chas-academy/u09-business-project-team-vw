@@ -88,3 +88,44 @@
   font-size: 1.2rem;
   color: var(--accent-sec-color);
 }
+
+.dropdown-message {
+  padding: 0.1rem 0.2rem;
+  color: var(--text-color);
+  background-color: var(--accent-pri-color);
+}
+
+.list-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.list-dropdown-menu {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  min-width: 8rem;
+  background-color: var(--sec-bg-color);
+  box-shadow: 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+  z-index: 2;
+  border-radius: 0.2rem;
+  padding: 0.5em 0;
+}
+
+.list-dropdown-item {
+  width: 100%;
+  background-color: var(--sec-bg-color);
+  color: var(--text-color);
+  border: none;
+  border-top: var(--text-color) solid 0.05rem;
+  border-bottom: var(--text-color) solid 0.05rem;
+  text-align: left;
+  padding: 0.1rem 0.2rem;
+  cursor: pointer;
+}
+
+.list-dropdown-item:hover {
+  background-color: var(--pri-bg-color);
+  border-top: var(--accent-sec-color) solid 0.05rem;
+  border-top: var(--accent-sec-color) solid 0.05rem;
+}

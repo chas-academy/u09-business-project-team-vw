@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ClickableProfileIcon from "../button/clickableProfileIcon";
 import "./header.scss"
+import { BaseButton } from "../button/baseButton/baseButton";
 
 
 // header component imported in App.tsx
@@ -58,16 +59,6 @@ export function Header() {
                         <Icon className="search-icon" icon="ic:baseline-arrow-forward-ios" />
                     </button>
                 </div>
-                <div id="header-weather">
-                    <Icon className="weather-icon" icon="mdi:weather-partly-cloudy"></Icon>
-                    <div className="temp-container">
-                        <p className="temp-header">30°C</p>
-                        <div className="temp-degree-container">
-                            <p className="temp-degree-text">Precipitations</p>
-                            <p className="temp-degree-text">Max.: 34º Min.: 28º</p>
-                        </div>
-                    </div>
-                </div>
                 <ClickableProfileIcon />
             </div>
             {/* visible only when device is mobile or tablet */}
@@ -101,7 +92,7 @@ export function Header() {
                     </button>
                     {dropdownOpen && (
                         <ul className="dropdown-menu-list">
-                            <li onClick={() => { handleFilter("All Eater"); setDropdownOpen(false); }}>All Eater</li>
+                            <li onClick={() => { handleFilter("All Eater"); setDropdownOpen(false); }}>Home</li>
                             <li onClick={() => { handleFilter("Vegetarian"); setDropdownOpen(false); }}>Vegetarian</li>
                             <li onClick={() => { handleFilter("Gluten Free"); setDropdownOpen(false); }}>Gluten Free</li>
                             <li onClick={() => { handleFilter("Dairy Free"); setDropdownOpen(false); }}>Dairy Free</li>
@@ -110,10 +101,10 @@ export function Header() {
                 </div>
                 {/* visible only when device is 1280px or more */}
                 <div id="header-buttons-container" className="desktop-filters">
-                    <button className="header-button" onClick={() => handleFilter("All Eater")}>All Eater</button>
-                    <button className="header-button" onClick={() => handleFilter("Vegetarian")}>Vegetarian</button>
-                    <button className="header-button" onClick={() => handleFilter("Gluten Free")}>Gluten Free</button>
-                    <button className="header-button" onClick={() => handleFilter("Dairy Free")}>Dairy Free</button>
+                    <BaseButton onClick={() => handleFilter("All Eater")}>Home</BaseButton>
+                    <BaseButton onClick={() => handleFilter("Vegetarian")}>Vegetarian</BaseButton>
+                    <BaseButton onClick={() => handleFilter("Gluten Free")}>Gluten Free</BaseButton>
+                    <BaseButton onClick={() => handleFilter("Dairy Free")}>Dairy Free</BaseButton>
                 </div>
             </div>
         </header>

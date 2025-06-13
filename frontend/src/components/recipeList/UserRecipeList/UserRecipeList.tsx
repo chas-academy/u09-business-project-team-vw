@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import type { RecipeList } from '../../types/RecipeList';
+import type { RecipeList } from '../../../types/RecipeList';
 import { useNavigate } from 'react-router-dom';
-import BackButton from '../button/goBack';
+import { Icon } from "@iconify/react";
+import "./userRecipeList.scss"
+import { BaseButton } from '../../button/baseButton/baseButton';
 
 const UserRecipeList = () => {
     const [loading, setLoading] = useState<boolean>(false);
@@ -60,37 +62,36 @@ const UserRecipeList = () => {
     }
 
     return (
-    <div className="max-w-2xl mx-auto p-4">
-        <h2 className="text-xl font-bold mb-4">Your recipelists</h2>
+    <div className="userlist-container">
+        <h2 className="index-main-title userlist-title">Your recipelists</h2>
 
-        <button
-            onClick={() => navigate('/user-create-list')}
-            className="mb-6 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
-        >
-            Create a list
-        </button>
+        
 
         {lists.length === 0 ? (
-            <p className="text-gray-600">Create a list to save all your favorite recipes!</p>
+            <p className="userlist-text">
+                Create a list to save all your favorite recipes! <Icon icon="mdi:food-fork-drink" />
+            </p>
         ) : (
-            <div className="space-y-2">
+            <div className="userlist-listname-container">
                 {lists.map((list) => (
                     <div
                         key={list._id}
                         onClick={() => navigate(`/recipe-list/${list._id}`)}
-                        className="cursor-pointer p-3 border rounded hover:bg-gray-100"
+                        className="userlist-listname"
                     >
-                        <h3 className="text-lg font-semibold">{list.name}</h3>
+                        <h3>{list.name} <Icon className="userlist-icon" icon="mdi:keyboard-arrow-right" /></h3>
                     </div>
                 ))}
             </div>
         )}
 
-        {message && <p className="text-green-600 mt-4">{message}</p>}
-
-        <div className="mt-6">
-            <BackButton />
-        </div>
+        <BaseButton
+            onClick={() => navigate('/user-create-list')}
+            className="userlist-create-button"
+        >
+            Create a new list
+        </BaseButton>
+        {message && <p className="userlist-text userlist-message">{message}</p>}
     </div>
     );
 }

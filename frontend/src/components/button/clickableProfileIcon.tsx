@@ -33,11 +33,11 @@ const ClickableProfileIcon = () => {
 
         } else if(user?.isAdmin === true) {
             // Logged in user goes to settings page.
-            navigate('/admin-settings');
+            navigate('/admin-dashboard');
             return;
 
         } else if (user) {
-            navigate('/user-settings');
+            navigate('/user-page');
             return;
         }
     };
@@ -48,7 +48,7 @@ const ClickableProfileIcon = () => {
     if(user?.isAdmin) {
         hoverText = 'Settings';
     } else if (user) {
-        hoverText = 'Go To Dashboard';
+        hoverText = 'Go To User Page';
     }
 
     return (

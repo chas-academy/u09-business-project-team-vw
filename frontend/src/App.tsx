@@ -9,23 +9,26 @@ import SingleListView from './components/recipeList/ShowRecipeList';
 
 // PAGES FOLDER
 import Home from './pages/home/home';
-import AdminDashboard from './pages/admin/dashboard';
+import AdminDashboard from './pages/admin/dashboard/dashboard';
 import AdminSettings from './pages/admin/adminSetting';
-import UserDashboard from './pages/user/dashboard';
-import UserSettings from './pages/user/userSetting';
+import UserDashboard from './pages/user/dashboard/dashboard';
+import UserSettings from './pages/user/userSetting/userSetting';
 import ShowUser from './pages/admin/users';
 import NotAutorized from './pages/authorizing/notAutorizedPage';
 import Search from './pages/search/search';
 import RecipeDetail from './pages/recipe-details/recipe-details';
-
+import CreateListForm from './components/recipeList/CreateListForm/CreateListForm';
+import SingleListView from './components/recipeList/ShowRecipeList/ShowRecipeList';
 
 function App() {
   return (
       <Routes>
-        <Route path='/not-authorized' element={<NotAutorized />} />
+        
 
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          
+          <Route path='not-authorized' element={<NotAutorized />} />
           
         <Route 
           path='admin-dashboard'
@@ -71,7 +74,7 @@ function App() {
           }
         />
         <Route 
-          path='user-settings' 
+          path='user-page' 
           element={
             <ProtectedRoute>
               <UserSettings />

@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         fetchUser();
 
-    }, [apiUrl]);
+    }, [apiUrl, navigate]);
     
         // Provide the authentication state and updater to the entire app via context
         return (
