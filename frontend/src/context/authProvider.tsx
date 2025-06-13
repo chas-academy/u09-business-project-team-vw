@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                         if (data.data?.isAdmin) {
                             navigate('/admin-dashboard');
                         } else {
-                            navigate('/user-dashboard');
+                            navigate('/user-page');
                         }
                     }
 
