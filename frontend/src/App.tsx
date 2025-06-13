@@ -4,8 +4,8 @@ import './App.scss'
 // COMPONENTS FOLDER
 import { Layout } from './components/layout/layout';
 import { ProtectedRoute } from './components/middleware/protectedRoute';
-import CreateListForm from './components/recipeList/CreateListForm';
-import SingleListView from './components/recipeList/ShowRecipeList';
+import CreateListForm from './components/recipeList/CreateListForm/CreateListForm';
+import SingleListView from './components/recipeList/ShowRecipeList/ShowRecipeList';
 
 // PAGES FOLDER
 import Home from './pages/home/home';
@@ -17,8 +17,7 @@ import ShowUser from './pages/admin/users';
 import NotAutorized from './pages/authorizing/notAutorizedPage';
 import Search from './pages/search/search';
 import RecipeDetail from './pages/recipe-details/recipe-details';
-import CreateListForm from './components/recipeList/CreateListForm/CreateListForm';
-import SingleListView from './components/recipeList/ShowRecipeList/ShowRecipeList';
+
 
 function App() {
   return (
