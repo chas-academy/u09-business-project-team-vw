@@ -93,7 +93,7 @@ const UserSettings = () => {
     
             <form onSubmit={handleSubmit}>
             <label>
-                Name:
+                List Title:
                 <input
                 type="text"
                 value={user?.displayName || ''}

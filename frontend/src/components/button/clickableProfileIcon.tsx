@@ -67,7 +67,7 @@ const ClickableProfileIcon = () => {
                 )}
             </>
         ) : (
-            <p className="profile-text">Guest</p>
+            <p className="profile-text">Log In!</p>
         )}
         </div>
     )
