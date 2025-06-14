@@ -9,27 +9,27 @@ const LogoutButton = () => {
     const { user, setUser } = useAuth();
     const navigate = useNavigate();
 
-    if(!user) return null;
+    if (!user) return null;
 
     const handleLogout = () => {
         fetch(`${apiUrl}/user/logout`, {
-        credentials: 'include'
+            credentials: 'include'
         })
-        .then((res) => {
-            if(res.ok) {
-                setUser(null);
-                setTimeout(() => {
-                    navigate('/');
-                }, 10);
-            }
-        })
-        .catch((err) => {
-            console.error('Logout failed:', err)
-        });
+            .then((res) => {
+                if (res.ok) {
+                    setUser(null);
+                    setTimeout(() => {
+                        navigate('/');
+                    }, 10);
+                }
+            })
+            .catch((err) => {
+                console.error('Logout failed:', err)
+            });
     }
 
     return (
-        <button 
+        <button
             onClick={handleLogout}
             className="use-logout">
             Log Out

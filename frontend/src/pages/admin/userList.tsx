@@ -1,7 +1,7 @@
 import type { User } from "../../types/User";
 
 type Props = {
-    users: User[];
+  users: User[];
   onShow: (id: string) => void;
   onDelete: (id: string) => void;
 };

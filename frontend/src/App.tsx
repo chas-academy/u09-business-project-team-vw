@@ -21,47 +21,47 @@ import RecipeDetail from './pages/recipe-details/recipe-details';
 
 function App() {
   return (
-      <Routes>
-        
+    <Routes>
 
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          
-          <Route path='not-authorized' element={<NotAutorized />} />
-          
-        <Route 
+
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+
+        <Route path='not-authorized' element={<NotAutorized />} />
+
+        <Route
           path='admin-dashboard'
           element={
             <ProtectedRoute requireAdmin>
               <AdminDashboard />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
+        <Route
           path='admin-settings' element={
             <ProtectedRoute requireAdmin>
               <AdminSettings />
             </ProtectedRoute>
-          } 
+          }
         />
         <Route path='/show-user/:id' element={
-            <ProtectedRoute requireAdmin>
-              <ShowUser />
-            </ProtectedRoute>
-          } 
+          <ProtectedRoute requireAdmin>
+            <ShowUser />
+          </ProtectedRoute>
+        }
         />
 
-          <Route path='/not-authorized' element={<NotAutorized />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/recipes/:id" element={<RecipeDetail />} />
+        <Route path='/not-authorized' element={<NotAutorized />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/recipes/:id" element={<RecipeDetail />} />
 
-          <Route
-            path='/admin-dashboard'
-            element={
-              <ProtectedRoute requireAdmin>
-                <AdminDashboard />
-              </ProtectedRoute>
-            } />
+        <Route
+          path='/admin-dashboard'
+          element={
+            <ProtectedRoute requireAdmin>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
 
 
         <Route
@@ -72,32 +72,32 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route 
-          path='user-page' 
+        <Route
+          path='user-page'
           element={
             <ProtectedRoute>
               <UserSettings />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
+        <Route
           path='recipe-list/:listId'
           element={
             <ProtectedRoute>
-            <SingleListView />
+              <SingleListView />
             </ProtectedRoute>
           }
-          />
-        <Route 
+        />
+        <Route
           path='user-create-list'
           element={
             <ProtectedRoute>
               <CreateListForm />
             </ProtectedRoute>
-        }
+          }
         />
-          </Route>
-      </Routes>
+      </Route>
+    </Routes>
   );
 }
 

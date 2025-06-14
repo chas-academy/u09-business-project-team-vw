@@ -8,13 +8,13 @@ type Props = {
 }
 
 export function ProtectedRoute({ children, requireAdmin = false }: Props) {
-    const {user, loading} = useAuth();
+    const { user, loading } = useAuth();
 
-    if(loading) return <div>Loading ...</div>;
+    if (loading) return <div>Loading ...</div>;
 
-    if(!user) return <Navigate to='/not-authorized' />;
+    if (!user) return <Navigate to='/not-authorized' />;
 
-    if(requireAdmin && !user.isAdmin) return <Navigate to='/not-authorized' />;
+    if (requireAdmin && !user.isAdmin) return <Navigate to='/not-authorized' />;
 
     return children;
 }

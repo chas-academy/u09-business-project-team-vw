@@ -60,16 +60,16 @@ function RecipeDetail() {
                         <p className="recipe-details-servings">Servings: {recipe.servings}</p>
                     </div>
                     {recipe.preparationMinutes != null && recipe.preparationMinutes > 0 && (
-                    <div className="detail-type-container">
-                        <Icon className="recipe-time-icon" icon="mdi:access-time"></Icon>
-                        <p className="recipe-details-time">Preparation time: {recipe.preparationMinutes} minutes</p>
-                    </div>
+                        <div className="detail-type-container">
+                            <Icon className="recipe-time-icon" icon="mdi:access-time"></Icon>
+                            <p className="recipe-details-time">Preparation time: {recipe.preparationMinutes} minutes</p>
+                        </div>
                     )}
                     {recipe.cookingMinutes != null && recipe.cookingMinutes > 0 && (
-                    <div className="detail-type-container">
-                        <Icon className="recipe-time-icon" icon="mdi:access-time"></Icon>
-                        <p className="recipe-details-time">Cooking time: {recipe.cookingMinutes} minutes</p>
-                    </div>
+                        <div className="detail-type-container">
+                            <Icon className="recipe-time-icon" icon="mdi:access-time"></Icon>
+                            <p className="recipe-details-time">Cooking time: {recipe.cookingMinutes} minutes</p>
+                        </div>
                     )}
                     <div className="detail-type-container">
                         <Icon className="recipe-time-icon" icon="mdi:access-time"></Icon>
@@ -88,9 +88,9 @@ function RecipeDetail() {
                 </div>
             </div>
             {user && (
-            <button className="header-button recipe-details-button" onClick={() => handleAddRecipe(recipe.originalRecipeId)}>
-                Add recipe to my list
-            </button>
+                <button className="header-button recipe-details-button" onClick={() => handleAddRecipe(recipe.originalRecipeId)}>
+                    Add recipe to my list
+                </button>
             )}
         </div>
     );
