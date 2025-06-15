@@ -1,8 +1,9 @@
+@use '../../styles/mixins' as *;
+
 /* keeps header, main and footer at least take 
 up whole screen and placed on top of each other */
 #layout-container {
-    display: flex;
-    flex-direction: column;
+    @include flexbox(column);
     min-height: 100vh;
 }
 

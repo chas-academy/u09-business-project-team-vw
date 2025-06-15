@@ -1,7 +1,7 @@
+@use '../../../styles/mixins' as *;
+
 .show-list-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flexbox(column, center);
     padding: 1.5rem 0;
     gap: 2rem;
 }
@@ -11,9 +11,7 @@
 }
 
 .show-list-recipe {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(row, center, center);
     flex-wrap: wrap;
     gap: 1rem;
 }

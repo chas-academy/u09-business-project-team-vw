@@ -1,7 +1,8 @@
+@use '../../styles/mixins' as *;
+
 // keeps footer at bottom and text centered
 #footer {
-    display: flex;
-    justify-content: center;
+    @include flexbox(row, stretch, center);
     background-color: var(--sec-bg-color);
     margin-top: auto;
 }

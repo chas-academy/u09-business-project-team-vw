@@ -1,8 +1,7 @@
+@use '../../../styles/mixins' as *;
+
 .userlist-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(column, center, center);
     gap: 1rem;
     margin-top: 2rem;
 }
@@ -18,18 +17,14 @@
 }
 
 .userlist-listname-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(column, center, center);
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
 
 .userlist-listname {
     cursor: pointer;
-    display: flex;
-    align-items: flex-end;
+    @include flexbox(row, flex-end);
     gap: 0.3rem;
     color: var(--text-color);
     background-color: var(--accent-pri-color);
