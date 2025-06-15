@@ -67,9 +67,9 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
                 credentials: 'include',
                 method: 'GET'
             });
+            const findData = await findRes.json();
 
-            if (findRes.ok) {
-                const findData = await findRes.json();
+            if (findRes.ok && findData.data && findData.data._id) {
                 recipeDbId = findData.data._id;
             } else {
                 const saveRes = await fetch(`${apiUrl}/recipes/${recipe.originalRecipeId}/save`, {
@@ -79,6 +79,12 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
 
                 if (!saveRes.ok) throw new Error('Failed to save recipe');
                 const saveData = await saveRes.json();
+
+                if (!saveData.data || !saveData.data._id) {
+                    alert('Could not save or get recipe from Spoonacular.');
+                    setLoading(false);
+                    return;
+                }
                 recipeDbId = saveData.data._id;
             }
 
@@ -178,7 +184,7 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
                             {recipe.readyInMinutes} min
                         </p>
                     </div>
-                    {user && (
+                    {user && !user.isAdmin && (
                         <div className="save-recipe-wrapper" onClick={e => e.stopPropagation()}>
                             {listId ? (
                                 // Inne på en lista: visa "ta bort från listan"-knapp

@@ -10,8 +10,6 @@ import SingleListView from './components/recipeList/ShowRecipeList/ShowRecipeLis
 // PAGES FOLDER
 import Home from './pages/home/home';
 import AdminDashboard from './pages/admin/dashboard/dashboard';
-import AdminSettings from './pages/admin/adminSetting';
-import UserDashboard from './pages/user/dashboard/dashboard';
 import UserSettings from './pages/user/userSetting/userSetting';
 import ShowUser from './pages/admin/users';
 import NotAutorized from './pages/authorizing/notAutorizedPage';
@@ -37,41 +35,18 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
-          path='admin-settings' element={
-            <ProtectedRoute requireAdmin>
-              <AdminSettings />
-            </ProtectedRoute>
-          }
-        />
-        <Route path='/show-user/:id' element={
+    
+        <Route path='show-user/:id' element={
           <ProtectedRoute requireAdmin>
             <ShowUser />
           </ProtectedRoute>
         }
         />
 
-        <Route path='/not-authorized' element={<NotAutorized />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/recipes/:id" element={<RecipeDetail />} />
-
-        <Route
-          path='/admin-dashboard'
-          element={
-            <ProtectedRoute requireAdmin>
-              <AdminDashboard />
-            </ProtectedRoute>
-          } />
+        <Route path="search" element={<Search />} />
+        <Route path="recipes/:id" element={<RecipeDetail />} />
 
 
-        <Route
-          path='user-dashboard'
-          element={
-            <ProtectedRoute>
-              <UserDashboard />
-            </ProtectedRoute>
-          }
-        />
         <Route
           path='user-page'
           element={
