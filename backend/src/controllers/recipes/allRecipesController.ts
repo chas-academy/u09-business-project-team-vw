@@ -30,7 +30,7 @@ export const getAllRecipes = async (req: Request, res: Response): Promise<void> 
 
         // try to fetch from Spoonacular
         try {
-            let spoonacularUrl = `https://api.spoonacular.com/recipes/random?number=1&apiKey=${apiKey}`;
+            let spoonacularUrl = `https://api.spoonacular.com/recipes/random?number=5&apiKey=${apiKey}`;
             // add filter parameters in url, otherwise randon recipes are fetched
             if (vegetarian === 'true') spoonacularUrl += '&tags=vegetarian';
             else if (glutenFree === 'true') spoonacularUrl += '&tags=gluten%20free';

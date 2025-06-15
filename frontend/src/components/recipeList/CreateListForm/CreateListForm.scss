@@ -1,8 +1,7 @@
+@use '../../../styles/mixins' as *;
+
 .createlist-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(column, center, center);
     gap: 1rem;
     padding: 2rem 1rem;
 }
@@ -12,8 +11,7 @@
 }
 
 .createlist-form {
-    display: flex;
-    align-items: flex-end;
+    @include flexbox(row, flex-end);
     gap: 0.3rem;
     margin-bottom: 2rem;
 }

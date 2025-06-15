@@ -30,12 +30,12 @@ export function Header() {
 
     // when button is clicked go to homepage with filter in url
     const handleFilter = (filter: string) => {
-    let query = '';
-    if (filter === "Vegetarian") query = "?vegetarian=true";
-    if (filter === "Gluten Free") query = "?glutenFree=true";
-    if (filter === "Dairy Free") query = "?dairyFree=true";
-    navigate("/" + query);
-};
+        let query = '';
+        if (filter === "Vegetarian") query = "?vegetarian=true";
+        if (filter === "Gluten Free") query = "?glutenFree=true";
+        if (filter === "Dairy Free") query = "?dairyFree=true";
+        navigate("/" + query);
+    };
 
     return (
         <header id="header">

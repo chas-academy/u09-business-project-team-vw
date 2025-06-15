@@ -1,6 +1,7 @@
+@use '../../../styles/mixins' as *;
+
 .user-settings-form {
-    display: flex;
-    align-items: flex-end;
+    @include flexbox(row, flex-end);
     gap: 0.3rem;
     margin-bottom: 2rem;
 }

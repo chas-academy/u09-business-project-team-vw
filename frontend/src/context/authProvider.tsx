@@ -24,32 +24,32 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
 
-         // ⏳ Kolla URL-parametern
+        // ⏳ Kolla URL-parametern
         const location = window.location;
         const params = new URLSearchParams(location.search);
         const justLoggedIn = params.get("loggedIn") === "true";
 
         if (justLoggedIn) {
-        // 🧼 Rensa URL:en från ?loggedIn
-        const newUrl = location.pathname;
-        window.history.replaceState({}, "", newUrl);
+            // 🧼 Rensa URL:en från ?loggedIn
+            const newUrl = location.pathname;
+            window.history.replaceState({}, "", newUrl);
         }
 
         // Fetch the current authenticated user on first render
-        const fetchUser = async() => {
+        const fetchUser = async () => {
             try {
-                 // Send a request to check if a user is authenticated, include cookie
-                const res = await fetch(`${apiUrl}/auth/me`, { 
+                // Send a request to check if a user is authenticated, include cookie
+                const res = await fetch(`${apiUrl}/auth/me`, {
                     method: 'GET',
-                    credentials: 'include' 
+                    credentials: 'include'
                 });
 
-                if(res.ok) {
+                if (res.ok) {
                     // If successful, extract user data and store it in context
                     const data = await res.json();
                     setUser(data.data);
 
-                    if(justLoggedIn) {
+                    if (justLoggedIn) {
                         if (data.data?.isAdmin) {
                             navigate('/admin-dashboard');
                         } else {
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 } else {
                     setErrorMessage('Unkown error');
                 }
-                
+
             } catch (error) {
                 console.error(error);
                 setErrorMessage('Auth fetch failed');
@@ -75,11 +75,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         fetchUser();
 
     }, [apiUrl, navigate]);
-    
-        // Provide the authentication state and updater to the entire app via context
-        return (
-            <AuthContext.Provider value={{ user, setUser, loading, errorMessage }}>
-                {children}
-            </AuthContext.Provider>
-        );
+
+    // Provide the authentication state and updater to the entire app via context
+    return (
+        <AuthContext.Provider value={{ user, setUser, loading, errorMessage }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };

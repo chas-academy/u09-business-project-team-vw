@@ -10,8 +10,6 @@ import SingleListView from './components/recipeList/ShowRecipeList/ShowRecipeLis
 // PAGES FOLDER
 import Home from './pages/home/home';
 import AdminDashboard from './pages/admin/dashboard/dashboard';
-import AdminSettings from './pages/admin/adminSetting';
-import UserDashboard from './pages/user/dashboard/dashboard';
 import UserSettings from './pages/user/userSetting/userSetting';
 import ShowUser from './pages/admin/users';
 import NotAutorized from './pages/authorizing/notAutorizedPage';
@@ -21,83 +19,60 @@ import RecipeDetail from './pages/recipe-details/recipe-details';
 
 function App() {
   return (
-      <Routes>
-        
+    <Routes>
 
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          
-          <Route path='not-authorized' element={<NotAutorized />} />
-          
-        <Route 
+
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+
+        <Route path='not-authorized' element={<NotAutorized />} />
+
+        <Route
           path='admin-dashboard'
           element={
             <ProtectedRoute requireAdmin>
               <AdminDashboard />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
-          path='admin-settings' element={
-            <ProtectedRoute requireAdmin>
-              <AdminSettings />
-            </ProtectedRoute>
-          } 
-        />
-        <Route path='/show-user/:id' element={
-            <ProtectedRoute requireAdmin>
-              <ShowUser />
-            </ProtectedRoute>
-          } 
+    
+        <Route path='show-user/:id' element={
+          <ProtectedRoute requireAdmin>
+            <ShowUser />
+          </ProtectedRoute>
+        }
         />
 
-          <Route path='/not-authorized' element={<NotAutorized />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/recipes/:id" element={<RecipeDetail />} />
-
-          <Route
-            path='/admin-dashboard'
-            element={
-              <ProtectedRoute requireAdmin>
-                <AdminDashboard />
-              </ProtectedRoute>
-            } />
+        <Route path="search" element={<Search />} />
+        <Route path="recipes/:id" element={<RecipeDetail />} />
 
 
         <Route
-          path='user-dashboard'
-          element={
-            <ProtectedRoute>
-              <UserDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route 
-          path='user-page' 
+          path='user-page'
           element={
             <ProtectedRoute>
               <UserSettings />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
+        <Route
           path='recipe-list/:listId'
           element={
             <ProtectedRoute>
-            <SingleListView />
+              <SingleListView />
             </ProtectedRoute>
           }
-          />
-        <Route 
+        />
+        <Route
           path='user-create-list'
           element={
             <ProtectedRoute>
               <CreateListForm />
             </ProtectedRoute>
-        }
+          }
         />
-          </Route>
-      </Routes>
+      </Route>
+    </Routes>
   );
 }
 

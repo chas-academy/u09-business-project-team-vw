@@ -1,9 +1,9 @@
+@use '../../styles/mixins' as *;
+
 // keep recipe cards aligned in a row with spacing between
 .recipe-list {
-    display: flex;
+    @include flexbox(row, center, center);
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
     gap: 1rem;
     padding: 1rem 0;
 }

@@ -23,35 +23,35 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if(!user) return;
-        
+        if (!user) return;
+
         async function fetchLists() {
             try {
                 console.log('Sending recipe ID:', recipe.originalRecipeId);
 
                 const res = await fetch(`${apiUrl}/recipeList/all`, {
-                method: 'GET',
-                credentials: "include"
-            });
+                    method: 'GET',
+                    credentials: "include"
+                });
 
-            const data = await res.json();
-            console.log("API-response från /recipeList/all:", data.data);
+                const data = await res.json();
+                console.log("API-response från /recipeList/all:", data.data);
 
-            // Skydda mot undefined
-            if (Array.isArray(data.data)) {
-                setUserLists(data.data);
-                console.log("Användarens listor:", data.data);
-            } else {
-                setUserLists([]); // tom array för säkerhet
-                console.warn("data.lists är inte en array:", data.data);
-            }
+                // Skydda mot undefined
+                if (Array.isArray(data.data)) {
+                    setUserLists(data.data);
+                    console.log("Användarens listor:", data.data);
+                } else {
+                    setUserLists([]); // tom array för säkerhet
+                    console.warn("data.lists är inte en array:", data.data);
+                }
 
             } catch (error) {
                 console.error(error);
                 setUserLists([]);
             }
         }
-            
+
         fetchLists();
     }, [user, recipe.originalRecipeId]);
 
@@ -67,39 +67,45 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
                 credentials: 'include',
                 method: 'GET'
             });
+            const findData = await findRes.json();
 
-            if (findRes.ok) {
-                const findData = await findRes.json();
+            if (findRes.ok && findData.data && findData.data._id) {
                 recipeDbId = findData.data._id;
             } else {
-                const saveRes = await fetch (`${apiUrl}/recipes/${recipe.originalRecipeId}/save`, {
+                const saveRes = await fetch(`${apiUrl}/recipes/${recipe.originalRecipeId}/save`, {
                     credentials: 'include',
                     method: 'POST'
                 });
 
                 if (!saveRes.ok) throw new Error('Failed to save recipe');
-                    const saveData = await saveRes.json();
-                    recipeDbId = saveData.data._id;
-                }
+                const saveData = await saveRes.json();
 
-                const addRes = await fetch(`${apiUrl}/recipeList/add/${listId}`, {
-                    method: 'POST',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ recipeId: recipeDbId }),
-                });
+                if (!saveData.data || !saveData.data._id) {
+                    alert('Could not save or get recipe from Spoonacular.');
+                    setLoading(false);
+                    return;
+                }
+                recipeDbId = saveData.data._id;
+            }
+
+            const addRes = await fetch(`${apiUrl}/recipeList/add/${listId}`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ recipeId: recipeDbId }),
+            });
 
             const addData = await addRes.json();
 
-            if(addRes.ok) {
+            if (addRes.ok) {
                 navigate('/user-page');
             } else {
                 alert(addData.message || 'Something went wrong!');
             }
 
-            } catch (error) {
+        } catch (error) {
             console.log(error);
             return;
         } finally {
@@ -109,7 +115,7 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
     }
 
     const handleRemoveFromList = async (recipeId: string) => {
-        if(!listId) {
+        if (!listId) {
             console.error('listID missing');
             return;
         }
@@ -125,7 +131,7 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
                 method: 'PATCH'
             });
 
-            if(!response.ok) {
+            if (!response.ok) {
                 setErrorMessage('Couldnt remove recipe from list');
                 return;
             }
@@ -172,64 +178,64 @@ function RecipeCard({ recipe }: { recipe: Recipe; }) {
                 </div>
                 <div className="button-container">
                     <div className="recipe-time">
-                        <Icon className="recipe-time-icon" icon="mdi:access-time"></Icon> 
+                        <Icon className="recipe-time-icon" icon="mdi:access-time"></Icon>
                         <p className="recipe-time-text">
                             {/* display time in minutes */}
                             {recipe.readyInMinutes} min
                         </p>
                     </div>
-                   {user && (
-  <div className="save-recipe-wrapper" onClick={e => e.stopPropagation()}>
-    {listId ? (
-      // Inne på en lista: visa "ta bort från listan"-knapp
-      <button
-        type="button"
-        title="remove-from-list"
-        className="card-button"
-        onClick={() => handleRemoveFromList(recipe._id)}
-        disabled={loading}
-      >
-        <Icon className="add-recipe-icon" icon="mdi:playlist-remove" />
-      </button>
-    ) : (
-      // Utanför en specifik lista: visa dropdown som vanligt
-      <div className="list-dropdown-wrapper">
-        <button
-          type="button"
-          title="add-to-recipe"
-          className="card-button"
-          onClick={() => setShowDropdown(prev => !prev)}
-          disabled={loading}
-        >
-          <Icon className="add-recipe-icon" icon="mdi:invoice-add" />
-        </button>
+                    {user && !user.isAdmin && (
+                        <div className="save-recipe-wrapper" onClick={e => e.stopPropagation()}>
+                            {listId ? (
+                                // Inne på en lista: visa "ta bort från listan"-knapp
+                                <button
+                                    type="button"
+                                    title="remove-from-list"
+                                    className="card-button"
+                                    onClick={() => handleRemoveFromList(recipe._id)}
+                                    disabled={loading}
+                                >
+                                    <Icon className="add-recipe-icon" icon="mdi:playlist-remove" />
+                                </button>
+                            ) : (
+                                // Utanför en specifik lista: visa dropdown som vanligt
+                                <div className="list-dropdown-wrapper">
+                                    <button
+                                        type="button"
+                                        title="add-to-recipe"
+                                        className="card-button"
+                                        onClick={() => setShowDropdown(prev => !prev)}
+                                        disabled={loading}
+                                    >
+                                        <Icon className="add-recipe-icon" icon="mdi:invoice-add" />
+                                    </button>
 
-        {showDropdown && (
-            <div className="list-dropdown-menu">
-                {userLists.length > 0 ? (
-                userLists.map((list) => (
-                    <button
-                    key={list._id}
-                    className="list-dropdown-item"
-                    onClick={() => handleSelectedList(list._id)}
-                    >
-                    {list.name}
-                    </button>
-                ))
-                ) : (
-                <p className="list-dropdown-item">You have no lists yet</p>
-                )}
-            </div>
-                )}  
+                                    {showDropdown && (
+                                        <div className="list-dropdown-menu">
+                                            {userLists.length > 0 ? (
+                                                userLists.map((list) => (
+                                                    <button
+                                                        key={list._id}
+                                                        className="list-dropdown-item"
+                                                        onClick={() => handleSelectedList(list._id)}
+                                                    >
+                                                        {list.name}
+                                                    </button>
+                                                ))
+                                            ) : (
+                                                <p className="list-dropdown-item">You have no lists yet</p>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
-                )}
-                </div>
-                )}
-                </div>
             </div>
-                <p className="dropdown-message">{message}</p>
-                <p className="dropdown-message">{errorMessage}</p>
-            </div>
+            <p className="dropdown-message">{message}</p>
+            <p className="dropdown-message">{errorMessage}</p>
+        </div>
     );
 }
 

@@ -11,7 +11,7 @@ const UserSettings = () => {
 
     const apiUrl = import.meta.env.VITE_API_URL;
 
-    const {user, setUser} = useAuth();
+    const { user, setUser } = useAuth();
     const [loading, setLoading] = useState<boolean>();
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [message, setMessage] = useState<string>('');
@@ -22,11 +22,11 @@ const UserSettings = () => {
 
             setLoading(true);
 
-            const res = await fetch (`${apiUrl}/user/me`, {
+            const res = await fetch(`${apiUrl}/user/me`, {
                 credentials: 'include'
             });
 
-            if(res.ok) {
+            if (res.ok) {
                 const data = await res.json();
                 setUser(data.data);
             }
@@ -37,53 +37,53 @@ const UserSettings = () => {
         fetchUserData();
     }, [apiUrl, setUser]);
 
-    
+
     const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!user) return;
+        e.preventDefault();
+        if (!user) return;
 
-    const res = await fetch(`${apiUrl}/user/update`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({ displayName: user.displayName }),
-    });
+        const res = await fetch(`${apiUrl}/user/update`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ displayName: user.displayName }),
+        });
 
-    if (res.ok) {
-        const data = await res.json();
-        setUser(data.data);
-        setMessage('Profile name updated!');
-        console.log(data);
-    } else {
-        setErrorMessage('Profile name was not updated');
-    }
+        if (res.ok) {
+            const data = await res.json();
+            setUser(data.data);
+            setMessage('Profile name updated!');
+            console.log(data);
+        } else {
+            setErrorMessage('Profile name was not updated');
+        }
     };
 
-    const handleDeleteUser = async() => {
+    const handleDeleteUser = async () => {
         const confirmed = window.confirm('Are you sure you want to delete your profile? This cannot be undone.')
-        
-        if(!confirmed) return;
+
+        if (!confirmed) return;
 
         try {
-            const res = await fetch (`${apiUrl}/user/delete`, {
+            const res = await fetch(`${apiUrl}/user/delete`, {
                 method: 'DELETE',
                 credentials: 'include'
             });
-            
-            if(!res.ok) {
+
+            if (!res.ok) {
                 setErrorMessage('Something went wrong');
             }
 
             setUser(null);
 
-        } catch(error) {
+        } catch (error) {
             console.error(error);
         }
     }
 
     if (loading) {
-            return <p>Loading...</p>;
-            }
+        return <p>Loading...</p>;
+    }
 
     console.log("Rendering <UserRecipeList />");
 
@@ -92,7 +92,7 @@ const UserSettings = () => {
             <h1 className="index-main-title">User Page</h1>
             <h2 className="user-settings-message">{message}</h2>
             <h2 className="user-settings-error">{errorMessage}</h2>
-    
+
             <form onSubmit={handleSubmit} className="user-settings-form">
                 <InputField
                     labelText="Change your username:"
@@ -101,11 +101,11 @@ const UserSettings = () => {
                         value: user?.displayName || "",
                         onChange: (e) => setUser({ ...user!, displayName: e.target.value }),
                     }}
-                    />
+                />
 
-            
 
-            <BaseButton type="submit" className="user-settings-button">Save Username</BaseButton>
+
+                <BaseButton type="submit" className="user-settings-button">Save Username</BaseButton>
             </form>
 
             <BaseButton onClick={() => handleDeleteUser()} className="user-settings-button">Delete My Account</BaseButton>

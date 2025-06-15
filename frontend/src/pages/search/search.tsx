@@ -44,21 +44,21 @@ function Search() {
   }, [ingredients, apiUrl]);
 
   return (
-        <div className="search-container">
-            <h1 className="index-main-title">
-                Search results for: <em>{ingredients}</em>
-            </h1>
-            {loading && <p>Loading...</p>}
-            {error && <p className="error">{error}</p>}
-            <div className="search-list">
-                {recipes.map((recipe) => (
-                <RecipeCard key={recipe.originalRecipeId} recipe={recipe} />
-                ))}
-            </div>
-            {!loading && !error && recipes.length === 0 && (
-                <p className="no-recipes">No recipes found for the given ingredients.</p>
-            )}
-        </div>
+    <div className="search-container">
+      <h1 className="index-main-title">
+        Search results for: <em>{ingredients}</em>
+      </h1>
+      {loading && <p>Loading...</p>}
+      {error && <p className="error">{error}</p>}
+      <div className="search-list">
+        {recipes.map((recipe) => (
+          <RecipeCard key={recipe.originalRecipeId} recipe={recipe} />
+        ))}
+      </div>
+      {!loading && !error && recipes.length === 0 && (
+        <p className="no-recipes">No recipes found for the given ingredients.</p>
+      )}
+    </div>
   );
 }
 

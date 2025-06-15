@@ -192,3 +192,6 @@ Frontend-konfigurationen innehåller även stöd för:
 
 - `react-hooks` – Säker användning av hooks
 - `react-refresh` – Stöd för Vite hot module replacement (HMR)
+
+---
+Skapad av: *William Lundquist och Viktor Ekström*

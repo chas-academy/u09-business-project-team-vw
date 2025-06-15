@@ -13,11 +13,11 @@ const ShowUser = () => {
 
 
     useEffect(() => {
-        const fetchUserById = async() => {
+        const fetchUserById = async () => {
             try {
-                const res = await fetch (`${apiUrl}/admin/dashboard/${id}`, { credentials: 'include' });
+                const res = await fetch(`${apiUrl}/admin/dashboard/${id}`, { credentials: 'include' });
 
-                if(res.ok) {
+                if (res.ok) {
                     const data = await res.json();
                     setUser(data.data);
                     console.log(data);
@@ -37,17 +37,17 @@ const ShowUser = () => {
             <h1 className="index-main-title">USER BY ID</h1>
 
             {user ? (
-                <ul style={{listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <li>ID: {user._id}</li>
                     <li>Name: {user.name}</li>
                     <li>Email: {user.email}</li>
                     <li>Admin: {user.isAdmin ? 'Yes' : 'No'}</li>
                 </ul>
-                ) : (
+            ) : (
                 <p>Loading user...</p>
-                )}
+            )}
 
-            <div style={{display: 'flex', gap: '1rem'}}>
+            <div style={{ display: 'flex', gap: '1rem' }}>
                 <LogoutButton />
                 <BackButton />
             </div>

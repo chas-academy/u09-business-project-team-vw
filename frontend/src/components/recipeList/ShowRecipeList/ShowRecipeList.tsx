@@ -24,8 +24,8 @@ const SingleListView = () => {
     const fetchList = async () => {
       try {
         const res = await fetch(`${apiUrl}/recipeList/show/${listId}`, {
-            method: 'GET',
-            credentials: "include",
+          method: 'GET',
+          credentials: "include",
         });
 
         if (!res.ok) {
@@ -48,28 +48,28 @@ const SingleListView = () => {
 
 
   useEffect(() => {
-   if(list) {
+    if (list) {
       setEditedTitle(list.name);
     }
   }, [list]);
-  
- 
 
-  const handleInlineUpdate = async(e: React.FormEvent) => {
+
+
+  const handleInlineUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
       const response = await fetch(`${apiUrl}/recipeList/edit/${list?._id}`, {
         credentials: 'include',
-        method: 'PATCH', 
-        headers: 
+        method: 'PATCH',
+        headers:
         {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ name: editedTitle }),
       });
 
-      if(!response.ok) {
+      if (!response.ok) {
         alert('couldnt update the list name!');
         return;
       }
@@ -83,7 +83,7 @@ const SingleListView = () => {
     }
   };
 
-  if(!listId) {
+  if (!listId) {
     return <p>No list was found</p>
   }
 
@@ -94,43 +94,43 @@ const SingleListView = () => {
   return (
     <div className="show-list-container">
       {isEditing ? (
-  <form onSubmit={handleInlineUpdate} className="show-list-form">
-    <InputField
-      labelText="Change list name"
-      inputProps={{
-        placeholder: "List Name",
-        type: "text",
-        value: editedTitle,
-        onChange: (e) => setEditedTitle(e.target.value),
-      }}
-    />
-    <BaseButton
-      type="submit"
-      className="edit-name-button"
-    >
-      Save
-    </BaseButton>
-    <BaseButton
-      type="button"
-      onClick={() => {
-        setEditedTitle(list.name);
-        setIsEditing(false);
-      }}
-      className="edit-name-button"
-    >
-      Cancel
-    </BaseButton>
-  </form>
+        <form onSubmit={handleInlineUpdate} className="show-list-form">
+          <InputField
+            labelText="Change list name"
+            inputProps={{
+              placeholder: "List Name",
+              type: "text",
+              value: editedTitle,
+              onChange: (e) => setEditedTitle(e.target.value),
+            }}
+          />
+          <BaseButton
+            type="submit"
+            className="edit-name-button"
+          >
+            Save
+          </BaseButton>
+          <BaseButton
+            type="button"
+            onClick={() => {
+              setEditedTitle(list.name);
+              setIsEditing(false);
+            }}
+            className="edit-name-button"
+          >
+            Cancel
+          </BaseButton>
+        </form>
 
-) : (
-  <h2
-    className="index-main-title show-list-title"
-    onClick={() => setIsEditing(true)}
-    title="Click to edit title"
-  >
-    {list.name}
-  </h2>
-)}
+      ) : (
+        <h2
+          className="index-main-title show-list-title"
+          onClick={() => setIsEditing(true)}
+          title="Click to edit title"
+        >
+          {list.name}
+        </h2>
+      )}
 
       {list.recipes && list.recipes.length > 0 ? (
         <div className="show-list-recipe">
@@ -143,31 +143,31 @@ const SingleListView = () => {
       )}
 
       <BaseButton
-  onClick={async () => {
-    if (!confirm("Are you sure you want to delete this list?")) return;
+        onClick={async () => {
+          if (!confirm("Are you sure you want to delete this list?")) return;
 
-    try {
-      const res = await fetch(`${apiUrl}/recipeList/delete/${listId}`, {
-        method: 'DELETE',
-        credentials: 'include',
-      });
+          try {
+            const res = await fetch(`${apiUrl}/recipeList/delete/${listId}`, {
+              method: 'DELETE',
+              credentials: 'include',
+            });
 
-      if (!res.ok) {
-        alert('Failed to delete the list');
-        return;
-      }
+            if (!res.ok) {
+              alert('Failed to delete the list');
+              return;
+            }
 
-      navigate('/user-page'); // eller annan sida
-    } catch (error) {
-      console.error(error);
-      alert('Server error');
-    }
-  }}
-  className="show-list-button"
->
-  Delete this list
-</BaseButton>
-<BackButton />
+            navigate('/user-page'); // eller annan sida
+          } catch (error) {
+            console.error(error);
+            alert('Server error');
+          }
+        }}
+        className="show-list-button"
+      >
+        Delete this list
+      </BaseButton>
+      <BackButton />
 
     </div>
 

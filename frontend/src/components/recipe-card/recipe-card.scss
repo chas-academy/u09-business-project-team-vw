@@ -1,9 +1,4 @@
-@mixin flexbox($direction: row, $align: stretch, $justify: flex-start) {
-  display: flex;
-  flex-direction: $direction;
-  align-items: $align;
-  justify-content: $justify;
-}
+@use '../../styles/mixins' as *;
 
 // gives the card a rounded shape and a responsive size
 .recipe-background {

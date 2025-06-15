@@ -29,16 +29,16 @@ function Home() {
         // fetch recipes when mounts or new filter is triggered
     }, [apiUrl, location.search]);
 
-        return (
-            // container for recipe cards
-            <div className="recipe-list">
-                {/* For each recipe, display a recipe card */}
-                {recipes.map(recipe => (
-                    // recipe card with right recipe id is displayed
-                    <RecipeCard key={recipe.originalRecipeId} recipe={recipe} />
-                ))}
-            </div>
-        );
-    }
+    return (
+        // container for recipe cards
+        <div className="recipe-list">
+            {/* For each recipe, display a recipe card */}
+            {recipes.map(recipe => (
+                // recipe card with right recipe id is displayed
+                <RecipeCard key={recipe.originalRecipeId} recipe={recipe} />
+            ))}
+        </div>
+    );
+}
 
-    export default Home
+export default Home

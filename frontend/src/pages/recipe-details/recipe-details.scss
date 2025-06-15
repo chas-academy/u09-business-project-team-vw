@@ -1,18 +1,14 @@
+@use '../../styles/mixins' as *;
+
 .recipe-detail-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(column, center, center);
     padding: 2rem;
     gap: 1rem;
 }
 
 .upper-detail-container {
     width: 21rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(column, center, center);
     gap: 0.5rem;
 }
 
@@ -29,10 +25,7 @@
 }
 
 .details-types-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(column, center, center);
     gap: 0.3rem;
 }
 
@@ -42,34 +35,24 @@
 }
 
 .detail-type-container {
-    display: flex;
-    align-items: center;
+    @include flexbox(row, center);
     gap: 0.2rem;
     color: var(--text-color);
 }
 
 .lower-detail-container {
     width: 21rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(column, center, center);
     gap: 1rem;
 }
 
 .servings-time-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(column, center, center);
     gap: 0.3rem;
 }
 
 .detail-ingredients-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(column, center, center);
     gap: 0.3rem;
     color: var(--text-color);
 }
@@ -87,10 +70,7 @@
 }
 
 .detail-instructions-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(column, center, center);
     gap: 0.3rem;
     color: var(--text-color);
 }
