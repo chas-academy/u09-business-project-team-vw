@@ -3,7 +3,7 @@
 📘 Projekt: Team VW
 🎨 Design Prototype
 Du kan se Figma-designen som applikationen baseras på här:
-🔗 Figma Design
+🔗 <https://www.figma.com/design/Cws5C4jQzawLjICpdOocSY/U09-Figma-Skisser?node-id=0-1&p=f&t=Gv2YSKgsfXTDKC9V-0>
 
 Deployad frontend:
 🔗 <https://u09-team-vw.netlify.app/>
